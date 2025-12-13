@@ -1,0 +1,74 @@
+/* =========================================================
+   MOBILE ORDERS – WEBSITE LAYOUT BYPASS (FINAL)
+   ========================================================= */
+
+/* 1. Kill ALL website layout constraints */
+html, body {
+  height: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* 2. Neutralize website wrappers */
+.web-page,
+.web-page-content,
+.page-content,
+.page_content,
+.page-body,
+main,
+.container,
+.container-fluid,
+.section,
+.page-section {
+  margin: 0 !important;
+  padding: 0 !important;
+  max-width: none !important;
+  width: 100% !important;
+  display: block !important;
+}
+
+/* 3. Remove website header + footer completely */
+header,
+.navbar,
+.website-navbar,
+.top-navbar,
+footer,
+.web-footer,
+.website-footer,
+.newsletter,
+.section-footer,
+#footer {
+  display: none !important;
+  height: 0 !important;
+}
+
+/* 4. FORCE app to be viewport-based */
+.mobile-app {
+  position: fixed !important;
+  inset: 0 !important;
+  display: flex;
+  flex-direction: column;
+  background: #f8f9fa;
+  overflow: hidden;
+  z-index: 10;
+}
+
+/* 5. Account for app_shell bars */
+.appshell {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+#appContent {
+  flex: 1;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 72px; /* bottom nav */
+}
+
+/* 6. Safety: prevent body scroll */
+body {
+  overflow: hidden !important;
+}

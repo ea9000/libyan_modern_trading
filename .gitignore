@@ -1,7 +1,22 @@
-.DS_Store
+# Python
+__pycache__/
 *.pyc
-*.egg-info
-*.swp
-tags
-node_modules
-__pycache__
+*.pyo
+
+# Node / build
+node_modules/
+dist/
+*.map
+
+# Frappe
+*.log
+*.sqlite
+sites/
+*.egg-info/
+.coverage
+.coverage.*
+.cache/
+.DS_Store
+
+# OS
+Thumbs.db

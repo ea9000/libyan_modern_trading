@@ -1,0 +1,26 @@
+/* Layout patch for app_shell topbar + bottomnav */
+:root{
+  --shell-topbar-h: 56px;
+  --shell-bottomnav-h: 56px;
+}
+
+/* Content should not hide behind shell bars */
+.mobile-app{
+  min-height: calc(100vh - var(--shell-topbar-h) - var(--shell-bottomnav-h));
+  padding-bottom: 0 !important; /* IMPORTANT: page should not reserve space for its own bottom nav */
+}
+
+/* List container spacing */
+.order-list{
+  padding: 12px 12px 12px 12px !important;
+}
+
+/* FAB should sit above shell bottom nav */
+.mobile-fab{
+  bottom: calc(var(--shell-bottomnav-h) + 16px) !important;
+}
+
+/* Kill any website footer/newsletter if it sneaks in */
+.web-footer, footer, .website-footer, .footer, .newsletter, .section-footer{
+  display:none !important;
+}

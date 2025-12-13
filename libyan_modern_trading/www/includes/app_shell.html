@@ -1,0 +1,119 @@
+<div class="topbar">
+  <div class="topbar-right">
+    <button class="icon-btn" id="btnMenu" type="button" aria-label="Menu">☰</button>
+
+    <img id="companyLogo" class="company-logo" src="/assets/libyan_modern_trading/images/logo.png" alt="Logo"
+         onerror="this.style.display='none';">
+
+    <div class="topbar-title" id="topbarTitle">Orders</div>
+  </div>
+
+  <div class="topbar-left">
+    <button class="icon-btn" id="btnRefresh" type="button" aria-label="Refresh">⟳</button>
+    <button class="icon-btn" id="btnSearch" type="button" aria-label="Search">🔍</button>
+  </div>
+</div>
+
+<div class="drawer-overlay hidden" id="drawerOverlay"></div>
+
+<aside class="drawer hidden" id="drawer">
+  <div class="drawer-header">
+    <div class="drawer-title" id="drawerCompanyName">Libyan Modern Trading</div>
+    <div class="drawer-sub" id="drawerUser">{{ frappe.session.user }}</div>
+  </div>
+
+  <div class="drawer-list">
+    <a class="drawer-item" href="/mobile-settings">⚙️ Settings</a>
+    <a class="drawer-item" href="/mobile-report">✉️ Send Sales Report (Tripoli)</a>
+    <a class="drawer-item" href="/mobile-report">✉️ Send Sales Report (Al-Greba)</a>
+    <a class="drawer-item" href="/mobile-simple-report">📋 Simple Report</a>
+    <a class="drawer-item" href="/mobile-orders-closed">📌 Closed Orders</a>
+  </div>
+
+  <div class="drawer-footer">
+    <a class="drawer-logout" href="/?cmd=web_logout">Logout</a>
+  </div>
+</aside>
+
+<div class="appshell">
+  <div class="content" id="appContent">
+    {% block app_content %}{% endblock %}
+  </div>
+</div>
+
+<nav class="bottom-nav" id="bottomNav">
+  <div class="nav-item" id="navReport" data-key="report" data-title="Sales Report">
+    <span class="nav-icon">📄</span>
+    Sales Report
+  </div>
+
+  <div class="nav-item" id="navCustomers" data-key="customers" data-title="Customers">
+    <span class="nav-icon">👤</span>
+    Customers
+  </div>
+
+  <div class="nav-item" id="navOrders" data-key="orders" data-title="Orders">
+    <span class="nav-icon">🛒</span>
+    Orders
+  </div>
+
+  <div class="nav-item" id="navDebt" data-key="debt" data-title="Debt">
+    <span class="nav-icon">💰</span>
+    Debt
+  </div>
+</nav>
+
+<!-- ✅ Bulletproof drawer binding (works even if app_shell.js fails/caches) -->
+<script>
+(function () {
+  function qs(id){ return document.getElementById(id); }
+
+  function openDrawer(){
+    var d = qs("drawer"), o = qs("drawerOverlay");
+    if (!d || !o) return;
+    d.classList.remove("hidden");
+    o.classList.remove("hidden");
+  }
+  function closeDrawer(){
+    var d = qs("drawer"), o = qs("drawerOverlay");
+    if (!d || !o) return;
+    d.classList.add("hidden");
+    o.classList.add("hidden");
+  }
+  function toggleDrawer(){
+    var d = qs("drawer");
+    if (!d) return;
+    if (d.classList.contains("hidden")) openDrawer(); else closeDrawer();
+  }
+
+  function setTitle(){
+    var t = qs("topbarTitle");
+    if (!t) return;
+    if (window.PAGE_TITLE) { t.textContent = window.PAGE_TITLE; return; }
+    // fallback based on ACTIVE_KEY
+    var key = window.ACTIVE_KEY || "";
+    var map = {orders:"navOrders", customers:"navCustomers", report:"navReport", debt:"navDebt"};
+    var nav = map[key] ? qs(map[key]) : null;
+    if (nav && nav.dataset && nav.dataset.title) t.textContent = nav.dataset.title;
+  }
+
+  function bind(){
+    var btnMenu = qs("btnMenu");
+    var overlay = qs("drawerOverlay");
+    var btnRefresh = qs("btnRefresh");
+
+    if (btnMenu) btnMenu.onclick = toggleDrawer;
+    if (overlay) overlay.onclick = closeDrawer;
+    if (btnRefresh) btnRefresh.onclick = function(){ location.reload(); };
+
+    setTitle();
+    console.log("INLINE shell binder loaded");
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", bind);
+  } else {
+    bind();
+  }
+})();
+</script>

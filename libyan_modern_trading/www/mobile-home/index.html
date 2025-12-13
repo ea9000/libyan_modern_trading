@@ -1,0 +1,58 @@
+{% extends "templates/web.html" %}
+
+{% block page_content %}
+
+<!-- CSRF token for JS (extra fallback) -->
+<meta name="csrf-token" content="{{ csrf_token }}">
+
+<!-- Session + CSRF for JS -->
+<script>
+  window.CSRF_TOKEN     = "{{ csrf_token }}";
+  window.LOGGED_IN_USER = "{{ frappe.session.user }}";
+</script>
+
+<!-- App assets -->
+<link rel="stylesheet" href="/assets/libyan_modern_trading/mobile-home/index.css">
+<script defer src="/assets/libyan_modern_trading/mobile-home/index.js"></script>
+
+<div class="topbar">
+  <div class="topbar-right">
+    <div class="topbar-icon-btn" id="btnMenu">☰</div>
+    <div class="logo-badge">L</div>
+    <div class="topbar-title" id="topbarTitle">الطلبات</div>
+  </div>
+
+  <div class="topbar-left">
+    <div class="topbar-icon-btn" id="btnRefresh">⟳</div>
+    <div class="topbar-icon-btn" id="btnSearch">🔍</div>
+  </div>
+</div>
+
+<div class="appshell">
+  <div class="content"></div>
+</div>
+
+<nav class="bottom-nav">
+  <div class="nav-item" id="navReport" data-key="report" data-title="تقرير المبيعات">
+    <span class="nav-icon">📄</span>
+    تقرير المبيعات
+  </div>
+
+  <div class="nav-item" id="navCustomers" data-key="customers" data-title="الزبائن">
+    <span class="nav-icon">👤</span>
+    الزبائن
+  </div>
+
+  <div class="nav-item active" id="navOrders" data-key="orders" data-title="الطلبات">
+    <span class="nav-icon">🛒</span>
+    الطلبات
+  </div>
+
+  <div class="nav-item" id="navDebt" data-key="debt" data-title="تحصيل الديون">
+    <span class="nav-icon">💰</span>
+    تحصيل الديون
+  </div>
+</nav>
+
+{% endblock %}
+

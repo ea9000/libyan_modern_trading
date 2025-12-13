@@ -1,0 +1,69 @@
+/* Layout patch for app_shell topbar + bottomnav */
+:root{
+  --shell-topbar-h: 56px;
+  --shell-bottomnav-h: 56px;
+}
+
+/* Content should not hide behind shell bars */
+.mobile-app{
+  min-height: calc(100vh - var(--shell-topbar-h) - var(--shell-bottomnav-h));
+  padding-bottom: 0 !important; /* IMPORTANT: page should not reserve space for its own bottom nav */
+}
+
+/* List container spacing */
+.order-list{
+  padding: 12px 12px 12px 12px !important;
+}
+
+/* FAB should sit above shell bottom nav */
+.mobile-fab{
+  bottom: calc(var(--shell-bottomnav-h) + 16px) !important;
+}
+
+/* Kill any website footer/newsletter if it sneaks in */
+.web-footer, footer, .website-footer, .footer, .newsletter, .section-footer{
+  display:none !important;
+}
+
+/* =========================
+   Mobile Orders: FINAL layout overrides
+   Fix: big empty space (content centering / wrong flex)
+   ========================= */
+
+/* If any wrapper is flex-centering the page, force top alignment */
+#appContent, .app-content, .shell-content, main, .page-content, .web-page-content {
+  display: block !important;
+  align-items: stretch !important;
+  justify-content: flex-start !important;
+}
+
+/* Kill common ERPNext website header padding that pushes content down */
+html, body { margin: 0 !important; padding: 0 !important; }
+body { padding-top: 0 !important; }
+
+/* Hide website navbar if it exists (it can reserve vertical space) */
+header, .navbar, .top-navbar, .website-navbar, .sticky-top {
+  display: none !important;
+  height: 0 !important;
+  min-height: 0 !important;
+}
+
+/* Ensure our app starts at the top */
+.mobile-app, #listScreen, #orderFormScreen {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+/* Stop any min-height trick from creating “empty space before list” */
+.mobile-app {
+  min-height: auto !important;
+}
+
+/* =========================
+   Hide footer / newsletter ("Get Updates")
+   ========================= */
+footer, .web-footer, .footer, .website-footer, #footer,
+.section-footer, .footer-info, .footer-powered, .powered-by,
+.newsletter, .section-newsletter, .get-updates {
+  display: none !important;
+}

@@ -1,0 +1,13 @@
+{% extends "libyan_modern_trading/templates/pages/mobile_base.html" %}
+
+{% block page_content %}
+<script>
+  window.ACTIVE_KEY = "orders";
+  window.PAGE_TITLE = "Orders";
+</script>
+{{ super() }}
+{% endblock %}
+
+{% block app_content %}
+<!-- Home intentionally empty / fast -->
+{% endblock %}
