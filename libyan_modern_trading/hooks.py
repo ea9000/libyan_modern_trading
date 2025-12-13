@@ -11,15 +11,15 @@ app_license = "mit"
 # required_apps = []
 
 # Each item in the list will be shown as an app in the apps page
-# add_to_apps_screen = [
-# 	{
-# 		"name": "libyan_modern_trading",
-# 		"logo": "/assets/libyan_modern_trading/logo.png",
-# 		"title": "Libyan Modern Trading",
-# 		"route": "/libyan_modern_trading",
-# 		"has_permission": "libyan_modern_trading.api.permission.has_app_permission"
-# 	}
-# ]
+add_to_apps_screen = [
+	{
+		"name": "libyan_modern_trading",
+		"logo": "/assets/libyan_modern_trading/images/logo.png",
+		"title": "Libyan Modern Trading",
+		"route": "/mobile-home", 
+		"has_permission": ""
+	}
+]
 
 # Includes in <head>
 # ------------------
@@ -60,9 +60,11 @@ app_license = "mit"
 # home_page = "login"
 
 # website user home page (by Role)
-# role_home_page = {
-# 	"Role": "home_page"
-# }
+role_home_page = {
+	"Sales User": "/mobile-home",
+	"Sales Person": "/mobile-home",
+	"Customer": "/mobile-home"
+}
 
 # Generators
 # ----------
@@ -239,6 +241,5 @@ app_license = "mit"
 # export_python_type_annotations = True
 
 # default_log_clearing_doctypes = {
-# 	"Logging DocType Name": 30  # days to retain logs
+# 	"Logging DocType Name": 30  # days to retain logs
 # }
-

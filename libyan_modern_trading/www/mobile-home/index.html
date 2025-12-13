@@ -1,17 +1,52 @@
 {% extends "templates/web.html" %}
 
-{% block page_content %}
+{% block header %}{% endblock %}
+{% block footer %}{% endblock %}
+{% block banner %}{% endblock %}
+{% block navbar %}{% endblock %}
 
-<!-- CSRF token for JS (extra fallback) -->
+{% block content %}
+
+<style>
+    /* NUCLEAR CSS RESET */
+    
+    /* 1. Target the Body */
+    body {
+        margin: 0 !important;
+        padding: 0 !important;
+        background-color: #f0f2f5;
+        /* If Admin Toolbar is visible, pull page up to hide it */
+        margin-top: -1px !important; 
+    }
+
+    /* 2. Hide ANY Frappe Standard Header Elements */
+    .navbar, header, .web-page-header, .page-head, .page-header-wrapper {
+        display: none !important;
+        height: 0 !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
+    }
+
+    /* 3. Force Main Container to be full width/height */
+    .main-section, .page-content-wrapper {
+        padding-top: 0 !important;
+        margin-top: 0 !important;
+    }
+
+    /* 4. Ensure your custom topbar stays at the top */
+    .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+    }
+</style>
+
 <meta name="csrf-token" content="{{ csrf_token }}">
-
-<!-- Session + CSRF for JS -->
 <script>
-  window.CSRF_TOKEN     = "{{ csrf_token }}";
+  window.CSRF_TOKEN      = "{{ csrf_token }}";
   window.LOGGED_IN_USER = "{{ frappe.session.user }}";
 </script>
 
-<!-- App assets -->
 <link rel="stylesheet" href="/assets/libyan_modern_trading/mobile-home/index.css">
 <script defer src="/assets/libyan_modern_trading/mobile-home/index.js"></script>
 
@@ -55,4 +90,3 @@
 </nav>
 
 {% endblock %}
-

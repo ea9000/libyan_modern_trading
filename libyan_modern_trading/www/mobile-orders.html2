@@ -1,13 +1,7 @@
 {% extends "templates/web.html" %}
-
-{% block header %}{% endblock %}
-
-{% block footer %}{% endblock %}
-
-{% block title %}{% endblock %}
-
 {% block page_content %}
 
+<!-- Tell app shell which tab is active + title -->
 <script>
   window.ACTIVE_KEY = "orders";
   window.PAGE_TITLE = "Orders";
@@ -16,24 +10,30 @@
 <link rel="stylesheet" href="/assets/libyan_modern_trading/css/app_shell.css">
 <script defer src="/assets/libyan_modern_trading/js/app_shell.js"></script>
 
+<!-- Orders page styles -->
 <link rel="stylesheet" href="/assets/libyan_modern_trading/css/mobile_orders.css">
 
 {% include "libyan_modern_trading/www/includes/app_shell.html" %}
 
 {% block app_content %}
+  <!-- CSRF token for JS (extra fallback) -->
   <meta name="csrf-token" content="{{ csrf_token }}">
 
+  <!-- Session + CSRF for JS -->
   <script>
-    window.CSRF_TOKEN      = "{{ csrf_token }}";
+    window.CSRF_TOKEN     = "{{ csrf_token }}";
     window.LOGGED_IN_USER = "{{ frappe.session.user }}";
   </script>
 
+  <!-- ORDERS APP (NO bottom-nav here; shell provides it) -->
   <div class="mobile-app">
+    <!-- SCREEN 1: orders list -->
     <div id="listScreen" class="mobile-app-body">
       <div class="mobile-empty-text" id="ordersEmptyText">القائمة خالية</div>
       <div id="ordersList" class="order-list"></div>
     </div>
 
+    <!-- SCREEN 2: order form -->
     <div id="orderFormScreen">
       <div class="order-form-header">
         <div class="order-form-back" id="orderFormBackBtn">&#8592;</div>
@@ -48,6 +48,7 @@
           <input type="text" id="invoiceNumber" class="mobile-form-input" value="EA-XXXXXX" readonly>
         </div>
 
+        <!-- salesperson + warehouse -->
         <div class="mobile-form-group">
           <div class="order-meta-row">
             <div>المندوب: <span id="salesPersonView">-</span></div>
@@ -92,9 +93,11 @@
       </div>
     </div>
 
+    <!-- FAB -->
     <button type="button" class="mobile-fab">+</button>
   </div>
 
+  <!-- Bottom bar for form -->
   <div class="mobile-bottom-bar" id="formBottomBar" style="display:none;">
     <button class="bottom-bar-btn" id="cancelOrderBtn">رجوع</button>
     <button class="bottom-bar-btn" id="cancelErpOrderBtn">إلغاء الطلب</button>
@@ -102,6 +105,7 @@
     <button class="bottom-bar-btn bottom-bar-btn-primary" id="saveOrderBtn">حفظ</button>
   </div>
 
+  <!-- Order type modal -->
   <div id="orderTypeModal" class="modal-overlay">
     <div class="modal-box">
       <div class="modal-title">نوع الطلبية</div>
@@ -111,6 +115,7 @@
     </div>
   </div>
 
+  <!-- Item modal -->
   <div id="itemModal" class="modal-overlay">
     <div class="modal-box">
       <div class="modal-title">الصنف</div>
@@ -151,6 +156,7 @@
     </div>
   </div>
 
+  <!-- Item list modal -->
   <div id="itemListModal" class="modal-overlay">
     <div class="select-list-box">
       <div class="select-list-title">الصنف</div>
@@ -162,6 +168,7 @@
     </div>
   </div>
 
+  <!-- Customer list modal -->
   <div id="customerListModal" class="modal-overlay">
     <div class="select-list-box">
       <div class="select-list-title">الزبون</div>
@@ -173,30 +180,8 @@
     </div>
   </div>
 
+  <!-- Orders logic -->
   <script defer src="/assets/libyan_modern_trading/js/mobile_orders.js"></script>
 {% endblock %}
-<script>
-    // Run this as soon as the page is ready
-    document.addEventListener('DOMContentLoaded', function() {
-        
-        // 1. Force the Body to have 0 padding (Frappe JS likes to add padding-top here)
-        document.body.style.setProperty('padding-top', '0px', 'important');
-        document.body.style.setProperty('margin-top', '0px', 'important');
 
-        // 2. Find and Hide the Navbar (Standard & Admin Toolbar)
-        var headers = document.querySelectorAll('.navbar, header, .web-page-header, .page-head, #website-post-login');
-        headers.forEach(function(el) {
-            el.style.setProperty('display', 'none', 'important');
-        });
-
-        // 3. Remove padding from the wrapper sections
-        var containers = document.querySelectorAll('.page-content, .section, .main-section, .hero-section, .codex-editor__redactor');
-        containers.forEach(function(el) {
-            el.style.setProperty('padding-top', '0px', 'important');
-            el.style.setProperty('margin-top', '0px', 'important');
-        });
-        
-        console.log("Nuclear Layout Fix Applied");
-    });
-</script>
 {% endblock %}

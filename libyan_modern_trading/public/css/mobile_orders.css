@@ -289,3 +289,60 @@ footer, .footer, .web-footer, .website-footer, #footer,
 
 /* Safety: prevent footer space */
 body { padding-bottom: 0 !important; }
+/* NUCLEAR FIX for Top White Space */
+
+/* 1. RESET BODY SPACING */
+body {
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+}
+
+/* 2. HIDE ALL HEADERS & NAV */
+.navbar, 
+header, 
+.web-page-header,
+.page-header-wrapper,
+nav.navbar {
+    display: none !important;
+    height: 0 !important;
+    line-height: 0 !important;
+    overflow: hidden !important;
+    border: none !important;
+}
+
+/* 3. REMOVE SECTION PADDING */
+.page-content, 
+.section, 
+.py-5,
+.mt-5,
+.mb-5,
+.main-section {
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+/* 4. TARGET THE CONTAINER */
+.container {
+    padding: 0 !important;
+    margin: 0 auto !important;
+    max-width: 100% !important;
+    width: 100% !important;
+}
+
+/* 5. REMOVE BREADCRUMBS & TITLE GAPS */
+.page-head, 
+.page-header,
+.web-footer {
+    display: none !important;
+}
+
+/* 6. HIDE FOOTER */
+footer, .footer-section {
+    display: none !important;
+}
+
+/* 7. APP BACKGROUND */
+body, .main-section {
+    background-color: #f0f2f5; 
+}
