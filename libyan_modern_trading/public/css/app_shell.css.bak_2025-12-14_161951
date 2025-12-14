@@ -1,0 +1,179 @@
+/* =========================================================
+   LMT APP SHELL (ERPNext Web Page)
+   Goal: no gray empty space, stable scroll, mobile-first.
+   ========================================================= */
+
+:root{
+  --topbar-h: 52px;
+  --bottomnav-h: 56px;
+}
+
+/* Keep ERPNext wrappers from adding extra page spacing */
+html, body {
+  margin: 0;
+  padding: 0;
+  background: #f8f9fa;
+}
+
+/* App shell container */
+.appshell{
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  background: #f8f9fa;
+}
+
+/* Top bar fixed inside shell (no padding-top tricks) */
+.topbar{
+  height: var(--topbar-h);
+  flex: 0 0 var(--topbar-h);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 10px;
+  border-bottom: 1px solid #ddd;
+  background: #ffffff;
+  z-index: 1100;
+}
+
+.topbar .title{
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.topbar .icon-btn{
+  width: 34px;
+  height: 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ddd;
+  background: #fff;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* Middle content becomes the ONLY scroll area */
+.content{
+  flex: 1 1 auto;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 12px;
+  background: #f8f9fa;
+}
+
+/* Drawer overlay */
+.drawer-overlay{
+  position: fixed;
+  top: var(--topbar-h);
+  left: 0;
+  right: 0;
+  bottom: var(--bottomnav-h);
+  background: rgba(0,0,0,0.25);
+  display: none;
+  z-index: 1200;
+}
+
+.drawer{
+  position: fixed;
+  top: var(--topbar-h);
+  left: 0;
+  bottom: var(--bottomnav-h);
+  width: 280px;
+  max-width: 85vw;
+  background: #fff;
+  border-right: 1px solid #ddd;
+  transform: translateX(-105%);
+  transition: transform .2s ease;
+  z-index: 1300;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.drawer.open{
+  transform: translateX(0);
+}
+
+.drawer-overlay.open{
+  display: block;
+}
+
+.drawer-item{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  cursor: pointer;
+}
+
+.drawer-sub{
+  margin-top: 6px;
+  color:#666;
+  font-size:12px;
+  direction:ltr;
+  text-align:right;
+}
+
+.drawer-footer{
+  padding: 12px 16px;
+  border-top: 1px solid #eee;
+}
+
+/* Bottom nav fixed inside shell */
+.bottom-nav{
+  height: var(--bottomnav-h);
+  flex: 0 0 var(--bottomnav-h);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-top: 1px solid #ddd;
+  background: #ffffff;
+  z-index: 1100;
+}
+
+.bottom-nav-item{
+  flex: 1;
+  text-align: center;
+  font-size: 11px;
+  line-height: 1.2;
+  cursor: pointer;
+}
+
+.bottom-nav-item .icon{
+  display:block;
+  font-size: 18px;
+  margin-bottom: 2px;
+}
+
+/* Alert */
+.lmt-alert-actions{
+  display:flex;
+  justify-content: flex-start;
+  margin-top: 14px;
+}
+
+/* =========================================================
+   ERPNext wrapper neutralizer (prevents "gray top space")
+   These wrappers sometimes add padding/margins on web pages.
+   ========================================================= */
+body .main-section,
+body .page-content-wrapper,
+body .page-container,
+body .page-content,
+body .page-body,
+body .container,
+body .container-fluid {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Sometimes ERPNext injects a page header area */
+body .page-head,
+body .page-title,
+body .page-head-content {
+  display: none !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}

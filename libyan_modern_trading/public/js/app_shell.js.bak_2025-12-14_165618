@@ -1,0 +1,100 @@
+/**
+ * LMT App Shell JS
+ * - Works across all pages
+ * - Drawer toggle uses the existing "hidden" class
+ * - Safe even if elements are missing on some pages
+ */
+(function () {
+  "use strict";
+
+  function qs(id) { return document.getElementById(id); }
+
+  function isHidden(el) {
+    return !el || el.classList.contains("hidden");
+  }
+
+  function show(el) {
+    if (el) el.classList.remove("hidden");
+  }
+
+  function hide(el) {
+    if (el) el.classList.add("hidden");
+  }
+
+  function openDrawer() {
+    show(qs("drawer"));
+    show(qs("drawerOverlay"));
+  }
+
+  function closeDrawer() {
+    hide(qs("drawer"));
+    hide(qs("drawerOverlay"));
+  }
+
+  function toggleDrawer() {
+    var drawer = qs("drawer");
+    if (!drawer) return;
+    if (isHidden(drawer)) openDrawer(); else closeDrawer();
+  }
+
+  function setTitle() {
+    var t = qs("topbarTitle");
+    if (!t) return;
+
+    if (window.PAGE_TITLE) {
+      t.textContent = window.PAGE_TITLE;
+      return;
+    }
+
+    // fallback by ACTIVE_KEY
+    var key = window.ACTIVE_KEY || "";
+    var map = { orders: "navOrders", customers: "navCustomers", report: "navReport", debt: "navDebt" };
+    var nav = map[key] ? qs(map[key]) : null;
+    if (nav && nav.dataset && nav.dataset.title) t.textContent = nav.dataset.title;
+  }
+
+  function bindBottomNav() {
+    // Keep click navigation consistent
+    var routes = {
+      navOrders: "/mobile-orders",
+      navCustomers: "/mobile-customers",
+      navReport: "/mobile-report",
+      navDebt: "/mobile-debt"
+    };
+
+    Object.keys(routes).forEach(function (id) {
+      var el = qs(id);
+      if (!el) return;
+      el.addEventListener("click", function () {
+        window.location.href = routes[id];
+      });
+    });
+  }
+
+  function bind() {
+    var btnMenu = qs("btnMenu");
+    var overlay = qs("drawerOverlay");
+    var btnRefresh = qs("btnRefresh");
+
+    if (btnMenu) btnMenu.addEventListener("click", toggleDrawer);
+    if (overlay) overlay.addEventListener("click", closeDrawer);
+    if (btnRefresh) btnRefresh.addEventListener("click", function () { location.reload(); });
+
+    // Close on ESC (desktop)
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") closeDrawer();
+    });
+
+    setTitle();
+    bindBottomNav();
+
+    // Ensure initial state is closed
+    closeDrawer();
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", bind);
+  } else {
+    bind();
+  }
+})();

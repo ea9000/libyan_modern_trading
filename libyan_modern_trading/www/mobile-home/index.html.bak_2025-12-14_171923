@@ -32,8 +32,7 @@
 
     <div class="topbar-left">
       <button class="icon-btn" id="btnRefresh" type="button" aria-label="Refresh">⟳</button>
-      <!-- Home has no search -->
-      <button class="icon-btn" id="btnSearch" type="button" aria-label="Search" style="display:none;">🔍</button>
+      <button class="icon-btn" id="btnSearch" type="button" aria-label="Search">🔍</button>
     </div>
   </div>
 
@@ -58,31 +57,19 @@
     </div>
   </aside>
 
-  <!-- MAIN CONTENT -->
+  <!-- MAIN CONTENT (only scroll area) -->
   <div class="content" id="appContent">
 
     <div class="home-grid">
-
-      <div class="card" onclick="location.href='/mobile-report'">
-        <div class="card-title">Sales Report</div>
-        <div class="card-sub">Report</div>
-      </div>
-
-      <div class="card" onclick="location.href='/mobile-customers'">
-        <div class="card-title">Customers</div>
-        <div class="card-sub">Customers</div>
-      </div>
-
       <div class="card" onclick="location.href='/mobile-orders'">
         <div class="card-title">Orders</div>
-        <div class="card-sub">Orders</div>
+        <div class="card-sub">Create / Edit</div>
       </div>
 
-      <div class="card" onclick="location.href='/mobile-debt'">
-        <div class="card-title">Debt</div>
-        <div class="card-sub">Debt</div>
+      <div class="card" onclick="location.href='/mobile-collections'">
+        <div class="card-title">Collections</div>
+        <div class="card-sub">Payments</div>
       </div>
-
     </div>
 
   </div>
@@ -96,5 +83,13 @@
   </nav>
 
 </div>
+
+<script>
+  // Home does not have search; hide search button to avoid confusion
+  document.addEventListener("DOMContentLoaded", function(){
+    var s = document.getElementById("btnSearch");
+    if (s) s.style.display = "none";
+  });
+</script>
 
 {% endblock %}

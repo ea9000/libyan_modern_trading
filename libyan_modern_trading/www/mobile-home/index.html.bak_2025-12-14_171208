@@ -1,0 +1,52 @@
+{% extends "templates/web.html" %}
+
+{# remove normal website header/footer for app-like view #}
+{% block header %}{% endblock %}
+{% block footer %}{% endblock %}
+
+{% block page_content %}
+
+<link rel="stylesheet" href="/assets/libyan_modern_trading/css/app_shell.css">
+<script defer src="/assets/libyan_modern_trading/js/app_shell.js"></script>
+
+{# tell shell which icon is active + title #}
+<script>
+  window.ACTIVE_KEY  = "home";
+  window.PAGE_TITLE  = "Mobile Home";
+</script>
+
+{% include "libyan_modern_trading/www/includes/app_shell.html" %}
+
+{% block app_content %}
+  <div class="app-page">
+    <div class="card" onclick="location.href='/mobile-orders'">
+      <div class="card-title">Orders</div>
+      <div class="card-sub">Create / Edit</div>
+    </div>
+
+    <div class="card" onclick="location.href='/mobile-collections'">
+      <div class="card-title">Collections</div>
+      <div class="card-sub">Payments</div>
+    </div>
+  </div>
+{% endblock %}
+
+<style>
+  .app-page{
+    display:grid;
+    grid-template-columns: repeat(2, minmax(0,1fr));
+    gap:12px;
+    padding:12px;
+  }
+  .card{
+    background:#fff;
+    border:1px solid #e6e6e6;
+    border-radius:12px;
+    padding:14px;
+    cursor:pointer;
+  }
+  .card-title{ font-weight:700; font-size:16px; }
+  .card-sub{ color:#666; font-size:12px; margin-top:4px; }
+</style>
+
+{% endblock %}

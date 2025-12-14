@@ -1,0 +1,177 @@
+body { direction: rtl; margin: 0; background: #f6f7f9; }
+
+/* Hide ERPNext Website footer blocks */
+footer, .web-footer, .footer-info, .footer-powered, .powered-by,
+.website-footer, .page-footer { display: none !important; }
+
+.hidden { display: none !important; }
+
+/* ===== Topbar ===== */
+.topbar{
+  position: fixed; top: 0; left: 0; right: 0;
+  height: 52px; background: #fff;
+  border-bottom: 1px solid #e5e5e5;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 0 10px;
+  z-index: 2000;
+}
+.topbar-right, .topbar-left { display:flex; align-items:center; gap:8px; }
+.topbar-title { font-size: 18px; font-weight: 700; }
+
+.icon-btn{
+  width: 36px; height: 36px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  background:#fff;
+  display:flex; align-items:center; justify-content:center;
+  cursor:pointer;
+}
+
+.company-logo{
+  height: 28px; width: auto;
+  border-radius: 8px;
+}
+
+/* ===== App shell ===== */
+.appshell{
+  padding-top: 52px;
+  padding-bottom: 56px;
+  min-height: 100dvh;
+}
+.content{ min-height: calc(100dvh - 108px); }
+
+/* ===== Bottom nav ===== */
+.bottom-nav{
+  position: fixed; bottom: 0; left: 0; right: 0;
+  height: 56px;
+  background: #fff;
+  border-top: 1px solid #ddd;
+  display: flex;
+  z-index: 2000;
+}
+.nav-item{
+  flex: 1;
+  text-align: center;
+  font-size: 12px;
+  cursor: pointer;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:2px;
+}
+.nav-icon{ font-size: 18px; line-height: 1; }
+.nav-item.active{ color:#003b66; font-weight: 700; }
+
+/* ===== Drawer ===== */
+.drawer-overlay{
+  position: fixed; inset:0;
+  background: rgba(0,0,0,0.35);
+  z-index: 3000;
+}
+.drawer{
+  position: fixed;
+  top: 0; bottom: 0;
+  right: 0; /* RTL: opens from right */
+  width: 320px;
+  max-width: 90vw;
+  background: #fff;
+  z-index: 3100;
+  box-shadow: -8px 0 20px rgba(0,0,0,0.2);
+  display:flex;
+  flex-direction:column;
+}
+.drawer-header{ padding:16px; border-bottom:1px solid #eee; }
+.drawer-title{ font-size:18px; font-weight:800; }
+.drawer-sub{ margin-top:6px; color:#666; font-size:12px; direction:ltr; text-align:right; }
+
+.drawer-list{ padding: 8px 0; overflow:auto; flex:1; }
+.drawer-item{
+  display:block;
+  padding: 12px 16px;
+  color:#222;
+  text-decoration:none;
+  border-bottom: 1px solid #f1f1f1;
+}
+.drawer-item:hover{ background:#f7f7f7; }
+
+.drawer-footer{ padding: 12px 16px; border-top:1px solid #eee; }
+.drawer-logout{
+  display:block;
+  text-align:center;
+  padding:12px;
+  border-radius:10px;
+  text-decoration:none;
+  background:#f1f1f1;
+  color:#222;
+  font-weight:700;
+}
+/* --- Bottom nav: kill any inherited backgrounds/boxes --- */
+.bottom-nav,
+#bottomNav {
+  background: #fff !important;
+}
+
+.bottom-nav .nav-item {
+  background: transparent !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  padding: 6px 0;
+}
+
+.bottom-nav .nav-icon {
+  background: transparent !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  line-height: 1 !important;
+  display: block;
+  font-size: 20px;
+}
+
+/* If the icon is an <img> or <svg> */
+.bottom-nav .nav-icon img,
+.bottom-nav .nav-icon svg {
+  background: transparent !important;
+  display: block;
+}
+
+/* ================= App Alert Overlay (instead of window.alert) ================= */
+.lmt-alert-overlay{
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: calc(16px + env(safe-area-inset-top)) 16px calc(16px + env(safe-area-inset-bottom));
+  background: rgba(0,0,0,.35);
+  z-index: 100000;
+}
+.lmt-alert-overlay.show{ display:flex; }
+.lmt-alert-overlay.hide{ display:none; }
+
+.lmt-alert-card{
+  width: min(520px, 92vw);
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.25);
+  padding: 16px;
+  direction: rtl;
+  text-align: right;
+}
+.lmt-alert-title{ font-weight: 700; font-size: 16px; margin-bottom: 8px; }
+.lmt-alert-message{ font-size: 14px; line-height: 1.4; white-space: pre-wrap; }
+.lmt-alert-actions{ display:flex; justify-content: flex-start; margin-top: 14px; }
+.lmt-alert-ok{
+  border: 0;
+  padding: 10px 18px;
+  border-radius: 10px;
+  background: #1f4fd8;
+  color: #fff;
+  cursor: pointer;
+}

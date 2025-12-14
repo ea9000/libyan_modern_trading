@@ -1,113 +1,103 @@
-// ================= SETTINGS =================
-const FEATURES = {
-  orders: true,
-  customers: true,
-  report: true,
-  debt: true
-};
-
-const ROUTES = {
-  orders: "/mobile-orders",
-  customers: "/mobile-customers",
-  report: "/mobile-report",
-  debt: "/mobile-debt"
-};
-
-// ================= HELPERS =================
-function setVisible(id, visible) {
-  const el = document.getElementById(id);
-  if (el) el.classList.toggle("hidden", !visible);
-}
-
-function setTopbarTitle(title) {
-  const el = document.getElementById("topbarTitle");
-  if (el) el.textContent = title || "";
-}
-
-function setActiveNavByKey(key) {
-  document.querySelectorAll(".nav-item").forEach(n => n.classList.remove("active"));
-  const map = { report: "navReport", customers: "navCustomers", orders: "navOrders", debt: "navDebt" };
-  const id = map[key];
-  if (id) document.getElementById(id)?.classList.add("active");
-}
-
-function openDrawer() {
-  document.getElementById("drawer")?.classList.remove("hidden");
-  document.getElementById("drawerOverlay")?.classList.remove("hidden");
-}
-function closeDrawer() {
-  document.getElementById("drawer")?.classList.add("hidden");
-  document.getElementById("drawerOverlay")?.classList.add("hidden");
-}
-
-// ================= INIT =================
-function initShell() {
-  // show/hide nav by feature
-  setVisible("navOrders", FEATURES.orders);
-  setVisible("navCustomers", FEATURES.customers);
-  setVisible("navReport", FEATURES.report);
-  setVisible("navDebt", FEATURES.debt);
-
-  // set title + active
-  const key = window.ACTIVE_KEY || "orders";
-  const title = window.PAGE_TITLE || (document.getElementById("navOrders")?.dataset?.title ?? "Orders");
-  setActiveNavByKey(key);
-  setTopbarTitle(title);
-
-  // drawer
-  document.getElementById("btnMenu")?.addEventListener("click", openDrawer);
-  document.getElementById("drawerOverlay")?.addEventListener("click", closeDrawer);
-  document.querySelectorAll("#drawer a").forEach(a => a.addEventListener("click", closeDrawer));
-
-  // refresh
-  document.getElementById("btnRefresh")?.addEventListener("click", () => location.reload());
-
-  // bottom nav routing
-  document.querySelectorAll(".nav-item").forEach(item => {
-    item.addEventListener("click", () => {
-      const k = item.dataset.key;
-      if (!FEATURES[k]) return;
-
-      setActiveNavByKey(k);
-      setTopbarTitle(item.dataset.title);
-
-      const route = ROUTES[k];
-      if (route) window.location.href = route;
-    });
-  });
-}
-
-document.addEventListener("DOMContentLoaded", initShell);
-
-// ================= ALERT / TOAST =================
-// Use this instead of window.alert() so it works reliably on mobile (iOS blocks async alerts).
+/**
+ * LMT App Shell JS (drawer + nav)
+ * Supports BOTH CSS schemes:
+ *  - hidden-based (class "hidden")
+ *  - open-based (class "open" for slide-in)
+ */
 (function () {
-  if (window.appAlert) return;
+  "use strict";
 
-  function appAlert(message, opts = {}) {
-    const overlay = document.getElementById("lmtAlertOverlay");
-    if (!overlay) {
-      try { window.alert(message); } catch (e) {}
-      return;
-    }
-    const titleEl = overlay.querySelector(".lmt-alert-title");
-    const msgEl   = overlay.querySelector(".lmt-alert-message");
-    const okBtn   = overlay.querySelector(".lmt-alert-ok");
+  function el(id){ return document.getElementById(id); }
 
-    titleEl.textContent = opts.title || "Message";
-    msgEl.textContent = message || "";
+  function addClass(x, c){ if (x) x.classList.add(c); }
+  function remClass(x, c){ if (x) x.classList.remove(c); }
+  function hasClass(x, c){ return x ? x.classList.contains(c) : false; }
 
-    overlay.classList.add("show");
-    overlay.classList.remove("hide");
+  function openDrawer(){
+    var d = el("drawer");
+    var o = el("drawerOverlay");
 
-    const close = () => {
-      overlay.classList.add("hide");
-      overlay.classList.remove("show");
-    };
+    // make sure they are not hidden
+    remClass(d, "hidden");
+    remClass(o, "hidden");
 
-    okBtn.onclick = close;
-    overlay.onclick = (e) => { if (e.target === overlay) close(); };
+    // for slide-in CSS
+    addClass(d, "open");
+    addClass(o, "open");
   }
 
-  window.appAlert = appAlert;
+  function closeDrawer(){
+    var d = el("drawer");
+    var o = el("drawerOverlay");
+
+    // remove slide-in class
+    remClass(d, "open");
+    remClass(o, "open");
+
+    // also hide (works for both systems)
+    addClass(d, "hidden");
+    addClass(o, "hidden");
+  }
+
+  function toggleDrawer(){
+    var d = el("drawer");
+    if (!d) return;
+
+    // if either hidden OR not open -> open
+    if (hasClass(d, "hidden") || !hasClass(d, "open")) openDrawer();
+    else closeDrawer();
+  }
+
+  function setTitle(){
+    var t = el("topbarTitle");
+    if (!t) return;
+
+    if (window.PAGE_TITLE) { t.textContent = window.PAGE_TITLE; return; }
+
+    // fallback via ACTIVE_KEY
+    var key = window.ACTIVE_KEY || "";
+    var map = { orders:"navOrders", customers:"navCustomers", report:"navReport", debt:"navDebt" };
+    var nav = map[key] ? el(map[key]) : null;
+    if (nav && nav.dataset && nav.dataset.title) t.textContent = nav.dataset.title;
+  }
+
+  function bindBottomNav(){
+    var routes = {
+      navOrders: "/mobile-orders",
+      navCustomers: "/mobile-customers",
+      navReport: "/mobile-report",
+      navDebt: "/mobile-debt"
+    };
+
+    Object.keys(routes).forEach(function(id){
+      var n = el(id);
+      if (!n) return;
+      n.addEventListener("click", function(){ window.location.href = routes[id]; });
+    });
+  }
+
+  function bind(){
+    var btnMenu = el("btnMenu");
+    var overlay = el("drawerOverlay");
+    var btnRefresh = el("btnRefresh");
+
+    if (btnMenu) btnMenu.addEventListener("click", toggleDrawer);
+    if (overlay) overlay.addEventListener("click", closeDrawer);
+    if (btnRefresh) btnRefresh.addEventListener("click", function(){ location.reload(); });
+
+    document.addEventListener("keydown", function(e){
+      if (e.key === "Escape") closeDrawer();
+    });
+
+    setTitle();
+    bindBottomNav();
+
+    // ensure closed initially
+    closeDrawer();
+
+    console.log("app_shell.js loaded: drawer binder active");
+  }
+
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", bind);
+  else bind();
 })();
