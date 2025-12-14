@@ -117,3 +117,14 @@
   }
 })();
 </script>
+
+<!-- App Alert (replaces window.alert for mobile reliability) -->
+<div id="lmtAlertOverlay" class="lmt-alert-overlay" aria-hidden="true">
+  <div class="lmt-alert-card" role="dialog" aria-modal="true">
+    <div class="lmt-alert-title">Message</div>
+    <div class="lmt-alert-message"></div>
+    <div class="lmt-alert-actions">
+      <button type="button" class="lmt-alert-ok">OK</button>
+    </div>
+  </div>
+</div>

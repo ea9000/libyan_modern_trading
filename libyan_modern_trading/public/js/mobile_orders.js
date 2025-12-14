@@ -203,7 +203,7 @@ async function loadItemsFromERPNext() {
     console.log("Loaded items:", itemMaster.length);
   } catch (e) {
     console.error("Error loading items:", e);
-    alert("فشل تحميل الأصناف من ERPNext");
+    appAlert("فشل تحميل الأصناف من ERPNext");
   }
 }
 
@@ -296,7 +296,7 @@ async function loadCustomersFromERPNext() {
     console.log("Loaded customers:", customerMaster.length);
   } catch (e) {
     console.error("Error loading customers:", e);
-    alert("فشل تحميل الزبائن من ERPNext");
+    appAlert("فشل تحميل الزبائن من ERPNext");
   }
 }
 
@@ -325,7 +325,7 @@ async function loadOpenOrdersFromERPNext() {
     renderOrdersList();
   } catch (e) {
     console.error("Error loading orders:", e);
-    alert("فشل تحميل الطلبات من ERPNext");
+    appAlert("فشل تحميل الطلبات من ERPNext");
   }
 }
 
@@ -522,7 +522,7 @@ function hideItemListModal() { document.getElementById("itemListModal").style.di
 
 function showCustomerListModal() {
   if (currentOrderName) {
-    alert("لا يمكن تغيير الزبون بعد إنشاء الطلب");
+    appAlert("لا يمكن تغيير الزبون بعد إنشاء الطلب");
     return;
   }
   filterAndRenderCustomerList("");
@@ -754,7 +754,7 @@ async function openExistingOrder(orderName) {
     showOrderFormScreen();
   } catch (e) {
     console.error("Failed to open order:", e);
-    alert("فشل فتح الطلبية من ERPNext");
+    appAlert("فشل فتح الطلبية من ERPNext");
   }
 }
 
@@ -762,17 +762,17 @@ async function openExistingOrder(orderName) {
 async function saveOrderToERPNext() {
   try {
     if (!selectedCustomerName && !selectedCustomerId) {
-      alert("الرجاء اختيار الزبون");
+      appAlert("الرجاء اختيار الزبون");
       return;
     }
     if (!currentItems.length) {
-      alert("الرجاء إضافة أصناف");
+      appAlert("الرجاء إضافة أصناف");
       return;
     }
 
     const dateStr = document.getElementById("orderDate").value;
     if (!dateStr) {
-      alert("الرجاء اختيار تاريخ الطلب");
+      appAlert("الرجاء اختيار تاريخ الطلب");
       return;
     }
 
@@ -847,7 +847,7 @@ async function saveOrderToERPNext() {
 
       updateHeaderMetaUI(saved.set_warehouse || DEFAULT_WAREHOUSE || "-", SALESPERSON_NAME);
 
-      alert("تم حفظ الطلب الجديد في ERPNext");
+      appAlert("تم حفظ الطلب الجديد في ERPNext");
     } else {
       const doc = Object.assign({}, currentOrderDoc);
 
@@ -872,7 +872,7 @@ async function saveOrderToERPNext() {
 
       updateHeaderMetaUI(saved.set_warehouse || DEFAULT_WAREHOUSE || "-", SALESPERSON_NAME);
 
-      alert("تم تحديث الطلب في ERPNext");
+      appAlert("تم تحديث الطلب في ERPNext");
     }
 
     refreshStatusUI();
@@ -880,14 +880,14 @@ async function saveOrderToERPNext() {
     showListScreen();
   } catch (e) {
     console.error("Save error:", e);
-    alert("فشل حفظ الطلب في ERPNext");
+    appAlert("فشل حفظ الطلب في ERPNext");
   }
 }
 
 // ============= CANCEL ORDER (DELETE draft / CANCEL submitted) =============
 async function cancelOrderInERPNext() {
   if (!currentOrderName || !currentOrderDoc) {
-    alert("لا توجد طلبية مفتوحة");
+    appAlert("لا توجد طلبية مفتوحة");
     return;
   }
 
@@ -898,7 +898,7 @@ async function cancelOrderInERPNext() {
         "/api/resource/Sales Order/" + encodeURIComponent(currentOrderName),
         { method: "DELETE" }
       );
-      alert("تم حذف الطلب (مسودة)");
+      appAlert("تم حذف الطلب (مسودة)");
       currentOrderName = null;
       currentOrderDoc  = null;
       currentItems     = [];
@@ -906,7 +906,7 @@ async function cancelOrderInERPNext() {
       showListScreen();
     } catch (e) {
       console.error("Delete error:", e);
-      alert("فشل حذف الطلب من ERPNext");
+      appAlert("فشل حذف الطلب من ERPNext");
     }
     return;
   }
@@ -927,27 +927,27 @@ async function cancelOrderInERPNext() {
       currentOrderDoc  = doc;
       currentOrderName = doc.name;
       refreshStatusUI();
-      alert("تم إلغاء الطلب في ERPNext");
+      appAlert("تم إلغاء الطلب في ERPNext");
       await loadOpenOrdersFromERPNext();
       showListScreen();
     } catch (e) {
       console.error("Cancel error:", e);
-      alert("فشل إلغاء الطلب في ERPNext");
+      appAlert("فشل إلغاء الطلب في ERPNext");
     }
     return;
   }
 
-  alert("لا يمكن إلغاء هذا الطلب في هذه الحالة");
+  appAlert("لا يمكن إلغاء هذا الطلب في هذه الحالة");
 }
 
 // ============= SUBMIT ORDER =============
 async function submitOrderInERPNext() {
   if (!currentOrderName || !currentOrderDoc) {
-    alert("يرجى حفظ الطلب أولاً");
+    appAlert("يرجى حفظ الطلب أولاً");
     return;
   }
   if (currentOrderDoc.docstatus === 1) {
-    alert("الطلب معتمد مسبقاً");
+    appAlert("الطلب معتمد مسبقاً");
     return;
   }
 
@@ -967,12 +967,12 @@ async function submitOrderInERPNext() {
     currentOrderDoc  = doc;
     currentOrderName = doc.name;
     refreshStatusUI();
-    alert("تم اعتماد الطلب في ERPNext");
+    appAlert("تم اعتماد الطلب في ERPNext");
     await loadOpenOrdersFromERPNext();
     showListScreen();
   } catch (e) {
     console.error("Submit error:", e);
-    alert("فشل اعتماد الطلب في ERPNext");
+    appAlert("فشل اعتماد الطلب في ERPNext");
   }
 }
 
@@ -1048,7 +1048,7 @@ async function initMobileOrdersApp() {
     let qty     = parseInt(document.getElementById("qtyInput").value || "1", 10);
     const mode  = getItemMode();
 
-    if (!name) { alert("الرجاء اختيار الصنف"); return; }
+    if (!name) { appAlert("الرجاء اختيار الصنف"); return; }
     if (isNaN(qty) || qty < 1) qty = 1;
 
     const code = itemCodeByLabel[name] || null;

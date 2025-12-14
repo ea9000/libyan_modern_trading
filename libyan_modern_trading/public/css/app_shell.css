@@ -140,3 +140,38 @@ footer, .web-footer, .footer-info, .footer-powered, .powered-by,
   background: transparent !important;
   display: block;
 }
+
+/* ================= App Alert Overlay (instead of window.alert) ================= */
+.lmt-alert-overlay{
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: calc(16px + env(safe-area-inset-top)) 16px calc(16px + env(safe-area-inset-bottom));
+  background: rgba(0,0,0,.35);
+  z-index: 100000;
+}
+.lmt-alert-overlay.show{ display:flex; }
+.lmt-alert-overlay.hide{ display:none; }
+
+.lmt-alert-card{
+  width: min(520px, 92vw);
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.25);
+  padding: 16px;
+  direction: rtl;
+  text-align: right;
+}
+.lmt-alert-title{ font-weight: 700; font-size: 16px; margin-bottom: 8px; }
+.lmt-alert-message{ font-size: 14px; line-height: 1.4; white-space: pre-wrap; }
+.lmt-alert-actions{ display:flex; justify-content: flex-start; margin-top: 14px; }
+.lmt-alert-ok{
+  border: 0;
+  padding: 10px 18px;
+  border-radius: 10px;
+  background: #1f4fd8;
+  color: #fff;
+  cursor: pointer;
+}

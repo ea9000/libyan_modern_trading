@@ -78,3 +78,36 @@ function initShell() {
 }
 
 document.addEventListener("DOMContentLoaded", initShell);
+
+// ================= ALERT / TOAST =================
+// Use this instead of window.alert() so it works reliably on mobile (iOS blocks async alerts).
+(function () {
+  if (window.appAlert) return;
+
+  function appAlert(message, opts = {}) {
+    const overlay = document.getElementById("lmtAlertOverlay");
+    if (!overlay) {
+      try { window.alert(message); } catch (e) {}
+      return;
+    }
+    const titleEl = overlay.querySelector(".lmt-alert-title");
+    const msgEl   = overlay.querySelector(".lmt-alert-message");
+    const okBtn   = overlay.querySelector(".lmt-alert-ok");
+
+    titleEl.textContent = opts.title || "Message";
+    msgEl.textContent = message || "";
+
+    overlay.classList.add("show");
+    overlay.classList.remove("hide");
+
+    const close = () => {
+      overlay.classList.add("hide");
+      overlay.classList.remove("show");
+    };
+
+    okBtn.onclick = close;
+    overlay.onclick = (e) => { if (e.target === overlay) close(); };
+  }
+
+  window.appAlert = appAlert;
+})();
