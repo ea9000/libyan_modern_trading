@@ -1,92 +1,13 @@
-{% extends "templates/web.html" %}
+{% extends "libyan_modern_trading/templates/pages/mobile_base.html" %}
 
-{% block header %}{% endblock %}
-{% block footer %}{% endblock %}
-{% block banner %}{% endblock %}
-{% block navbar %}{% endblock %}
-
-{% block content %}
-
-<style>
-    /* NUCLEAR CSS RESET */
-    
-    /* 1. Target the Body */
-    body {
-        margin: 0 !important;
-        padding: 0 !important;
-        background-color: #f0f2f5;
-        /* If Admin Toolbar is visible, pull page up to hide it */
-        margin-top: -1px !important; 
-    }
-
-    /* 2. Hide ANY Frappe Standard Header Elements */
-    .navbar, header, .web-page-header, .page-head, .page-header-wrapper {
-        display: none !important;
-        height: 0 !important;
-        opacity: 0 !important;
-        pointer-events: none !important;
-    }
-
-    /* 3. Force Main Container to be full width/height */
-    .main-section, .page-content-wrapper {
-        padding-top: 0 !important;
-        margin-top: 0 !important;
-    }
-
-    /* 4. Ensure your custom topbar stays at the top */
-    .topbar {
-        position: sticky;
-        top: 0;
-        z-index: 1000;
-    }
-</style>
-
-<meta name="csrf-token" content="{{ csrf_token }}">
+{% block page_content %}
 <script>
-  window.CSRF_TOKEN      = "{{ csrf_token }}";
-  window.LOGGED_IN_USER = "{{ frappe.session.user }}";
+  window.ACTIVE_KEY = "orders";
+  window.PAGE_TITLE = "Orders";
 </script>
+{{ super() }}
+{% endblock %}
 
-<link rel="stylesheet" href="/assets/libyan_modern_trading/mobile-home/index.css">
-<script defer src="/assets/libyan_modern_trading/mobile-home/index.js"></script>
-
-<div class="topbar">
-  <div class="topbar-right">
-    <div class="topbar-icon-btn" id="btnMenu">☰</div>
-    <div class="logo-badge">L</div>
-    <div class="topbar-title" id="topbarTitle">الطلبات</div>
-  </div>
-
-  <div class="topbar-left">
-    <div class="topbar-icon-btn" id="btnRefresh">⟳</div>
-    <div class="topbar-icon-btn" id="btnSearch">🔍</div>
-  </div>
-</div>
-
-<div class="appshell">
-  <div class="content"></div>
-</div>
-
-<nav class="bottom-nav">
-  <div class="nav-item" id="navReport" data-key="report" data-title="تقرير المبيعات">
-    <span class="nav-icon">📄</span>
-    تقرير المبيعات
-  </div>
-
-  <div class="nav-item" id="navCustomers" data-key="customers" data-title="الزبائن">
-    <span class="nav-icon">👤</span>
-    الزبائن
-  </div>
-
-  <div class="nav-item active" id="navOrders" data-key="orders" data-title="الطلبات">
-    <span class="nav-icon">🛒</span>
-    الطلبات
-  </div>
-
-  <div class="nav-item" id="navDebt" data-key="debt" data-title="تحصيل الديون">
-    <span class="nav-icon">💰</span>
-    تحصيل الديون
-  </div>
-</nav>
-
+{% block app_content %}
+<!-- Home intentionally empty / fast -->
 {% endblock %}

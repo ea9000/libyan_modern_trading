@@ -5,6 +5,13 @@ app_description = "Mobile Application for LMT"
 app_email = "emad@libyan-modern-trading.com"
 app_license = "mit"
 
+# IMPORTANT:
+# /apps (app switcher) uses icon fonts (FontAwesome/Octicons), NOT image files.
+# So app_icon must be a CSS class, not a PNG URL.
+app_icon = "octicon octicon-organization"   # alternatives: "fa fa-building", "fa fa-shopping-cart"
+app_logo_url = "/assets/libyan_modern_trading/icons/4-2-retail-free-png-image.png"
+app_color = "#1f4fd8"
+
 # Apps
 # ------------------
 
@@ -14,9 +21,9 @@ app_license = "mit"
 add_to_apps_screen = [
 	{
 		"name": "libyan_modern_trading",
-		"logo": "/assets/libyan_modern_trading/images/logo.png",
+		"logo": "/assets/libyan_modern_trading/icons/4-2-retail-free-png-image.png",
 		"title": "Libyan Modern Trading",
-		"route": "/mobile-home", 
+		"route": "/mobile-home",
 		"has_permission": ""
 	}
 ]
@@ -241,5 +248,5 @@ role_home_page = {
 # export_python_type_annotations = True
 
 # default_log_clearing_doctypes = {
-# 	"Logging DocType Name": 30  # days to retain logs
+# 	"Logging DocType Name": 30  # days to retain logs
 # }
