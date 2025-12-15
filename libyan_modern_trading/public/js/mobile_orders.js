@@ -1757,3 +1757,94 @@ yesBtn.style.background = v ? "#0b3a66" : "#fff";
     console.warn("LMT: Failed to inject Special Discount CSS", e);
   }
 })();
+
+
+
+/* LMT SD THEME OVERRIDE (blue like Save button) */
+(function(){
+  try{
+    if (document.getElementById("lmtSdThemeOverride")) return;
+    var st = document.createElement("style");
+    st.id = "lmtSdThemeOverride";
+    st.textContent = `
+      /* keep same font + size */
+      #lmtSpecialDiscountInline,
+      #lmtSpecialDiscountInline *{
+        font-family: inherit !important;
+      }
+
+      /* buttons: same height feel as ERPNext controls */
+      #lmtSpecialDiscountInline .lmt-sd-btnrow button{
+        height: 36px !important;
+        padding: 0 14px !important;
+        font-size: 14px !important;
+        border-radius: 8px !important;
+        border: 1px solid #ced4da !important;
+        background: #fff !important;
+        color: inherit !important;
+        box-shadow: none !important;
+      }
+
+      /* active/selected button -> BLUE (like Save) */
+      #lmtSpecialDiscountInline .lmt-sd-btnrow button.active,
+      #lmtSpecialDiscountInline .lmt-sd-btnrow button.is-active,
+      #lmtSpecialDiscountInline .lmt-sd-btnrow button.selected,
+      #lmtSpecialDiscountInline .lmt-sd-btnrow button.lmt-active,
+      #lmtSpecialDiscountInline .lmt-sd-btnrow button.lmt-sd-active,
+      #lmtSpecialDiscountInline .lmt-sd-btnrow button[data-active="1"]{
+        background: #0B4F7D !important;
+        border-color: #0B4F7D !important;
+        color: #fff !important;
+      }
+
+      /* inputs: rounded like discount% */
+      #lmtSpecialDiscountInline input[type="number"],
+      #lmtSpecialDiscountInline input[type="text"]{
+        border-radius: 10px !important;
+      }
+    `;
+    document.head.appendChild(st);
+  }catch(e){}
+})();
+
+
+
+
+/* LMT SD FORCE ACTIVE BUTTON (adds lmt-sd-active) */
+(function(){
+  function apply(){
+    try{
+      var root = document.getElementById("lmtSpecialDiscountInline");
+      if(!root) return;
+
+      var btns = root.querySelectorAll("button");
+      if(!btns || btns.length < 2) return;
+
+      // detect YES/NO buttons by text
+      var yesBtn = null, noBtn = null;
+      btns.forEach(function(b){
+        var t = (b.textContent || "").trim().toUpperCase();
+        if(t === "YES") yesBtn = b;
+        if(t === "NO")  noBtn  = b;
+      });
+      if(!yesBtn || !noBtn) return;
+
+      var on = (window.__lmt_special_discount ? 1 : 0);
+
+      // enforce consistent active class
+      yesBtn.classList.toggle("lmt-sd-active", on === 1);
+      noBtn.classList.toggle("lmt-sd-active", on === 0);
+
+      // prevent “size jump” when toggling
+      yesBtn.style.height = "36px";
+      noBtn.style.height  = "36px";
+      yesBtn.style.minWidth = "120px";
+      noBtn.style.minWidth  = "120px";
+    }catch(e){}
+  }
+
+  // run now + keep re-applying after rerenders
+  apply();
+  setInterval(apply, 500);
+})();
+
