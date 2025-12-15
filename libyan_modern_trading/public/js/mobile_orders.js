@@ -1667,3 +1667,93 @@ yesBtn.style.background = v ? "#0b3a66" : "#fff";
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", start);
   else start();
 })();
+
+/* =========================================================
+ * LMT PATCH: Global UI override for Special Discount block
+ * - Makes buttons + inputs match existing app style (blue + rounded)
+ * - Prevents size changes when toggling YES/NO
+ * - Keeps inputs rounded like other fields
+ * ========================================================= */
+(function ensureLmtSpecialDiscountCss() {
+  try {
+    if (document.getElementById("lmtSdCss")) return;
+
+    const css = `
+      #lmtSpecialDiscountInline{
+        font-family: inherit;
+      }
+
+      #lmtSpecialDiscountInline .lmt-sd-label{
+        font-family: inherit;
+        font-size: 14px;
+        font-weight: 600;
+        margin-bottom: 6px;
+      }
+
+      #lmtSpecialDiscountInline .lmt-sd-btnrow{
+        display:flex;
+        gap:10px;
+        align-items:center;
+        flex-wrap:wrap;
+      }
+
+      /* Buttons: blue like app, fixed size (no jump), rounded */
+      #lmtSpecialDiscountInline .lmt-sd-btnrow button{
+        height: 36px;
+        min-width: 120px;
+        padding: 0 14px;
+        font-size: 14px;
+        font-weight: 600;
+        font-family: inherit;
+        line-height: 1;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        border-radius: 10px;
+        border: 1px solid #0b5ed7;
+        background: #ffffff;
+        color: #0b5ed7;
+        box-sizing: border-box;
+      }
+
+      /* Active state: same size, just fill */
+      #lmtSpecialDiscountInline .lmt-sd-btnrow button.is-active{
+        background: #0b5ed7;
+        color: #ffffff;
+      }
+
+      /* Inputs: rounded like other fields */
+      #lmtSpecialDiscountInline input{
+        height: 36px;
+        border-radius: 10px;
+        border: 1px solid #ced4da;
+        padding: 6px 10px;
+        font-size: 14px;
+        font-family: inherit;
+        box-sizing: border-box;
+      }
+
+      /* Keep inputs visually similar size */
+      #lmtSpecialDiscountInline .lmt-sd-input{
+        width: 140px;
+        max-width: 45vw;
+      }
+
+      @media (max-width: 520px){
+        #lmtSpecialDiscountInline .lmt-sd-btnrow button{
+          min-width: 100px;
+        }
+        #lmtSpecialDiscountInline .lmt-sd-input{
+          width: 130px;
+        }
+      }
+    `;
+
+    const st = document.createElement("style");
+    st.id = "lmtSdCss";
+    st.textContent = css;
+    document.head.appendChild(st);
+  } catch (e) {
+    console.warn("LMT: Failed to inject Special Discount CSS", e);
+  }
+})();
