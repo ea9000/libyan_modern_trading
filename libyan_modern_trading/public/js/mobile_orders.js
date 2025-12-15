@@ -1103,6 +1103,105 @@ async function initMobileOrdersApp() {
     input.value = val.toFixed(1);
   });
 
+/*
+ * LMT PATCH: Special Discount toggle beside Discount% (Order Form only)
+ * - Appears ONLY where #discountPercent exists (New/Edit Order form)
+ * - Hidden if customer_type is Company (best-effort; if unknown we show it)
+ * - For now: toggles internal state only (no backend logic yet)
+ */
+(function () {
+  function qs(sel, root) { return (root || document).querySelector(sel); }
+
+  function isCompanyCustomer(doc) {
+    const t = (doc && (doc.customer_type || doc.customerType || doc.customer_type_name)) || "";
+    return String(t).toLowerCase().includes("company");
+  }
+
+  function injectSpecialDiscountUI(doc) {
+    // Only on the order form (discount control must exist)
+    const discountEl = document.getElementById("discountPercent");
+    if (!discountEl) return;
+
+    // Prevent duplicate inject
+    if (document.getElementById("lmtSpecialDiscountInline")) return;
+
+    // Hide for Company customers (best-effort)
+    if (isCompanyCustomer(doc)) return;
+
+    // Find a reasonable row container to place beside discount
+    const row =
+      discountEl.closest(".field-row, .form-group, .row, .input-group") ||
+      discountEl.parentElement;
+
+    if (!row) return;
+
+    // Make row layout able to place side-by-side (doesn't break if already flex)
+    try {
+      row.style.display = row.style.display || "flex";
+      row.style.alignItems = row.style.alignItems || "flex-end";
+      row.style.gap = row.style.gap || "12px";
+      row.style.flexWrap = row.style.flexWrap || "wrap";
+    } catch (e) {}
+
+    // Create block
+    const wrap = document.createElement("div");
+    wrap.id = "lmtSpecialDiscountInline";
+    wrap.style.minWidth = "220px";
+    wrap.style.maxWidth = "360px";
+
+    wrap.innerHTML = `
+      <div style="font-weight:600;margin-bottom:6px;">Special Discount</div>
+      <div class="lmt-sd-btnrow" style="display:flex;gap:10px;">
+        <button type="button" id="lmtSDYes"
+          style="flex:1;border:1px solid #111;background:#fff;padding:10px 12px;border-radius:6px;font-weight:600;">
+          YES
+        </button>
+        <button type="button" id="lmtSDNo"
+          style="flex:1;border:1px solid #111;background:#fff;padding:10px 12px;border-radius:6px;font-weight:600;">
+          NO
+        </button>
+      </div>
+      <div id="lmtSDHint" style="margin-top:6px;font-size:12px;color:#666;display:none;">
+        Special Discount is ON
+      </div>
+    `;
+
+    row.appendChild(wrap);
+
+    const yesBtn = document.getElementById("lmtSDYes");
+    const noBtn  = document.getElementById("lmtSDNo");
+    const hint   = document.getElementById("lmtSDHint");
+
+    function setState(v) {
+      window.__lmt_special_discount = v ? 1 : 0;
+      if (hint) hint.style.display = v ? "block" : "none";
+
+      // simple visual state
+      if (yesBtn && noBtn) {
+        yesBtn.style.background = v ? "#0b5" : "#fff";
+        yesBtn.style.color = v ? "#fff" : "#111";
+        noBtn.style.background = !v ? "#0b5" : "#fff";
+        noBtn.style.color = !v ? "#fff" : "#111";
+      }
+
+      console.log("LMT: Special Discount =", window.__lmt_special_discount);
+    }
+
+    // default OFF
+    setState(0);
+
+    yesBtn && yesBtn.addEventListener("click", () => setState(1));
+    noBtn  && noBtn.addEventListener("click", () => setState(0));
+
+    console.log("LMT: Special Discount buttons injected beside Discount%");
+  }
+
+  // Best effort: run after form finishes rendering (discountPercent exists)
+  // If the form rerenders, it won't duplicate (guarded by #lmtSpecialDiscountInline).
+  window.setTimeout(() => injectSpecialDiscountUI(window.__current_order_doc || window.currentDoc || {}), 0);
+})();
+
+
   document.getElementById("saleToggleBtn").addEventListener("click", () => setItemMode("sale"));
   document.getElementById("freeToggleBtn").addEventListener("click", () => setItemMode("free"));
 
@@ -1130,3 +1229,315 @@ async function initMobileOrdersApp() {
 }
 
 document.addEventListener("DOMContentLoaded", initMobileOrdersApp);
+
+/* =========================================================
+ * LMT PATCH: Special Discount toggle beside Discount% (Order Form only)
+ * - Appears ONLY in New/Edit Order form where discount % control exists
+ * - Sits beside the discount control (like your screenshot)
+ * - Mobile: label on top, buttons full-width row
+ * - Hidden when customer looks like Company (placeholder logic)
+ * ========================================================= */
+(function () {
+  function qs(sel, root){ return (root || document).querySelector(sel); }
+
+  function findOrderFormRoot() {
+    return qs("#orderFormSection") || qs("#orderForm") || qs(".order-form") || qs(".mobile-orders-form");
+  }
+
+  function findDiscountControl(root) {
+    // Try known ids first
+    const el =
+      qs("#discountPct", root) ||
+      qs("#discountPercent", root) ||
+      qs("#discount_percentage", root);
+
+    if (el) return el;
+
+    // Fallback: locate by label text containing discount/التخفيض
+    const labels = root.querySelectorAll("label, .field-label, .control-label, .label");
+    for (const lab of labels) {
+      const t = (lab.textContent || "").trim();
+      if (!t) continue;
+      if (t.toLowerCase().includes("discount") || t.includes("التخفيض")) {
+        // grab the closest input in same row/group
+        const box = lab.closest(".field-row, .form-group, .row, .control") || lab.parentElement;
+        if (!box) continue;
+        const inp = box.querySelector("input, select, textarea");
+        if (inp) return inp;
+      }
+    }
+    return null;
+  }
+
+  // Placeholder company detection (we’ll replace with real ERPNext customer field next step)
+  function isCompanyCustomer() {
+    // Try read selected customer text/value from common selects
+    const root = findOrderFormRoot();
+    if (!root) return false;
+
+    const custInput =
+      qs("#customer", root) ||
+      qs("#customerSelect", root) ||
+      qs("select[name='customer']", root) ||
+      qs("input[name='customer']", root);
+
+    const val = (custInput && (custInput.value || custInput.textContent)) ? (custInput.value || custInput.textContent) : "";
+
+    // Simple heuristic: if name contains "شركة" or "Company"
+    const v = String(val || "").trim();
+    if (!v) return false;
+    if (v.includes("شركة") || v.toLowerCase().includes("company")) return true;
+
+    return false;
+  }
+
+  function inject() {
+    const root = findOrderFormRoot();
+    if (!root) return;
+
+    // prevent duplicates
+    if (qs("#lmtSpecialDiscountInline", root)) return;
+
+    const discountEl = findDiscountControl(root);
+    if (!discountEl) return;
+
+    const row = discountEl.closest(".field-row, .form-group, .row, .input-group") || discountEl.parentElement;
+    if (!row) return;
+
+    // Make the row flex so we can place our block beside it
+    row.style.display = "flex";
+    row.style.alignItems = "center";
+    row.style.gap = "12px";
+    row.style.flexWrap = "wrap";
+
+    const wrap = document.createElement("div");
+    wrap.id = "lmtSpecialDiscountInline";
+    wrap.style.minWidth = "260px";
+    wrap.style.flex = "1";
+    wrap.innerHTML = `
+      <div class="lmt-sd-label" style="font-weight:600;margin-bottom:6px;">Special Discount</div>
+      <div class="lmt-sd-btnrow" style="display:flex;gap:10px;">
+        <button type="button" id="lmtSDYesInline"
+          style="flex:1;padding:10px 12px;border:3px solid #000;background:#fff;font-weight:700;">
+          YES
+        </button>
+        <button type="button" id="lmtSDNoInline"
+          style="flex:1;padding:10px 12px;border:3px solid #000;background:#fff;font-weight:700;">
+          NO
+        </button>
+      </div>
+    `;
+
+    row.appendChild(wrap);
+
+    // Mobile responsiveness: label takes full width
+    const styleId = "lmtSdInlineStyle";
+    if (!document.getElementById(styleId)) {
+      const st = document.createElement("style");
+      st.id = styleId;
+      st.textContent = `
+        @media (max-width: 640px){
+          #lmtSpecialDiscountInline{ width:100%; min-width:unset; }
+          #lmtSpecialDiscountInline .lmt-sd-label{ width:100%; }
+          #lmtSpecialDiscountInline .lmt-sd-btnrow button{ width:100%; }
+        }
+      `;
+      document.head.appendChild(st);
+    }
+
+    // Hide for company customers (placeholder logic for now)
+    function applyVisibility() {
+      wrap.style.display = isCompanyCustomer() ? "none" : "block";
+    }
+    applyVisibility();
+
+    // Re-check when customer changes (best effort)
+    root.addEventListener("change", applyVisibility, true);
+    root.addEventListener("input", applyVisibility, true);
+
+    // Temporary state storage only (we will bind to ERP custom fields next step)
+    const yesBtn = qs("#lmtSDYesInline", root);
+    const noBtn  = qs("#lmtSDNoInline", root);
+
+    function setActive(v){
+      window.__lmt_special_discount = v ? 1 : 0;
+      yesBtn.style.background = v ? "#0b3a66" : "#fff";
+      yesBtn.style.color      = v ? "#fff" : "#111";
+      noBtn.style.background  = !v ? "#0b3a66" : "#fff";
+      noBtn.style.color       = !v ? "#fff" : "#111";
+    }
+    yesBtn.addEventListener("click", () => setActive(true));
+    noBtn.addEventListener("click", () => setActive(false));
+    setActive(false);
+
+    console.log("LMT: Special Discount buttons injected beside Discount%");
+  }
+
+  function start(){
+    inject();
+    setTimeout(inject, 400);
+    setTimeout(inject, 1200);
+
+    const mo = new MutationObserver(() => inject());
+    mo.observe(document.documentElement, { childList:true, subtree:true });
+  }
+
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", start);
+  else start();
+})();
+
+/* =========================================================
+ * LMT PATCH: Special Discount toggle beside Discount% (Order Form only)
+ * - Appears ONLY in New/Edit Order form where discount % control exists
+ * - Sits beside the discount control (like your screenshot)
+ * - Mobile: label on top, buttons full-width row
+ * - Hidden when customer looks like Company (placeholder logic)
+ * ========================================================= */
+(function () {
+  function qs(sel, root){ return (root || document).querySelector(sel); }
+
+  function findOrderFormRoot() {
+    return qs("#orderFormSection") || qs("#orderForm") || qs(".order-form") || qs(".mobile-orders-form");
+  }
+
+  function findDiscountControl(root) {
+    // Try known ids first
+    const el =
+      qs("#discountPct", root) ||
+      qs("#discountPercent", root) ||
+      qs("#discount_percentage", root);
+
+    if (el) return el;
+
+    // Fallback: locate by label text containing discount/التخفيض
+    const labels = root.querySelectorAll("label, .field-label, .control-label, .label");
+    for (const lab of labels) {
+      const t = (lab.textContent || "").trim();
+      if (!t) continue;
+      if (t.toLowerCase().includes("discount") || t.includes("التخفيض")) {
+        // grab the closest input in same row/group
+        const box = lab.closest(".field-row, .form-group, .row, .control") || lab.parentElement;
+        if (!box) continue;
+        const inp = box.querySelector("input, select, textarea");
+        if (inp) return inp;
+      }
+    }
+    return null;
+  }
+
+  // Placeholder company detection (we’ll replace with real ERPNext customer field next step)
+  function isCompanyCustomer() {
+    // Try read selected customer text/value from common selects
+    const root = findOrderFormRoot();
+    if (!root) return false;
+
+    const custInput =
+      qs("#customer", root) ||
+      qs("#customerSelect", root) ||
+      qs("select[name='customer']", root) ||
+      qs("input[name='customer']", root);
+
+    const val = (custInput && (custInput.value || custInput.textContent)) ? (custInput.value || custInput.textContent) : "";
+
+    // Simple heuristic: if name contains "شركة" or "Company"
+    const v = String(val || "").trim();
+    if (!v) return false;
+    if (v.includes("شركة") || v.toLowerCase().includes("company")) return true;
+
+    return false;
+  }
+
+  function inject() {
+    const root = findOrderFormRoot();
+    if (!root) return;
+
+    // prevent duplicates
+    if (qs("#lmtSpecialDiscountInline", root)) return;
+
+    const discountEl = findDiscountControl(root);
+    if (!discountEl) return;
+
+    const row = discountEl.closest(".field-row, .form-group, .row, .input-group") || discountEl.parentElement;
+    if (!row) return;
+
+    // Make the row flex so we can place our block beside it
+    row.style.display = "flex";
+    row.style.alignItems = "center";
+    row.style.gap = "12px";
+    row.style.flexWrap = "wrap";
+
+    const wrap = document.createElement("div");
+    wrap.id = "lmtSpecialDiscountInline";
+    wrap.style.minWidth = "260px";
+    wrap.style.flex = "1";
+    wrap.innerHTML = `
+      <div class="lmt-sd-label" style="font-weight:600;margin-bottom:6px;">Special Discount</div>
+      <div class="lmt-sd-btnrow" style="display:flex;gap:10px;">
+        <button type="button" id="lmtSDYesInline"
+          style="flex:1;padding:10px 12px;border:3px solid #000;background:#fff;font-weight:700;">
+          YES
+        </button>
+        <button type="button" id="lmtSDNoInline"
+          style="flex:1;padding:10px 12px;border:3px solid #000;background:#fff;font-weight:700;">
+          NO
+        </button>
+      </div>
+    `;
+
+    row.appendChild(wrap);
+
+    // Mobile responsiveness: label takes full width
+    const styleId = "lmtSdInlineStyle";
+    if (!document.getElementById(styleId)) {
+      const st = document.createElement("style");
+      st.id = styleId;
+      st.textContent = `
+        @media (max-width: 640px){
+          #lmtSpecialDiscountInline{ width:100%; min-width:unset; }
+          #lmtSpecialDiscountInline .lmt-sd-label{ width:100%; }
+          #lmtSpecialDiscountInline .lmt-sd-btnrow button{ width:100%; }
+        }
+      `;
+      document.head.appendChild(st);
+    }
+
+    // Hide for company customers (placeholder logic for now)
+    function applyVisibility() {
+      wrap.style.display = isCompanyCustomer() ? "none" : "block";
+    }
+    applyVisibility();
+
+    // Re-check when customer changes (best effort)
+    root.addEventListener("change", applyVisibility, true);
+    root.addEventListener("input", applyVisibility, true);
+
+    // Temporary state storage only (we will bind to ERP custom fields next step)
+    const yesBtn = qs("#lmtSDYesInline", root);
+    const noBtn  = qs("#lmtSDNoInline", root);
+
+    function setActive(v){
+      window.__lmt_special_discount = v ? 1 : 0;
+      yesBtn.style.background = v ? "#0b3a66" : "#fff";
+      yesBtn.style.color      = v ? "#fff" : "#111";
+      noBtn.style.background  = !v ? "#0b3a66" : "#fff";
+      noBtn.style.color       = !v ? "#fff" : "#111";
+    }
+    yesBtn.addEventListener("click", () => setActive(true));
+    noBtn.addEventListener("click", () => setActive(false));
+    setActive(false);
+
+    console.log("LMT: Special Discount buttons injected beside Discount%");
+  }
+
+  function start(){
+    inject();
+    setTimeout(inject, 400);
+    setTimeout(inject, 1200);
+
+    const mo = new MutationObserver(() => inject());
+    mo.observe(document.documentElement, { childList:true, subtree:true });
+  }
+
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", start);
+  else start();
+})();
