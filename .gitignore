@@ -20,3 +20,7 @@ sites/
 
 # OS
 Thumbs.db
+
+# Local safety backups
+*.bak
+*.bak_*
