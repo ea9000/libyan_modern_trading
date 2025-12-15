@@ -1145,7 +1145,44 @@ async function initMobileOrdersApp() {
 
     // Create block
     const wrap = document.createElement("div");
+
+function lmtEnsureSpecialDiscountStyle(){
+  const id = "lmtSpecialDiscountStyle";
+  let st = document.getElementById(id);
+  if (!st){
+    st = document.createElement("style");
+    st.id = id;
+    document.head.appendChild(st);
+  }
+  st.textContent = `/* LMT SD UI (single source) */
+#lmtSpecialDiscountInline{width:100%; font-family:inherit;}
+#lmtSpecialDiscountInline .lmt-sd-label{font-weight:600; font-size:14px; margin:0 0 6px;}
+#lmtSpecialDiscountInline .lmt-sd-btnrow{display:flex; gap:8px; align-items:center;}
+#lmtSpecialDiscountInline .lmt-sd-btnrow .lmt-sd-btn{
+  box-sizing:border-box;
+  min-width:96px;
+  height:34px;
+  padding:0 12px;
+  border-width:1px;   /* constant => no jumping */
+  border-style:solid;
+  border-radius:8px;
+}
+#lmtSpecialDiscountInline .lmt-sd-btnrow .lmt-sd-btn.is-on{ }
+#lmtSpecialDiscountInline .lmt-sd-fields{display:flex; gap:10px; margin-top:8px; align-items:flex-start;}
+#lmtSpecialDiscountInline .lmt-sd-field{min-width:160px;}
+#lmtSpecialDiscountInline .lmt-sd-field label{font-size:13px; margin:0 0 4px; font-weight:600;}
+#lmtSpecialDiscountInline .lmt-sd-help{font-size:12px; opacity:.75; margin-top:4px;}
+@media (max-width:520px){
+  #lmtSpecialDiscountInline .lmt-sd-fields{flex-direction:column;}
+  #lmtSpecialDiscountInline .lmt-sd-field{min-width:unset; width:100%;}
+  #lmtSpecialDiscountInline .lmt-sd-btnrow{width:100%;}
+  #lmtSpecialDiscountInline .lmt-sd-btnrow .lmt-sd-btn{width:100%;}
+}`;
+}
+
+
     wrap.id = "lmtSpecialDiscountInline";
+    try{ lmtEnsureSpecialDiscountStyle(); }catch(e){}
     wrap.style.minWidth = "220px";
     wrap.style.maxWidth = "360px";
 
@@ -1161,6 +1198,18 @@ async function initMobileOrdersApp() {
           NO
         </button>
       </div>
+
+        <div class="lmt-sd-inputs" style="display:none;">
+          <div class="lmt-sd-input">
+            <div class="lmt-sd-input-label">Special Discount – Customer % <span style="color:#d00">*</span></div>
+            <input id="lmtSdCustPct" type="number" inputmode="decimal" min="0" max="100" step="0.01" placeholder="0.00">
+          </div>
+          <div class="lmt-sd-input">
+            <div class="lmt-sd-input-label">Special Discount – Agent % <span style="color:#d00">*</span></div>
+            <input id="lmtSdAgentPct" type="number" inputmode="decimal" min="0" max="100" step="0.01" placeholder="0.00">
+          </div>
+        </div>
+
       <div id="lmtSDHint" style="margin-top:6px;font-size:12px;color:#666;display:none;">
         Special Discount is ON
       </div>
@@ -1174,7 +1223,24 @@ async function initMobileOrdersApp() {
 
     function setState(v) {
       window.__lmt_special_discount = v ? 1 : 0;
-      if (hint) hint.style.display = v ? "block" : "none";
+      
+      // show/hide inputs + enforce required in UI
+      const inputsWrap = wrap.querySelector(".lmt-sd-inputs");
+      const custEl = wrap.querySelector("#lmtSdCustPct");
+      const agentEl = wrap.querySelector("#lmtSdAgentPct");
+
+      if (inputsWrap) inputsWrap.style.display = v ? "flex" : "none";
+
+      if (custEl) custEl.required = !!v;
+      if (agentEl) agentEl.required = !!v;
+
+      if (!v) {
+        if (custEl) custEl.value = "";
+        if (agentEl) agentEl.value = "";
+        window.__lmt_sd_customer_pct = 0;
+        window.__lmt_sd_agent_pct = 0;
+      }
+if (hint) hint.style.display = v ? "block" : "none";
 
       // simple visual state
       if (yesBtn && noBtn) {
@@ -1312,6 +1378,7 @@ document.addEventListener("DOMContentLoaded", initMobileOrdersApp);
 
     const wrap = document.createElement("div");
     wrap.id = "lmtSpecialDiscountInline";
+    try{ lmtEnsureSpecialDiscountStyle(); }catch(e){}
     wrap.style.minWidth = "260px";
     wrap.style.flex = "1";
     wrap.innerHTML = `
@@ -1326,6 +1393,18 @@ document.addEventListener("DOMContentLoaded", initMobileOrdersApp);
           NO
         </button>
       </div>
+
+        <div class="lmt-sd-inputs" style="display:none;">
+          <div class="lmt-sd-input">
+            <div class="lmt-sd-input-label">Special Discount – Customer % <span style="color:#d00">*</span></div>
+            <input id="lmtSdCustPct" type="number" inputmode="decimal" min="0" max="100" step="0.01" placeholder="0.00">
+          </div>
+          <div class="lmt-sd-input">
+            <div class="lmt-sd-input-label">Special Discount – Agent % <span style="color:#d00">*</span></div>
+            <input id="lmtSdAgentPct" type="number" inputmode="decimal" min="0" max="100" step="0.01" placeholder="0.00">
+          </div>
+        </div>
+
     `;
 
     row.appendChild(wrap);
@@ -1361,7 +1440,24 @@ document.addEventListener("DOMContentLoaded", initMobileOrdersApp);
 
     function setActive(v){
       window.__lmt_special_discount = v ? 1 : 0;
-      yesBtn.style.background = v ? "#0b3a66" : "#fff";
+      
+      // show/hide inputs + enforce required in UI
+      const inputsWrap = wrap.querySelector(".lmt-sd-inputs");
+      const custEl = wrap.querySelector("#lmtSdCustPct");
+      const agentEl = wrap.querySelector("#lmtSdAgentPct");
+
+      if (inputsWrap) inputsWrap.style.display = v ? "flex" : "none";
+
+      if (custEl) custEl.required = !!v;
+      if (agentEl) agentEl.required = !!v;
+
+      if (!v) {
+        if (custEl) custEl.value = "";
+        if (agentEl) agentEl.value = "";
+        window.__lmt_sd_customer_pct = 0;
+        window.__lmt_sd_agent_pct = 0;
+      }
+yesBtn.style.background = v ? "#0b3a66" : "#fff";
       yesBtn.style.color      = v ? "#fff" : "#111";
       noBtn.style.background  = !v ? "#0b3a66" : "#fff";
       noBtn.style.color       = !v ? "#fff" : "#111";
@@ -1468,6 +1564,7 @@ document.addEventListener("DOMContentLoaded", initMobileOrdersApp);
 
     const wrap = document.createElement("div");
     wrap.id = "lmtSpecialDiscountInline";
+    try{ lmtEnsureSpecialDiscountStyle(); }catch(e){}
     wrap.style.minWidth = "260px";
     wrap.style.flex = "1";
     wrap.innerHTML = `
@@ -1482,6 +1579,18 @@ document.addEventListener("DOMContentLoaded", initMobileOrdersApp);
           NO
         </button>
       </div>
+
+        <div class="lmt-sd-inputs" style="display:none;">
+          <div class="lmt-sd-input">
+            <div class="lmt-sd-input-label">Special Discount – Customer % <span style="color:#d00">*</span></div>
+            <input id="lmtSdCustPct" type="number" inputmode="decimal" min="0" max="100" step="0.01" placeholder="0.00">
+          </div>
+          <div class="lmt-sd-input">
+            <div class="lmt-sd-input-label">Special Discount – Agent % <span style="color:#d00">*</span></div>
+            <input id="lmtSdAgentPct" type="number" inputmode="decimal" min="0" max="100" step="0.01" placeholder="0.00">
+          </div>
+        </div>
+
     `;
 
     row.appendChild(wrap);
@@ -1517,7 +1626,24 @@ document.addEventListener("DOMContentLoaded", initMobileOrdersApp);
 
     function setActive(v){
       window.__lmt_special_discount = v ? 1 : 0;
-      yesBtn.style.background = v ? "#0b3a66" : "#fff";
+      
+      // show/hide inputs + enforce required in UI
+      const inputsWrap = wrap.querySelector(".lmt-sd-inputs");
+      const custEl = wrap.querySelector("#lmtSdCustPct");
+      const agentEl = wrap.querySelector("#lmtSdAgentPct");
+
+      if (inputsWrap) inputsWrap.style.display = v ? "flex" : "none";
+
+      if (custEl) custEl.required = !!v;
+      if (agentEl) agentEl.required = !!v;
+
+      if (!v) {
+        if (custEl) custEl.value = "";
+        if (agentEl) agentEl.value = "";
+        window.__lmt_sd_customer_pct = 0;
+        window.__lmt_sd_agent_pct = 0;
+      }
+yesBtn.style.background = v ? "#0b3a66" : "#fff";
       yesBtn.style.color      = v ? "#fff" : "#111";
       noBtn.style.background  = !v ? "#0b3a66" : "#fff";
       noBtn.style.color       = !v ? "#fff" : "#111";
