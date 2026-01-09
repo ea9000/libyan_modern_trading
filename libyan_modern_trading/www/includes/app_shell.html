@@ -1,6 +1,5 @@
-<div class="appshell" id="appShell">
+<div class="appshell" id="appShell" dir="rtl">
 
-  <!-- TOP BAR -->
   <div class="topbar" id="appTopbar">
     <div class="topbar-right">
       <button class="icon-btn" id="btnMenu" type="button">☰</button>
@@ -9,7 +8,7 @@
            src="/assets/libyan_modern_trading/images/logo.png"
            onerror="this.style.display='none';">
 
-      <div class="topbar-title" id="topbarTitle">Orders</div>
+      <div class="topbar-title" id="topbarTitle">الطلبيات</div>
     </div>
 
     <div class="topbar-left">
@@ -18,38 +17,37 @@
     </div>
   </div>
 
-  <!-- DRAWER -->
   <div class="drawer-overlay hidden" id="drawerOverlay"></div>
 
   <aside class="drawer hidden" id="drawer">
     <div class="drawer-header">
-      <div class="drawer-title">Libyan Modern Trading</div>
+      <div class="drawer-title">الليبية للتجارة الحديثة</div>
       <div class="drawer-sub">{{ frappe.session.user }}</div>
     </div>
 
     <div class="drawer-list">
-      <a class="drawer-item" href="/mobile-settings">⚙️ Settings</a>
-      <a class="drawer-item" href="/mobile-report">✉️ Sales Report (Tripoli)</a>
-      <a class="drawer-item" href="/mobile-simple-report">📋 Simple Report</a>
-      <a class="drawer-item" href="/mobile-orders-closed">📌 Closed Orders</a>
+      <a class="drawer-item" href="/mobile-settings">⚙️ الإعدادات</a>
+      <a class="drawer-item" href="/mobile-report">✉️ تقرير المبيعات (طرابلس)</a>
+      <a class="drawer-item" href="/mobile-simple-report">📋 تقرير مبسط</a>
+      <a class="drawer-item" href="/split_order-closed">📌 الطلبيات المغلقة</a>
     </div>
 
     <div class="drawer-footer">
-      <a class="drawer-logout" href="/?cmd=web_logout">Logout</a>
+      <a class="drawer-logout" href="/?cmd=web_logout">تسجيل الخروج</a>
     </div>
   </aside>
 
-  <!-- MAIN CONTENT (ONLY SCROLL AREA) -->
   <div class="content" id="appContent">
     {% block app_content %}{% endblock %}
   </div>
 
-  <!-- BOTTOM NAV -->
   <nav class="bottom-nav" id="bottomNav">
-    <div class="nav-item" id="navReport" data-key="report">📄<br>Report</div>
-    <div class="nav-item" id="navCustomers" data-key="customers">👤<br>Customers</div>
-    <div class="nav-item" id="navOrders" data-key="orders">🛒<br>Orders</div>
-    <div class="nav-item" id="navDebt" data-key="debt">💰<br>Debt</div>
+    <div class="nav-item" id="navReport" data-key="report" onclick="window.location.href='/mobile-report'">📄<br>التقارير</div>
+    
+    <div class="nav-item" id="navCustomers" data-key="customers" onclick="window.location.href='/split_customer'">👤<br>الزبائن</div>
+    
+    <div class="nav-item" id="navOrders" data-key="orders" onclick="window.location.href='/split_order'">🛒<br>الطلبيات</div>
+    <div class="nav-item" id="navDebt" data-key="debt" onclick="window.location.href='/mobile-debt'">💰<br>الديون</div>
   </nav>
 
 </div>

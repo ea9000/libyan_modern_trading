@@ -1,8 +1,8 @@
 /**
- * LMT App Shell JS (drawer + nav)
- * Supports BOTH CSS schemes:
- *  - hidden-based (class "hidden")
- *  - open-based (class "open" for slide-in)
+ * ملف LMT App Shell JS (القائمة الجانبية + التنقل)
+ * يدعم كلا نظامي CSS:
+ * - المعتمد على الإخفاء (فئة "hidden")
+ * - المعتمد على الفتح (فئة "open" للتمرير الجانبي)
  */
 (function () {
   "use strict";
@@ -17,11 +17,11 @@
     var d = el("drawer");
     var o = el("drawerOverlay");
 
-    // make sure they are not hidden
+    // التأكد من أنها ليست مخفية
     remClass(d, "hidden");
     remClass(o, "hidden");
 
-    // for slide-in CSS
+    // لنظام التمرير الجانبي في CSS
     addClass(d, "open");
     addClass(o, "open");
   }
@@ -30,11 +30,11 @@
     var d = el("drawer");
     var o = el("drawerOverlay");
 
-    // remove slide-in class
+    // إزالة فئة التمرير الجانبي
     remClass(d, "open");
     remClass(o, "open");
 
-    // also hide (works for both systems)
+    // الإخفاء الفعلي (يعمل مع كلا النظامين)
     addClass(d, "hidden");
     addClass(o, "hidden");
   }
@@ -43,7 +43,7 @@
     var d = el("drawer");
     if (!d) return;
 
-    // if either hidden OR not open -> open
+    // إذا كانت مخفية أو ليست مفتوحة -> قم بفتحها
     if (hasClass(d, "hidden") || !hasClass(d, "open")) openDrawer();
     else closeDrawer();
   }
@@ -54,17 +54,25 @@
 
     if (window.PAGE_TITLE) { t.textContent = window.PAGE_TITLE; return; }
 
-    // fallback via ACTIVE_KEY
+    // العودة إلى العنوان الافتراضي عبر ACTIVE_KEY
     var key = window.ACTIVE_KEY || "";
-    var map = { orders:"navOrders", customers:"navCustomers", report:"navReport", debt:"navDebt" };
+    // تحديث: إضافة split_customer إلى الخريطة لضمان العنوان الصحيح
+    var map = { 
+        orders: "navOrders", 
+        customers: "navCustomers", 
+        split_customer: "navCustomers", 
+        report: "navReport", 
+        debt: "navDebt" 
+    };
     var nav = map[key] ? el(map[key]) : null;
     if (nav && nav.dataset && nav.dataset.title) t.textContent = nav.dataset.title;
   }
 
   function bindBottomNav(){
+    // تحديث: تغيير المسار لـ navCustomers إلى /split_customer
     var routes = {
-      navOrders: "/mobile-orders",
-      navCustomers: "/mobile-customers",
+      navOrders: "/split_order",
+      navCustomers: "/split_customer",
       navReport: "/mobile-report",
       navDebt: "/mobile-debt"
     };
@@ -92,10 +100,10 @@
     setTitle();
     bindBottomNav();
 
-    // ensure closed initially
+    // التأكد من إغلاقها مبدئياً
     closeDrawer();
 
-    console.log("app_shell.js loaded: drawer binder active");
+    console.log("تم تحميل app_shell.js: مفعل القائمة الجانبية نشط");
   }
 
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", bind);

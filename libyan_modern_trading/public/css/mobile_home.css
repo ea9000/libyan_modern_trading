@@ -1,13 +1,14 @@
-/* Mobile Home: compact grid (2 cards per row), icon on top + label below */
+/* الصفحة الرئيسية للموبايل: شبكة مدمجة (بطاقتان في كل صف)، الأيقونة في الأعلى + التسمية بالأسفل */
 
 .home-grid{
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 12px;
   padding: 14px;
+  direction: rtl; /* دعم الكتابة من اليمين إلى اليسار */
 }
 
-/* compact card */
+/* بطاقة مدمجة */
 .card{
   background: #fff;
   border: 1px solid #e6e6e6;
@@ -26,7 +27,7 @@
   box-shadow: 0 1px 1px rgba(0,0,0,0.03);
 }
 
-/* icon on top (same icons as bottom nav) */
+/* الأيقونة في الأعلى (نفس أيقونات شريط التنقل السفلي) */
 .card::before{
   display: block;
   font-size: 28px;
@@ -34,12 +35,19 @@
   margin-bottom: 8px;
 }
 
-/* Match the order of cards in index.html:
-   1) Report  2) Customers  3) Orders  4) Debt */
+/* مطابقة ترتيب البطاقات في ملف index.html:
+   1) التقارير  2) الزبائن  3) الطلبيات  4) الديون */
+/*
 .home-grid .card:nth-child(1)::before{ content: "📄"; }
 .home-grid .card:nth-child(2)::before{ content: "👤"; }
 .home-grid .card:nth-child(3)::before{ content: "🛒"; }
 .home-grid .card:nth-child(4)::before{ content: "💰"; }
+*/
+.home-grid .card::before{
+  content: none !important;
+  display: none !important;
+}
+
 
 .card-title{
   font-size: 13px;
@@ -47,12 +55,12 @@
   margin: 0;
 }
 
-/* hide the 2nd line to keep it small (text should be like bottom bar) */
+/* إخفاء السطر الثاني للحفاظ على صغر الحجم */
 .card-sub{
   display: none;
 }
 
-/* very small screens: still 2 per row, but tighter */
+/* الشاشات الصغيرة جداً: بطاقتان في الصف ولكن بمساحات أضيق */
 @media (max-width: 360px){
   .home-grid{ gap: 10px; padding: 12px; }
   .card{ min-height: 88px; padding: 10px 8px; }

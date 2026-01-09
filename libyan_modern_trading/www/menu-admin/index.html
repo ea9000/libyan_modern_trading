@@ -1,0 +1,119 @@
+{% extends "templates/web.html" %}
+{% block header %}{% endblock %}
+{% block footer %}{% endblock %}
+{% block title %}Menu Admin{% endblock %}
+
+{% block page_content %}
+<script>
+  // hard redirect guests
+  try {
+    if (frappe && frappe.session && frappe.session.user === "Guest") {
+      window.location.href = "/login?redirect-to=/menu-admin";
+    }
+  } catch (e) {
+    window.location.href = "/login?redirect-to=/menu-admin";
+  }
+</script>
+
+<link rel="stylesheet" href="/assets/libyan_modern_trading/menu-admin/index.css">
+<script defer src="/assets/libyan_modern_trading/menu-admin/index.js"></script>
+
+<div class="ma-wrap" dir="ltr">
+  <div class="ma-top">
+    <div>
+      <div class="ma-title">LMT Menu Admin</div>
+      <div class="ma-sub">Manage menu items + access (roles/users)</div>
+    </div>
+    <div class="ma-actions">
+      <button class="ma-btn" id="btnNew">+ New Item</button>
+      <button class="ma-btn" id="btnReload">Reload</button>
+    </div>
+  </div>
+
+  <div class="ma-grid">
+    <div class="ma-card">
+      <div class="ma-card-title">Menu Items</div>
+      <input class="ma-input" id="search" placeholder="Search by title / route..." />
+      <div class="ma-list" id="itemsList"></div>
+    </div>
+
+    <div class="ma-card">
+      <div class="ma-card-title">Edit Item</div>
+
+      <div class="ma-row">
+        <label class="ma-label">Title (AR)</label>
+        <input class="ma-input" id="title_ar" />
+      </div>
+
+      <div class="ma-row">
+        <label class="ma-label">Title (EN)</label>
+        <input class="ma-input" id="title_en" />
+      </div>
+
+      <div class="ma-row">
+        <label class="ma-label">Route</label>
+        <input class="ma-input" id="route" placeholder="/mobile-home" />
+      </div>
+
+      <div class="ma-row2">
+        <div>
+          <label class="ma-label">Sort Order</label>
+          <input class="ma-input" id="sort_order" type="number" />
+        </div>
+        <div class="ma-checks">
+          <label><input type="checkbox" id="is_active"> Active</label>
+          <label><input type="checkbox" id="show_on_home_grid"> Show on Home Grid</label>
+          <label><input type="checkbox" id="show_on_bottom_nav"> Show on Bottom Nav</label>
+          <label><input type="checkbox" id="open_in_new_tab"> Open in New Tab</label>
+        </div>
+      </div>
+
+      <div class="ma-row2">
+        <div>
+          <label class="ma-label">Icon Type</label>
+          <select class="ma-input" id="icon_type">
+            <option value="Emoji">Emoji</option>
+            <option value="FontAwesome">FontAwesome</option>
+            <option value="ImageURL">ImageURL</option>
+          </select>
+        </div>
+        <div>
+          <label class="ma-label">Emoji</label>
+          <input class="ma-input" id="emoji" placeholder="🏠" />
+        </div>
+      </div>
+
+      <div class="ma-row2">
+        <div>
+          <label class="ma-label">FontAwesome Class</label>
+          <input class="ma-input" id="fa_class" placeholder="fa fa-home" />
+        </div>
+        <div>
+          <label class="ma-label">Image URL</label>
+          <input class="ma-input" id="image_url" placeholder="https://..." />
+        </div>
+      </div>
+
+      <div class="ma-row2">
+        <div>
+          <label class="ma-label">Allowed Roles</label>
+          <select class="ma-input" id="rolesSelect" multiple size="8"></select>
+          <div class="ma-hint">Leave empty = visible to all.</div>
+        </div>
+        <div>
+          <label class="ma-label">Allowed Users</label>
+          <select class="ma-input" id="usersSelect" multiple size="8"></select>
+          <div class="ma-hint">Leave empty = visible to all.</div>
+        </div>
+      </div>
+
+      <div class="ma-actions">
+        <button class="ma-btn primary" id="btnSave">Save</button>
+        <button class="ma-btn danger" id="btnDelete">Delete</button>
+      </div>
+
+      <div class="ma-msg" id="msg"></div>
+    </div>
+  </div>
+</div>
+{% endblock %}

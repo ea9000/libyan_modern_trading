@@ -19,7 +19,7 @@
 
 {% block app_content %}
   <div class="app-page">
-    <div class="card" onclick="location.href='/mobile-orders'">
+    <div class="card" onclick="location.href='/split_order'">
       <div class="card-title">Orders</div>
       <div class="card-sub">Create / Edit</div>
     </div>

@@ -760,6 +760,24 @@ async function openExistingOrder(orderName) {
 
 // ============= SAVE ORDER (NEW + UPDATE) =============
 async function saveOrderToERPNext() {
+  /* =========================================================
+   * LMT PATCH: require customer before save/submit
+   * ========================================================= */
+  try {
+    var custEl = document.getElementById("customerInput");
+    var custName = custEl ? String(custEl.value || "").trim() : "";
+    var custId = (typeof window.selectedCustomerId !== "undefined") ? String(window.selectedCustomerId || "").trim() : "";
+    if (!custName && !custId) {
+      if (typeof window.appAlert === "function") window.appAlert("Please select a customer");
+      else if (window.frappe && frappe.msgprint) frappe.msgprint("Please select a customer");
+      else alert("Please select a customer");
+      return;
+    }
+  } catch (e) {
+    console.error("Customer validation error:", e);
+  }
+
+
   try {
     if (!selectedCustomerName && !selectedCustomerId) {
       appAlert("الرجاء اختيار الزبون");
@@ -942,6 +960,24 @@ async function cancelOrderInERPNext() {
 
 // ============= SUBMIT ORDER =============
 async function submitOrderInERPNext() {
+  /* =========================================================
+   * LMT PATCH: require customer before save/submit
+   * ========================================================= */
+  try {
+    var custEl = document.getElementById("customerInput");
+    var custName = custEl ? String(custEl.value || "").trim() : "";
+    var custId = (typeof window.selectedCustomerId !== "undefined") ? String(window.selectedCustomerId || "").trim() : "";
+    if (!custName && !custId) {
+      if (typeof window.appAlert === "function") window.appAlert("Please select a customer");
+      else if (window.frappe && frappe.msgprint) frappe.msgprint("Please select a customer");
+      else alert("Please select a customer");
+      return;
+    }
+  } catch (e) {
+    console.error("Customer validation error:", e);
+  }
+
+
   if (!currentOrderName || !currentOrderDoc) {
     appAlert("يرجى حفظ الطلب أولاً");
     return;
@@ -1848,3 +1884,97 @@ yesBtn.style.background = v ? "#0b3a66" : "#fff";
   setInterval(apply, 500);
 })();
 
+
+
+/* =========================================================
+ * LMT PATCH: Save confirmation message wrapper
+ * - Shows msg AFTER save finishes
+ * - Does NOT change ERP logic
+ * ========================================================= */
+(function () {
+  var MARK = "LMT PATCH: Save confirmation message wrapper";
+
+  function msg(text, ok) {
+    try {
+      if (window.frappe && frappe.msgprint) {
+        frappe.msgprint({
+          title: ok ? "Saved" : "Error",
+          message: text,
+          indicator: ok ? "green" : "red"
+        });
+        return;
+      }
+    } catch (e) {}
+    alert(text);
+  }
+
+  async function onSaveClick(e) {
+    // capture-phase: prevent the old silent handler
+    e.preventDefault();
+    e.stopImmediatePropagation();
+
+    if (typeof window.saveOrderToERPNext !== "function") {
+      msg("Save function missing (saveOrderToERPNext not found).", false);
+      return;
+    }
+
+    try {
+      await window.saveOrderToERPNext();
+      msg("✅ Order saved", true);
+    } catch (err) {
+      console.error("Save error:", err);
+      
+      var text = "";
+      try {
+        text = (err && (err.message || err.toString())) ? String(err.message || err.toString()) : "";
+      } catch (e2) {}
+      msg("❌ Save failed" + (text ? (": " + text) : ""), false);
+    }
+  }
+
+  function bind() {
+    var btn = document.getElementById("saveOrderBtn");
+    if (!btn) return;
+
+    if (btn.dataset && btn.dataset.lmtSaveMsgBound === "1") return;
+
+    btn.addEventListener("click", onSaveClick, true); // capture=true
+    if (btn.dataset) btn.dataset.lmtSaveMsgBound = "1";
+    console.log("[LMT] Save confirmation wrapper bound");
+  }
+
+  function start() {
+    bind();
+    setTimeout(bind, 300);
+    setTimeout(bind, 1200);
+  }
+
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", start);
+  else start();
+})();
+
+/* =========================================================
+ * LMT HOTFIX: define appAlert() if missing
+ * - Fixes: "appAlert is not defined" which breaks Save
+ * - Uses ERPNext msgprint style
+ * ========================================================= */
+(function () {
+  if (typeof window.appAlert === "function") return;
+
+  window.appAlert = function (message, type) {
+    try {
+      const ok = (type === "success" || type === "green" || type === 1 || type === true);
+      const title = ok ? "Saved" : "Error";
+      const indicator = ok ? "green" : "red";
+
+      if (window.frappe && frappe.msgprint) {
+        frappe.msgprint({ title, message: String(message || ""), indicator });
+        return;
+      }
+    } catch (e) {}
+
+    alert(String(message || ""));
+  };
+
+  console.log("[LMT] appAlert() fallback installed ✅");
+})();

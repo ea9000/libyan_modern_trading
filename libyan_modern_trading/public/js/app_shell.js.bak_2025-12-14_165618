@@ -56,7 +56,7 @@
   function bindBottomNav() {
     // Keep click navigation consistent
     var routes = {
-      navOrders: "/mobile-orders",
+      navOrders: "/split_order",
       navCustomers: "/mobile-customers",
       navReport: "/mobile-report",
       navDebt: "/mobile-debt"

@@ -49,7 +49,7 @@
       <a class="drawer-item" href="/mobile-settings">⚙️ Settings</a>
       <a class="drawer-item" href="/mobile-report">✉️ Sales Report (Tripoli)</a>
       <a class="drawer-item" href="/mobile-simple-report">📋 Simple Report</a>
-      <a class="drawer-item" href="/mobile-orders-closed">📌 Closed Orders</a>
+      <a class="drawer-item" href="/split_order-closed">📌 Closed Orders</a>
     </div>
 
     <div class="drawer-footer">
@@ -61,7 +61,7 @@
   <div class="content" id="appContent">
 
     <div class="home-grid">
-      <div class="card" onclick="location.href='/mobile-orders'">
+      <div class="card" onclick="location.href='/split_order'">
         <div class="card-title">Orders</div>
         <div class="card-sub">Create / Edit</div>
       </div>

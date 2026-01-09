@@ -7,7 +7,7 @@ const FEATURES = {
 };
 
 const ROUTES = {
-  orders: "/mobile-orders",
+  orders: "/split_order",
   customers: "/mobile-customers",
   report: "/mobile-report",
   debt: "/mobile-debt"

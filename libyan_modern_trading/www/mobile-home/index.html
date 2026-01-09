@@ -8,7 +8,7 @@
 
 <script>
   window.ACTIVE_KEY = "home";
-  window.PAGE_TITLE  = "Mobile Home";
+  window.PAGE_TITLE  = "الرئيسية";
 </script>
 
 <link rel="stylesheet" href="/assets/libyan_modern_trading/css/app_shell.css">
@@ -16,85 +16,50 @@
 
 <link rel="stylesheet" href="/assets/libyan_modern_trading/css/mobile_home.css">
 
-<div class="appshell" id="appShell">
+<div class="appshell" id="appShell" dir="rtl">
 
-  <!-- TOP BAR -->
   <div class="topbar" id="appTopbar">
     <div class="topbar-right">
-      <button class="icon-btn" id="btnMenu" type="button" aria-label="Menu">☰</button>
+      <button class="icon-btn" id="btnMenu" type="button" aria-label="القائمة">☰</button>
 
       <img id="companyLogo" class="company-logo"
            src="/assets/libyan_modern_trading/images/logo.png"
-           alt="Logo" onerror="this.style.display='none';">
+           alt="الشعار" onerror="this.style.display='none';">
 
-      <div class="topbar-title" id="topbarTitle">Mobile Home</div>
+      <div class="topbar-title" id="topbarTitle">الرئيسية</div>
     </div>
 
     <div class="topbar-left">
-      <button class="icon-btn" id="btnRefresh" type="button" aria-label="Refresh">⟳</button>
-      <!-- Home has no search -->
-      <button class="icon-btn" id="btnSearch" type="button" aria-label="Search" style="display:none;">🔍</button>
+      <button class="icon-btn" id="btnRefresh" type="button" aria-label="تحديث">⟳</button>
+      <button class="icon-btn" id="btnSearch" type="button" aria-label="بحث" style="display:none;">🔍</button>
     </div>
   </div>
 
-  <!-- DRAWER -->
   <div class="drawer-overlay hidden" id="drawerOverlay"></div>
 
   <aside class="drawer hidden" id="drawer">
     <div class="drawer-header">
-      <div class="drawer-title">Libyan Modern Trading</div>
+      <div class="drawer-title">الليبية للتجارة الحديثة</div>
       <div class="drawer-sub">{{ frappe.session.user }}</div>
     </div>
 
     <div class="drawer-list">
-      <a class="drawer-item" href="/mobile-settings">⚙️ Settings</a>
-      <a class="drawer-item" href="/mobile-report">✉️ Sales Report (Tripoli)</a>
-      <a class="drawer-item" href="/mobile-simple-report">📋 Simple Report</a>
-      <a class="drawer-item" href="/mobile-orders-closed">📌 Closed Orders</a>
-    </div>
-
-    <div class="drawer-footer">
-      <a class="drawer-logout" href="/?cmd=web_logout">Logout</a>
+      <a class="drawer-item" href="/mobile-settings">⚙️ الإعدادات</a>
+      <a class="drawer-item" href="/?cmd=web_logout">تسجيل الخروج</a>
     </div>
   </aside>
 
-  <!-- MAIN CONTENT -->
   <div class="content" id="appContent">
-
-    <div class="home-grid">
-
-      <div class="card" onclick="location.href='/mobile-report'">
-        <div class="card-title">Sales Report</div>
-        <div class="card-sub">Report</div>
-      </div>
-
-      <div class="card" onclick="location.href='/mobile-customers'">
-        <div class="card-title">Customers</div>
-        <div class="card-sub">Customers</div>
-      </div>
-
-      <div class="card" onclick="location.href='/mobile-orders'">
-        <div class="card-title">Orders</div>
-        <div class="card-sub">Orders</div>
-      </div>
-
-      <div class="card" onclick="location.href='/mobile-debt'">
-        <div class="card-title">Debt</div>
-        <div class="card-sub">Debt</div>
-      </div>
-
-    </div>
-
+    <!-- Will be rendered from DocType (LMT Mobile Menu Item) -->
+    <div class="home-grid"></div>
   </div>
 
-  <!-- BOTTOM NAV -->
-  <nav class="bottom-nav" id="bottomNav">
-    <div class="nav-item" id="navReport" data-key="report">📄<br>Report</div>
-    <div class="nav-item" id="navCustomers" data-key="customers">👤<br>Customers</div>
-    <div class="nav-item" id="navOrders" data-key="orders">🛒<br>Orders</div>
-    <div class="nav-item" id="navDebt" data-key="debt">💰<br>Debt</div>
-  </nav>
+  <!-- Will be rendered from DocType (show_on_bottom_nav) -->
+  <nav class="bottom-nav" id="bottomNav"></nav>
 
 </div>
+
+<!-- IMPORTANT: load the page JS that calls the API -->
+<script src="/mobile-home/index.js"></script>
 
 {% endblock %}
