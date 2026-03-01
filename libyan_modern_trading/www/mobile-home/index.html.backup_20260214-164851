@@ -1,0 +1,151 @@
+{% extends "templates/web.html" %}
+
+{% block header %}{% endblock %}
+{% block footer %}{% endblock %}
+{% block title %}{% endblock %}
+
+{% block page_content %}
+
+<script>
+  window.ACTIVE_KEY = "home";
+  window.PAGE_TITLE  = "الرئيسية";
+</script>
+
+<link rel="stylesheet" href="/assets/libyan_modern_trading/css/app_shell.css">
+<script defer src="/assets/libyan_modern_trading/js/app_shell.js"></script>
+
+<link rel="stylesheet" href="/assets/libyan_modern_trading/css/mobile_home.css">
+
+<style>
+    body, html, .appshell, .content, .page-container {
+        background-color: #CDEFF9 !important;
+        background: #CDEFF9 !important;
+    }
+    .topbar, .bottom-nav {
+        background-color: #ffffff !important;
+        background: #ffffff !important;
+        border-color: #d1d5db !important; 
+    }
+    .topbar-title, .nav-item.active {
+        color: #003b66 !important;
+    }
+    .topbar {
+        box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+</style>
+
+<div class="appshell" id="appShell" dir="rtl">
+
+  <div class="topbar" id="appTopbar">
+    <div class="topbar-right">
+      <button class="icon-btn" id="btnMenu" type="button" aria-label="القائمة">☰</button>
+      <img id="companyLogo" class="company-logo"
+           src="/assets/libyan_modern_trading/images/logo.png"
+           alt="الشعار" onerror="this.style.display='none';">
+      <div class="topbar-title" id="topbarTitle">الرئيسية</div>
+      {% set site_status = "" %}
+      {% try %}
+          {% set host = frappe.request.host if frappe.request else "" %}
+          {% if host %}
+              {# Look for the record where title_en matches the current URL host #}
+              {% set site_record = frappe.db.get_value('LMT Mobile Menu Item', 
+                  {'title_en': ['like', '%' + host + '%']}, 'dips_site') %}
+              
+              {# Fallback: if no match by URL, default to the known home_icon record #}
+              {% if not site_record %}
+                  {% set site_record = frappe.db.get_value('LMT Mobile Menu Item', {'route': 'home_icon'}, 'dips_site') %}
+              {% endif %}
+              
+              {% set site_status = site_record %}
+          {% endif %}
+      {% except %}
+          {% set site_status = "" %}
+      {% endtry %}
+
+      {% if site_status %}
+        <span style="color: {{ '#ffc107' if 'التجريبية' in site_status else '#28a745' }}; 
+                     font-size: 14px; font-weight: bold; margin-right: 6px;">
+          [{{ site_status }}]
+        </span>
+      {% endif %}
+    </div>
+
+    <div class="topbar-left">
+      <button class="icon-btn" id="btnRefresh" type="button" aria-label="تحديث">⟳</button>
+      <button class="icon-btn" id="btnSearch" type="button" aria-label="بحث" style="display:none;">🔍</button>
+    </div>
+  </div>
+
+  <div class="drawer-overlay hidden" id="drawerOverlay"></div>
+
+  <aside class="drawer hidden" id="drawer">
+    <div class="drawer-header">
+      <div class="drawer-title">الشركة الليبية الحديثة</div>
+      <div class="drawer-sub" id="drawerUser">...</div>
+    </div>
+
+    <div class="drawer-list">
+      <a class="drawer-item" href="/mobile-settings">⚙️ الإعدادات</a>
+      <a class="drawer-item" href="/update-password">🔑 تغيير كلمة المرور</a>
+      <a class="drawer-item" href="#" onclick="handleCustomLogout(event)">تسجيل الخروج</a>
+    </div>
+  </aside>
+
+  <div class="content" id="appContent">
+    <div class="home-grid"></div>
+  </div>
+
+  <nav class="bottom-nav" id="bottomNav"></nav>
+
+</div>
+
+<script src="/mobile-home/index.js"></script>
+
+<script>
+frappe.ready(function() {
+    let user = frappe.session.user;
+    
+    if (user === 'Guest') {
+        $('#drawerUser').text('زائر');
+        return;
+    }
+
+    // 1. Try getting the name from the session first
+    let fullName = frappe.session.user_fullname;
+
+    // 2. If name is missing OR looks like an email (contains @), fetch from DB
+    if (!fullName || fullName.includes('@')) {
+        frappe.call({
+            method: "frappe.client.get_value",
+            args: {
+                doctype: "User",
+                filters: { email: user },
+                fieldname: "full_name"
+            },
+            callback: function(r) {
+                if (r.message && r.message.full_name) {
+                    $('#drawerUser').text(r.message.full_name);
+                } else {
+                    // Fallback to email if no name set in DB
+                    $('#drawerUser').text(user);
+                }
+            }
+        });
+    } else {
+        // Name is good, use it directly
+        $('#drawerUser').text(fullName);
+    }
+});
+
+async function handleCustomLogout(e) {
+    e.preventDefault();
+    try {
+        await fetch('/?cmd=web_logout');
+    } catch(err) {
+        console.log("Logout fetch error:", err);
+    }
+    window.location.href = '/#login';
+}
+</script>
+
+{% endblock %}

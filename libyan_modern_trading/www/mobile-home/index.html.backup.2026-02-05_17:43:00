@@ -1,0 +1,82 @@
+{% extends "templates/web.html" %}
+
+{% block header %}{% endblock %}
+{% block footer %}{% endblock %}
+{% block title %}{% endblock %}
+
+{% block page_content %}
+
+<script>
+  window.ACTIVE_KEY = "home";
+  window.PAGE_TITLE  = "الرئيسية";
+</script>
+
+<link rel="stylesheet" href="/assets/libyan_modern_trading/css/app_shell.css">
+<script defer src="/assets/libyan_modern_trading/js/app_shell.js"></script>
+
+<link rel="stylesheet" href="/assets/libyan_modern_trading/css/mobile_home.css">
+
+<style>
+    /* Force Blue Background Everywhere */
+    body, html, .appshell, .content, .page-container {
+        background-color: #CDEFF9 !important;
+        background: #CDEFF9 !important;
+    }
+    
+    /* Force Blue Bars with Subtle Borders */
+    .topbar, .bottom-nav {
+        background-color: #CDEFF9 !important;
+        background: #CDEFF9 !important;
+        border-color: #B4E1EE !important;
+    }
+
+    /* Ensure icons/text remain visible/dark on blue */
+    .topbar-title, .nav-item.active {
+        color: #003b66 !important;
+    }
+</style>
+<div class="appshell" id="appShell" dir="rtl">
+
+  <div class="topbar" id="appTopbar">
+    <div class="topbar-right">
+      <button class="icon-btn" id="btnMenu" type="button" aria-label="القائمة">☰</button>
+
+      <img id="companyLogo" class="company-logo"
+           src="/assets/libyan_modern_trading/images/logo.png"
+           alt="الشعار" onerror="this.style.display='none';">
+
+      <div class="topbar-title" id="topbarTitle">الرئيسية</div>
+    </div>
+
+    <div class="topbar-left">
+      <button class="icon-btn" id="btnRefresh" type="button" aria-label="تحديث">⟳</button>
+      <button class="icon-btn" id="btnSearch" type="button" aria-label="بحث" style="display:none;">🔍</button>
+    </div>
+  </div>
+
+  <div class="drawer-overlay hidden" id="drawerOverlay"></div>
+
+  <aside class="drawer hidden" id="drawer">
+    <div class="drawer-header">
+      <div class="drawer-title">الليبية للتجارة الحديثة</div>
+      <div class="drawer-sub">{{ frappe.session.user }}</div>
+    </div>
+
+    <div class="drawer-list">
+      <a class="drawer-item" href="/mobile-settings">⚙️ الإعدادات</a>
+      <a class="drawer-item" href="/update-password">🔑 تغيير كلمة المرور</a>
+      <a class="drawer-item" href="/?cmd=web_logout">تسجيل الخروج</a>
+    </div>
+  </aside>
+
+  <div class="content" id="appContent">
+    <div class="home-grid"></div>
+  </div>
+
+  <nav class="bottom-nav" id="bottomNav"></nav>
+
+</div>
+
+<script src="/mobile-home/index.js"></script>
+
+{% endblock %}

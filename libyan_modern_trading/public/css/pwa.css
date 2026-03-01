@@ -1,0 +1,10 @@
+/* LMT PWA small tweaks */
+html, body {
+  background: #cfefff;
+}
+
+/* iOS safe-area padding (optional) */
+body {
+  padding-top: env(safe-area-inset-top);
+  padding-bottom: env(safe-area-inset-bottom);
+}

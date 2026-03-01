@@ -1,0 +1,18 @@
+# -*- coding: utf-8 -*-
+
+app_name = "libyan_modern_trading"
+app_title = "Libyan Modern Trading"
+app_publisher = "LMT"
+app_description = "Libyan Modern Trading customizations"
+app_email = "admin@example.com"
+app_license = "MIT"
+
+# OPTIONAL: if you want your own app selector card icon
+app_icon = "octicon octicon-briefcase"
+app_color = "blue"
+
+# OPTIONAL: Desk landing page (NOT website home)
+# app_home = "lmt_home"
+
+# Restrict protected website routes using LMT Mobile Menu Item permissions
+website_context = "libyan_modern_trading.www_context.get_context"
