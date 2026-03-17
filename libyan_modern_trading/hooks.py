@@ -49,4 +49,5 @@ app_include_css = [
 ]
 
 # ✅ Inject dynamic LMT colors into every web page
-website_context = "libyan_modern_trading.utils.website_utils.get_website_context"
+# CORRECT
+update_website_context = ["libyan_modern_trading.utils.website_utils.get_website_context"]
