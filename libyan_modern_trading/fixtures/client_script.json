@@ -1,0 +1,35 @@
+[
+ {
+  "docstatus": 0,
+  "doctype": "Client Script",
+  "dt": "Sales Order",
+  "enabled": 0,
+  "modified": "2025-12-17 15:16:52.333756",
+  "module": null,
+  "name": "Enforce item rows to match the Selling Warehouse",
+  "script": "\r\nfrappe.ui.form.on('Sales Order', {\r\n  validate(frm) {\r\n    const sw = frm.doc.selling_warehouse;\r\n    if (!sw) return;\r\n\r\n    (frm.doc.items || []).forEach(row => {\r\n      if (row.warehouse && row.warehouse !== sw) {\r\n        frappe.throw(__(\r\n          \"Item {0} warehouse ({1}) must match Selling Warehouse ({2})\",\r\n          [row.item_code, row.warehouse, sw]\r\n        ));\r\n      }\r\n    });\r\n  }\r\n});\r\n",
+  "view": "Form"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Client Script",
+  "dt": "Process Payment Reconciliation",
+  "enabled": 1,
+  "modified": "2026-02-13 13:39:27.703785",
+  "module": null,
+  "name": "ProcessPaymentReconciliationControl",
+  "script": "frappe.listview_settings['Process Payment Reconciliation'] = {\n    refresh: function(listview) {\n        // Add a primary button to open the Control Panel\n        listview.page.add_inner_button(__(\"Reconciliation Control\"), function() {\n            show_control_panel();\n        }).addClass(\"btn-primary\");\n    }\n};\n\nfunction show_control_panel() {\n    let d = new frappe.ui.Dialog({\n        title: 'Payment Reconciliation Controller',\n        fields: [\n            {\n                label: 'Status Dashboard',\n                fieldname: 'dashboard_html',\n                fieldtype: 'HTML',\n                options: '<p>Loading current status...</p>'\n            },\n            {\n                fieldtype: 'Section Break',\n                label: 'Scheduler Settings'\n            },\n            {\n                label: 'Scheduler Status (Cron Job)',\n                fieldname: 'scheduler_status',\n                fieldtype: 'Select',\n                options: ['Active', 'Disabled'],\n                description: 'Controls the global background job.'\n            },\n            {\n                label: 'Auto Reconcile Checkbox',\n                fieldname: 'auto_reconcile',\n                fieldtype: 'Check',\n                description: 'The global \"Auto Reconcile Payments\" setting.'\n            },\n            {\n                fieldtype: 'Section Break',\n                label: 'Batch Parameters'\n            },\n            {\n                label: 'Queue Size (Max 100)',\n                fieldname: 'queue_size',\n                fieldtype: 'Int',\n                default: 100\n            },\n            {\n                label: 'Trigger Interval (Minutes)',\n                fieldname: 'trigger_minutes',\n                fieldtype: 'Int',\n                default: 59\n            },\n            {\n                label: 'Posting Type',\n                fieldname: 'posting_type',\n                fieldtype: 'Select',\n                options: ['Reconciliation Date', 'Payment', 'Invoice']\n            }\n        ],\n        primary_action_label: 'Update Settings',\n        primary_action: function(values) {\n            update_settings(d, values);\n        }\n    });\n\n    // Load initial data\n    frappe.call({\n        method: 'payment_control_api',\n        args: { cmd: 'get_status' },\n        callback: function(r) {\n            if (r.message && r.message.data) {\n                let data = r.message.data;\n                \n                // Update Fields\n                d.set_value('scheduler_status', data.scheduler_status);\n                d.set_value('auto_reconcile', data.auto_reconcile);\n                d.set_value('queue_size', data.queue_size);\n                d.set_value('trigger_minutes', data.trigger_minutes);\n                d.set_value('posting_type', data.posting_type);\n\n                // Update Dashboard HTML\n                let status_color = data.scheduler_status === 'Active' ? 'green' : 'red';\n                let html = `\n                    <div style=\"padding:10px; border:1px solid #ddd; background-color:#f9f9f9; border-radius:4px;\">\n                        <div><b>Scheduler:</b> <span style=\"color:${status_color}; font-weight:bold;\">${data.scheduler_status}</span></div>\n                        <div><b>Active Background Jobs:</b> ${data.active_jobs}</div>\n                        <div style=\"font-size:11px; color:#666; margin-top:5px;\">Last checked: ${new Date().toLocaleTimeString()}</div>\n                    </div>\n                `;\n                d.fields_dict.dashboard_html.$wrapper.html(html);\n            }\n        }\n    });\n\n    d.show();\n}\n\nfunction update_settings(d, values) {\n    frappe.call({\n        method: 'payment_control_api',\n        args: {\n            cmd: 'update',\n            scheduler_status: values.scheduler_status,\n            auto_reconcile: values.auto_reconcile ? 1 : 0,\n            queue_size: values.queue_size,\n            trigger_minutes: values.trigger_minutes,\n            posting_type: values.posting_type\n        },\n        callback: function(r) {\n            if (!r.exc) {\n                frappe.msgprint(\"Settings Updated Successfully!\");\n                d.hide();\n                // Optional: Refresh list to see any changes if relevant\n                cur_list.refresh();\n            }\n        }\n    });\n}",
+  "view": "List"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Client Script",
+  "dt": "Sales Order",
+  "enabled": 1,
+  "modified": "2026-03-22 03:58:43.027274",
+  "module": null,
+  "name": "lmt_block_customer",
+  "script": "\nfrappe.ui.form.on(\"Sales Order\", {\n    customer: function(frm) {\n        if (!frm.doc.customer) return;\n        frappe.call({\n            method: \"lmt_check_customer_block\",\n            args: { customer: frm.doc.customer },\n            callback: function(r) {\n                var res = r.message || {};\n                if (res.blocked) {\n                    frappe.msgprint({\n                        title: \"⛔ بيع محظور\",\n                        indicator: \"red\",\n                        message: res.message || \"الزبون محظور من البيع\"\n                    });\n                    frm.set_value(\"customer\", \"\");\n                }\n            }\n        });\n    }\n});\n",
+  "view": "Form"
+ }
+]

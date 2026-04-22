@@ -1,26 +1,32 @@
 # Python
 __pycache__/
-*.pyc
-*.pyo
+*.py[cod]
+*$py.class
+*.so
 
-# Node / build
-node_modules/
-dist/
-*.map
+# Virtual env
+.venv/
+env/
+venv/
 
-# Frappe
-*.log
-*.sqlite
-sites/
-*.egg-info/
-.coverage
-.coverage.*
-.cache/
-.DS_Store
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
 
 # OS
+.DS_Store
 Thumbs.db
 
-# Local safety backups
+# Backup files — never commit these
 *.bak
 *.bak_*
+*_old
+*.py_old
+
+# Fixtures list helper (internal use)
+libyan_modern_trading/fixtures_list.json
+
+# Includes-bak folders
+**/includes-bak/

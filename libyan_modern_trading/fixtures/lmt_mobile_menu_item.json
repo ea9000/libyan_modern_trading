@@ -1,0 +1,2037 @@
+[
+ {
+  "allowed_roles": [
+   {
+    "parent": "2l8khpcgii",
+    "parentfield": "allowed_roles",
+    "parenttype": "LMT Mobile Menu Item",
+    "role": "Administrator"
+   },
+   {
+    "parent": "2l8khpcgii",
+    "parentfield": "allowed_roles",
+    "parenttype": "LMT Mobile Menu Item",
+    "role": "Sales User"
+   }
+  ],
+  "allowed_users": [
+   {
+    "parent": "2l8khpcgii",
+    "parentfield": "allowed_users",
+    "parenttype": "LMT Mobile Menu Item",
+    "user": "www.osama7085545@gmail.com"
+   }
+  ],
+  "background_color": "#faa06b",
+  "docstatus": 0,
+  "doctype": "LMT Mobile Menu Item",
+  "emoji": "🛒",
+  "fa_class": null,
+  "grid_background_color": "#ffcf82",
+  "icon_type": "Emoji",
+  "image_url": null,
+  "is_active": 1,
+  "modified": "2026-03-24 12:53:52.023811",
+  "name": "2l8khpcgii",
+  "open_in_new_tab": 0,
+  "route": "split_order",
+  "show_on_bottom_nav": 1,
+  "show_on_home_grid": 1,
+  "site_display_name": "تجريبي",
+  "site_url": "https://libya-lmt.zapto.org",
+  "sort_order": 3,
+  "title_ar": "الطلبيات",
+  "title_en": null
+ },
+ {
+  "allowed_roles": [
+   {
+    "parent": "n2mueg6lh9",
+    "parentfield": "allowed_roles",
+    "parenttype": "LMT Mobile Menu Item",
+    "role": "Administrator"
+   }
+  ],
+  "allowed_users": [
+   {
+    "parent": "n2mueg6lh9",
+    "parentfield": "allowed_users",
+    "parenttype": "LMT Mobile Menu Item",
+    "user": "Administrator"
+   },
+   {
+    "parent": "n2mueg6lh9",
+    "parentfield": "allowed_users",
+    "parenttype": "LMT Mobile Menu Item",
+    "user": "ebshesh2013@gmail.com"
+   },
+   {
+    "parent": "n2mueg6lh9",
+    "parentfield": "allowed_users",
+    "parenttype": "LMT Mobile Menu Item",
+    "user": "lmt2013.2@gmail.com"
+   }
+  ],
+  "background_color": "#faa06b",
+  "docstatus": 0,
+  "doctype": "LMT Mobile Menu Item",
+  "emoji": "💸",
+  "fa_class": null,
+  "grid_background_color": "#ffcf82",
+  "icon_type": "Emoji",
+  "image_url": null,
+  "is_active": 1,
+  "modified": "2026-03-24 12:53:51.779392",
+  "name": "n2mueg6lh9",
+  "open_in_new_tab": 0,
+  "route": "split-accounting-57",
+  "show_on_bottom_nav": 0,
+  "show_on_home_grid": 1,
+  "site_display_name": "تجريبي",
+  "site_url": "https://libya-lmt.zapto.org",
+  "sort_order": 1,
+  "title_ar": "الحسابات",
+  "title_en": null
+ },
+ {
+  "allowed_roles": [
+   {
+    "parent": "ou31e67vur",
+    "parentfield": "allowed_roles",
+    "parenttype": "LMT Mobile Menu Item",
+    "role": "Administrator"
+   }
+  ],
+  "allowed_users": [
+   {
+    "parent": "ou31e67vur",
+    "parentfield": "allowed_users",
+    "parenttype": "LMT Mobile Menu Item",
+    "user": "ekbalalresaily@gmail.com"
+   },
+   {
+    "parent": "ou31e67vur",
+    "parentfield": "allowed_users",
+    "parenttype": "LMT Mobile Menu Item",
+    "user": "www.osama7085545@gmail.com"
+   },
+   {
+    "parent": "ou31e67vur",
+    "parentfield": "allowed_users",
+    "parenttype": "LMT Mobile Menu Item",
+    "user": "closemetr@gmail.com"
+   },
+   {
+    "parent": "ou31e67vur",
+    "parentfield": "allowed_users",
+    "parenttype": "LMT Mobile Menu Item",
+    "user": "ay.yo.ha20@gmail.com"
+   },
+   {
+    "parent": "ou31e67vur",
+    "parentfield": "allowed_users",
+    "parenttype": "LMT Mobile Menu Item",
+    "user": "mmostafaelamamy@gmail.com"
+   },
+   {
+    "parent": "ou31e67vur",
+    "parentfield": "allowed_users",
+    "parenttype": "LMT Mobile Menu Item",
+    "user": "sbasm6980@gmail.com"
+   },
+   {
+    "parent": "ou31e67vur",
+    "parentfield": "allowed_users",
+    "parenttype": "LMT Mobile Menu Item",
+    "user": "alyabes17@gmail.com"
+   },
+   {
+    "parent": "ou31e67vur",
+    "parentfield": "allowed_users",
+    "parenttype": "LMT Mobile Menu Item",
+    "user": "distrib.agent.lmt.1@gmail.com"
+   },
+   {
+    "parent": "ou31e67vur",
+    "parentfield": "allowed_users",
+    "parenttype": "LMT Mobile Menu Item",
+    "user": "distrib.agent.10@gmail.com"
+   }
+  ],
+  "background_color": "#faa06b",
+  "docstatus": 0,
+  "doctype": "LMT Mobile Menu Item",
+  "emoji": "🏬",
+  "fa_class": null,
+  "grid_background_color": "#ffcf82",
+  "icon_type": "Emoji",
+  "image_url": null,
+  "is_active": 1,
+  "modified": "2026-04-18 12:21:45.347526",
+  "name": "ou31e67vur",
+  "open_in_new_tab": 0,
+  "route": "warehouse-undo-QA_4",
+  "show_on_bottom_nav": 0,
+  "show_on_home_grid": 1,
+  "site_display_name": "تجريبي",
+  "site_url": "https://libya-lmt.zapto.org",
+  "sort_order": 1,
+  "title_ar": "مخازن البيع",
+  "title_en": null
+ },
+ {
+  "allowed_roles": [
+   {
+    "parent": "q9n0jjkcmf",
+    "parentfield": "allowed_roles",
+    "parenttype": "LMT Mobile Menu Item",
+    "role": "Administrator"
+   }
+  ],
+  "allowed_users": [
+   {
+    "parent": "q9n0jjkcmf",
+    "parentfield": "allowed_users",
+    "parenttype": "LMT Mobile Menu Item",
+    "user": "www.osama7085545@gmail.com"
+   }
+  ],
+  "background_color": "#faa06b",
+  "docstatus": 0,
+  "doctype": "LMT Mobile Menu Item",
+  "emoji": "🚚",
+  "fa_class": null,
+  "grid_background_color": "#ffcf82",
+  "icon_type": "Emoji",
+  "image_url": null,
+  "is_active": 1,
+  "modified": "2026-03-27 01:06:20.719046",
+  "name": "q9n0jjkcmf",
+  "open_in_new_tab": 0,
+  "route": "stock-movement_2",
+  "show_on_bottom_nav": 0,
+  "show_on_home_grid": 1,
+  "site_display_name": "تجريبي",
+  "site_url": "https://libya-lmt.zapto.org",
+  "sort_order": 5,
+  "title_ar": "تحويلات المخازن",
+  "title_en": null
+ },
+ {
+  "allowed_roles": [
+   {
+    "parent": "su61dkb82g",
+    "parentfield": "allowed_roles",
+    "parenttype": "LMT Mobile Menu Item",
+    "role": "Sales User"
+   }
+  ],
+  "allowed_users": [
+   {
+    "parent": "su61dkb82g",
+    "parentfield": "allowed_users",
+    "parenttype": "LMT Mobile Menu Item",
+    "user": "ebshesh2013@gmail.com"
+   }
+  ],
+  "background_color": "#faa06b",
+  "docstatus": 0,
+  "doctype": "LMT Mobile Menu Item",
+  "emoji": "📕",
+  "fa_class": null,
+  "grid_background_color": "#ffcf82",
+  "icon_type": "Emoji",
+  "image_url": null,
+  "is_active": 1,
+  "modified": "2026-03-24 12:53:51.845911",
+  "name": "su61dkb82g",
+  "open_in_new_tab": 0,
+  "route": "customer-statement-QA-pdf-fix_5",
+  "show_on_bottom_nav": 1,
+  "show_on_home_grid": 1,
+  "site_display_name": "تجريبي",
+  "site_url": "https://libya-lmt.zapto.org",
+  "sort_order": 8,
+  "title_ar": " كشف حساب",
+  "title_en": "customer-statement"
+ },
+ {
+  "allowed_roles": [
+   {
+    "parent": "u8ficpalfv",
+    "parentfield": "allowed_roles",
+    "parenttype": "LMT Mobile Menu Item",
+    "role": "Administrator"
+   },
+   {
+    "parent": "u8ficpalfv",
+    "parentfield": "allowed_roles",
+    "parenttype": "LMT Mobile Menu Item",
+    "role": "Sales User"
+   }
+  ],
+  "allowed_users": [
+   {
+    "parent": "u8ficpalfv",
+    "parentfield": "allowed_users",
+    "parenttype": "LMT Mobile Menu Item",
+    "user": "www.osama7085545@gmail.com"
+   }
+  ],
+  "background_color": "#faa06b",
+  "docstatus": 0,
+  "doctype": "LMT Mobile Menu Item",
+  "emoji": "👨‍🦳",
+  "fa_class": null,
+  "grid_background_color": "#ffcf82",
+  "icon_type": "Emoji",
+  "image_url": null,
+  "is_active": 1,
+  "modified": "2026-03-24 12:53:52.003597",
+  "name": "u8ficpalfv",
+  "open_in_new_tab": 0,
+  "route": "split_customer",
+  "show_on_bottom_nav": 1,
+  "show_on_home_grid": 1,
+  "site_display_name": "تجريبي",
+  "site_url": "https://libya-lmt.zapto.org",
+  "sort_order": 7,
+  "title_ar": "الزبائن",
+  "title_en": "customer_statement"
+ },
+ {
+  "allowed_roles": [
+   {
+    "parent": "3f1mcv4uvk",
+    "parentfield": "allowed_roles",
+    "parenttype": "LMT Mobile Menu Item",
+    "role": "Administrator"
+   },
+   {
+    "parent": "3f1mcv4uvk",
+    "parentfield": "allowed_roles",
+    "parenttype": "LMT Mobile Menu Item",
+    "role": "Sales User"
+   }
+  ],
+  "allowed_users": [
+   {
+    "parent": "3f1mcv4uvk",
+    "parentfield": "allowed_users",
+    "parenttype": "LMT Mobile Menu Item",
+    "user": "www.osama7085545@gmail.com"
+   }
+  ],
+  "background_color": "#faa06b",
+  "docstatus": 0,
+  "doctype": "LMT Mobile Menu Item",
+  "emoji": "🔙",
+  "fa_class": null,
+  "grid_background_color": "#ffcf82",
+  "icon_type": "Emoji",
+  "image_url": null,
+  "is_active": 1,
+  "modified": "2026-03-24 12:53:51.983453",
+  "name": "3f1mcv4uvk",
+  "open_in_new_tab": 0,
+  "route": "split_return",
+  "show_on_bottom_nav": 0,
+  "show_on_home_grid": 1,
+  "site_display_name": "تجريبي",
+  "site_url": "https://libya-lmt.zapto.org",
+  "sort_order": 6,
+  "title_ar": "المرتجع",
+  "title_en": null
+ },
+ {
+  "allowed_roles": [
+   {
+    "parent": "4ss3uoneco",
+    "parentfield": "allowed_roles",
+    "parenttype": "LMT Mobile Menu Item",
+    "role": "Administrator"
+   },
+   {
+    "parent": "4ss3uoneco",
+    "parentfield": "allowed_roles",
+    "parenttype": "LMT Mobile Menu Item",
+    "role": "Sales User"
+   }
+  ],
+  "allowed_users": [
+   {
+    "parent": "4ss3uoneco",
+    "parentfield": "allowed_users",
+    "parenttype": "LMT Mobile Menu Item",
+    "user": "www.osama7085545@gmail.com"
+   }
+  ],
+  "background_color": "#faa06b",
+  "docstatus": 0,
+  "doctype": "LMT Mobile Menu Item",
+  "emoji": "💰",
+  "fa_class": null,
+  "grid_background_color": "#ffcf82",
+  "icon_type": "Emoji",
+  "image_url": null,
+  "is_active": 1,
+  "modified": "2026-03-28 22:33:48.294536",
+  "name": "4ss3uoneco",
+  "open_in_new_tab": 0,
+  "route": "mobile-debt",
+  "show_on_bottom_nav": 1,
+  "show_on_home_grid": 1,
+  "site_display_name": "تجريبي",
+  "site_url": "https://libya-lmt.zapto.org",
+  "sort_order": 2,
+  "title_ar": "تحصيل الديون",
+  "title_en": null
+ },
+ {
+  "allowed_roles": [
+   {
+    "parent": "42n4l7feac",
+    "parentfield": "allowed_roles",
+    "parenttype": "LMT Mobile Menu Item",
+    "role": "Administrator"
+   }
+  ],
+  "allowed_users": [
+   {
+    "parent": "42n4l7feac",
+    "parentfield": "allowed_users",
+    "parenttype": "LMT Mobile Menu Item",
+    "user": "Administrator"
+   }
+  ],
+  "background_color": "#faa06b",
+  "docstatus": 0,
+  "doctype": "LMT Mobile Menu Item",
+  "emoji": "📍",
+  "fa_class": null,
+  "grid_background_color": "#ffcf82",
+  "icon_type": "Emoji",
+  "image_url": null,
+  "is_active": 0,
+  "modified": "2026-03-24 12:53:52.338538",
+  "name": "42n4l7feac",
+  "open_in_new_tab": 0,
+  "route": "nearbyChatgpt",
+  "show_on_bottom_nav": 0,
+  "show_on_home_grid": 0,
+  "site_display_name": "تجريبي",
+  "site_url": "https://libya-lmt.zapto.org",
+  "sort_order": 0,
+  "title_ar": "تحديث الموقع",
+  "title_en": null
+ },
+ {
+  "allowed_roles": [],
+  "allowed_users": [],
+  "background_color": "#faa06b",
+  "docstatus": 0,
+  "doctype": "LMT Mobile Menu Item",
+  "emoji": "💬",
+  "fa_class": null,
+  "grid_background_color": "#ffcf82",
+  "icon_type": "Emoji",
+  "image_url": null,
+  "is_active": 0,
+  "modified": "2026-03-24 14:57:01.763755",
+  "name": "b8s04m0m7m",
+  "open_in_new_tab": 0,
+  "route": "raven",
+  "show_on_bottom_nav": 0,
+  "show_on_home_grid": 0,
+  "site_display_name": "تجريبي",
+  "site_url": "https://libya-lmt.zapto.org",
+  "sort_order": 10,
+  "title_ar": "محادثه",
+  "title_en": null
+ },
+ {
+  "allowed_roles": [
+   {
+    "parent": "6icl1i1qk4",
+    "parentfield": "allowed_roles",
+    "parenttype": "LMT Mobile Menu Item",
+    "role": "Administrator"
+   },
+   {
+    "parent": "6icl1i1qk4",
+    "parentfield": "allowed_roles",
+    "parenttype": "LMT Mobile Menu Item",
+    "role": "Sales User"
+   }
+  ],
+  "allowed_users": [],
+  "background_color": "#faa06b",
+  "docstatus": 0,
+  "doctype": "LMT Mobile Menu Item",
+  "emoji": "🧾",
+  "fa_class": null,
+  "grid_background_color": "#ffcf82",
+  "icon_type": "Emoji",
+  "image_url": null,
+  "is_active": 1,
+  "modified": "2026-03-24 12:53:52.070616",
+  "name": "6icl1i1qk4",
+  "open_in_new_tab": 0,
+  "route": "receipt-counter",
+  "show_on_bottom_nav": 0,
+  "show_on_home_grid": 1,
+  "site_display_name": "تجريبي",
+  "site_url": "https://libya-lmt.zapto.org",
+  "sort_order": 10,
+  "title_ar": "إعدادات الواصلات",
+  "title_en": null
+ },
+ {
+  "allowed_roles": [
+   {
+    "parent": "eqf56bp2e7",
+    "parentfield": "allowed_roles",
+    "parenttype": "LMT Mobile Menu Item",
+    "role": "Administrator"
+   }
+  ],
+  "allowed_users": [
+   {
+    "parent": "eqf56bp2e7",
+    "parentfield": "allowed_users",
+    "parenttype": "LMT Mobile Menu Item",
+    "user": "ebshesh2013@gmail.com"
+   }
+  ],
+  "background_color": "#faa06b",
+  "docstatus": 0,
+  "doctype": "LMT Mobile Menu Item",
+  "emoji": "🔗",
+  "fa_class": null,
+  "grid_background_color": "#ffcf82",
+  "icon_type": "Emoji",
+  "image_url": null,
+  "is_active": 1,
+  "modified": "2026-03-27 15:37:26.911258",
+  "name": "eqf56bp2e7",
+  "open_in_new_tab": 0,
+  "route": "dept-2-gl-QA-new-look_pdf-fix_3",
+  "show_on_bottom_nav": 0,
+  "show_on_home_grid": 1,
+  "site_display_name": "تجريبي",
+  "site_url": "https://libya-lmt.zapto.org",
+  "sort_order": 7,
+  "title_ar": "مراجعة التحصيل والسحب",
+  "title_en": null
+ },
+ {
+  "allowed_roles": [
+   {
+    "parent": "patetd05om",
+    "parentfield": "allowed_roles",
+    "parenttype": "LMT Mobile Menu Item",
+    "role": "Administrator"
+   }
+  ],
+  "allowed_users": [
+   {
+    "parent": "patetd05om",
+    "parentfield": "allowed_users",
+    "parenttype": "LMT Mobile Menu Item",
+    "user": "ebshesh2013@gmail.com"
+   },
+   {
+    "parent": "patetd05om",
+    "parentfield": "allowed_users",
+    "parenttype": "LMT Mobile Menu Item",
+    "user": "abdu@online.de"
+   },
+   {
+    "parent": "patetd05om",
+    "parentfield": "allowed_users",
+    "parenttype": "LMT Mobile Menu Item",
+    "user": "distrib.agent.lmt.1@gmail.com"
+   },
+   {
+    "parent": "patetd05om",
+    "parentfield": "allowed_users",
+    "parenttype": "LMT Mobile Menu Item",
+    "user": "omar.abubaerah@gmail.com"
+   }
+  ],
+  "background_color": "#faa06b",
+  "docstatus": 0,
+  "doctype": "LMT Mobile Menu Item",
+  "emoji": "🛂",
+  "fa_class": null,
+  "grid_background_color": "#ffcf82",
+  "icon_type": "Emoji",
+  "image_url": null,
+  "is_active": 1,
+  "modified": "2026-03-30 22:51:49.423739",
+  "name": "patetd05om",
+  "open_in_new_tab": 0,
+  "route": "dept-2-gl_pc_mobile",
+  "show_on_bottom_nav": 0,
+  "show_on_home_grid": 1,
+  "site_display_name": "تجريبي",
+  "site_url": "https://libya-lmt.zapto.org",
+  "sort_order": 10,
+  "title_ar": "تدقيق التحصيل",
+  "title_en": null
+ },
+ {
+  "allowed_roles": [
+   {
+    "parent": "ol67eq8dhl",
+    "parentfield": "allowed_roles",
+    "parenttype": "LMT Mobile Menu Item",
+    "role": "Administrator"
+   }
+  ],
+  "allowed_users": [
+   {
+    "parent": "ol67eq8dhl",
+    "parentfield": "allowed_users",
+    "parenttype": "LMT Mobile Menu Item",
+    "user": "ebshesh2013@gmail.com"
+   }
+  ],
+  "background_color": "#faa06b",
+  "docstatus": 0,
+  "doctype": "LMT Mobile Menu Item",
+  "emoji": "📈",
+  "fa_class": null,
+  "grid_background_color": "#ffcf82",
+  "icon_type": "Emoji",
+  "image_url": null,
+  "is_active": 1,
+  "modified": "2026-03-24 12:53:52.371724",
+  "name": "ol67eq8dhl",
+  "open_in_new_tab": 0,
+  "route": "gl-mapping2-locked_7",
+  "show_on_bottom_nav": 0,
+  "show_on_home_grid": 1,
+  "site_display_name": "تجريبي",
+  "site_url": "https://libya-lmt.zapto.org",
+  "sort_order": 10,
+  "title_ar": " ربط حسابات الأستاذ",
+  "title_en": null
+ },
+ {
+  "allowed_roles": [
+   {
+    "parent": "sb9h5vk0oj",
+    "parentfield": "allowed_roles",
+    "parenttype": "LMT Mobile Menu Item",
+    "role": "Administrator"
+   },
+   {
+    "parent": "sb9h5vk0oj",
+    "parentfield": "allowed_roles",
+    "parenttype": "LMT Mobile Menu Item",
+    "role": "Sales User"
+   }
+  ],
+  "allowed_users": [],
+  "background_color": "#faa06b",
+  "docstatus": 0,
+  "doctype": "LMT Mobile Menu Item",
+  "emoji": "📡",
+  "fa_class": null,
+  "grid_background_color": "#ffcf82",
+  "icon_type": "Emoji",
+  "image_url": null,
+  "is_active": 1,
+  "modified": "2026-03-24 12:53:52.430311",
+  "name": "sb9h5vk0oj",
+  "open_in_new_tab": 0,
+  "route": "LMT-Customer-Visit_1",
+  "show_on_bottom_nav": 0,
+  "show_on_home_grid": 1,
+  "site_display_name": "تجريبي",
+  "site_url": "https://libya-lmt.zapto.org",
+  "sort_order": 10,
+  "title_ar": "زيارات الزباين",
+  "title_en": null
+ },
+ {
+  "allowed_roles": [
+   {
+    "parent": "n7he2c4hfg",
+    "parentfield": "allowed_roles",
+    "parenttype": "LMT Mobile Menu Item",
+    "role": "Administrator"
+   }
+  ],
+  "allowed_users": [],
+  "background_color": "#faa06b",
+  "docstatus": 0,
+  "doctype": "LMT Mobile Menu Item",
+  "emoji": "👀",
+  "fa_class": null,
+  "grid_background_color": "#ffcf82",
+  "icon_type": "Emoji",
+  "image_url": null,
+  "is_active": 1,
+  "modified": "2026-03-24 12:53:52.406674",
+  "name": "n7he2c4hfg",
+  "open_in_new_tab": 0,
+  "route": "visit-dashboard_4",
+  "show_on_bottom_nav": 0,
+  "show_on_home_grid": 1,
+  "site_display_name": "تجريبي",
+  "site_url": "https://libya-lmt.zapto.org",
+  "sort_order": 10,
+  "title_ar": "متابعة الزيارات للمندوبين",
+  "title_en": null
+ },
+ {
+  "allowed_roles": [
+   {
+    "parent": "jkq6jjdf14",
+    "parentfield": "allowed_roles",
+    "parenttype": "LMT Mobile Menu Item",
+    "role": "Administrator"
+   }
+  ],
+  "allowed_users": [
+   {
+    "parent": "jkq6jjdf14",
+    "parentfield": "allowed_users",
+    "parenttype": "LMT Mobile Menu Item",
+    "user": "ebshesh2013@gmail.com"
+   },
+   {
+    "parent": "jkq6jjdf14",
+    "parentfield": "allowed_users",
+    "parenttype": "LMT Mobile Menu Item",
+    "user": "alyabes17@gmail.com"
+   }
+  ],
+  "background_color": "#faa06b",
+  "docstatus": 0,
+  "doctype": "LMT Mobile Menu Item",
+  "emoji": "🗄️",
+  "fa_class": null,
+  "grid_background_color": "#ffcf82",
+  "icon_type": "Emoji",
+  "image_url": null,
+  "is_active": 1,
+  "modified": "2026-03-24 12:53:51.826197",
+  "name": "jkq6jjdf14",
+  "open_in_new_tab": 0,
+  "route": "/app/home",
+  "show_on_bottom_nav": 1,
+  "show_on_home_grid": 0,
+  "site_display_name": "تجريبي",
+  "site_url": "https://libya-lmt.zapto.org",
+  "sort_order": 6,
+  "title_ar": "APP",
+  "title_en": null
+ },
+ {
+  "allowed_roles": [
+   {
+    "parent": "nf737njnv9",
+    "parentfield": "allowed_roles",
+    "parenttype": "LMT Mobile Menu Item",
+    "role": "All"
+   }
+  ],
+  "allowed_users": [],
+  "background_color": "#faa06b",
+  "docstatus": 0,
+  "doctype": "LMT Mobile Menu Item",
+  "emoji": "📆✈️",
+  "fa_class": null,
+  "grid_background_color": "#ffcf82",
+  "icon_type": "Emoji",
+  "image_url": null,
+  "is_active": 1,
+  "modified": "2026-03-24 12:53:52.285887",
+  "name": "nf737njnv9",
+  "open_in_new_tab": 0,
+  "route": "leave_application",
+  "show_on_bottom_nav": 0,
+  "show_on_home_grid": 1,
+  "site_display_name": "تجريبي",
+  "site_url": "https://libya-lmt.zapto.org",
+  "sort_order": 5,
+  "title_ar": "الاجازات",
+  "title_en": null
+ },
+ {
+  "allowed_roles": [
+   {
+    "parent": "dqblvs9mms",
+    "parentfield": "allowed_roles",
+    "parenttype": "LMT Mobile Menu Item",
+    "role": "Administrator"
+   }
+  ],
+  "allowed_users": [
+   {
+    "parent": "dqblvs9mms",
+    "parentfield": "allowed_users",
+    "parenttype": "LMT Mobile Menu Item",
+    "user": "ebshesh2013@gmail.com"
+   },
+   {
+    "parent": "dqblvs9mms",
+    "parentfield": "allowed_users",
+    "parenttype": "LMT Mobile Menu Item",
+    "user": "distrib.agent.lmt.1@gmail.com"
+   },
+   {
+    "parent": "dqblvs9mms",
+    "parentfield": "allowed_users",
+    "parenttype": "LMT Mobile Menu Item",
+    "user": "lmt2013.2@gmail.com"
+   },
+   {
+    "parent": "dqblvs9mms",
+    "parentfield": "allowed_users",
+    "parenttype": "LMT Mobile Menu Item",
+    "user": "distrib.agent.10@gmail.com"
+   }
+  ],
+  "background_color": "#faa06b",
+  "docstatus": 0,
+  "doctype": "LMT Mobile Menu Item",
+  "emoji": "✅",
+  "fa_class": null,
+  "grid_background_color": "#ffcf82",
+  "icon_type": "Emoji",
+  "image_url": null,
+  "is_active": 1,
+  "modified": "2026-03-24 12:53:52.152126",
+  "name": "dqblvs9mms",
+  "open_in_new_tab": 0,
+  "route": "mobile-leave-approval",
+  "show_on_bottom_nav": 0,
+  "show_on_home_grid": 1,
+  "site_display_name": "تجريبي",
+  "site_url": "https://libya-lmt.zapto.org",
+  "sort_order": 10,
+  "title_ar": "اعتمادات الإجازات ",
+  "title_en": null
+ },
+ {
+  "allowed_roles": [
+   {
+    "parent": "jsu1hm376b",
+    "parentfield": "allowed_roles",
+    "parenttype": "LMT Mobile Menu Item",
+    "role": "Administrator"
+   }
+  ],
+  "allowed_users": [
+   {
+    "parent": "jsu1hm376b",
+    "parentfield": "allowed_users",
+    "parenttype": "LMT Mobile Menu Item",
+    "user": "www.osama7085545@gmail.com"
+   },
+   {
+    "parent": "jsu1hm376b",
+    "parentfield": "allowed_users",
+    "parenttype": "LMT Mobile Menu Item",
+    "user": "ekbalalresaily@gmail.com"
+   },
+   {
+    "parent": "jsu1hm376b",
+    "parentfield": "allowed_users",
+    "parenttype": "LMT Mobile Menu Item",
+    "user": "mmostafaelamamy@gmail.com"
+   },
+   {
+    "parent": "jsu1hm376b",
+    "parentfield": "allowed_users",
+    "parenttype": "LMT Mobile Menu Item",
+    "user": "ay.yo.ha20@gmail.com"
+   },
+   {
+    "parent": "jsu1hm376b",
+    "parentfield": "allowed_users",
+    "parenttype": "LMT Mobile Menu Item",
+    "user": "distrib.agent.10@gmail.com"
+   },
+   {
+    "parent": "jsu1hm376b",
+    "parentfield": "allowed_users",
+    "parenttype": "LMT Mobile Menu Item",
+    "user": "distrib.agent.lmt.1@gmail.com"
+   },
+   {
+    "parent": "jsu1hm376b",
+    "parentfield": "allowed_users",
+    "parenttype": "LMT Mobile Menu Item",
+    "user": "abdelbadea1992@gmail.com"
+   },
+   {
+    "parent": "jsu1hm376b",
+    "parentfield": "allowed_users",
+    "parenttype": "LMT Mobile Menu Item",
+    "user": "abdu@online.de"
+   },
+   {
+    "parent": "jsu1hm376b",
+    "parentfield": "allowed_users",
+    "parenttype": "LMT Mobile Menu Item",
+    "user": "omar.abubaerah@gmail.com"
+   }
+  ],
+  "background_color": "#faa06b",
+  "docstatus": 0,
+  "doctype": "LMT Mobile Menu Item",
+  "emoji": "📦",
+  "fa_class": null,
+  "grid_background_color": "#ffcf82",
+  "icon_type": "Emoji",
+  "image_url": null,
+  "is_active": 1,
+  "modified": "2026-03-30 22:50:36.984288",
+  "name": "jsu1hm376b",
+  "open_in_new_tab": 0,
+  "route": "inventory-status",
+  "show_on_bottom_nav": 1,
+  "show_on_home_grid": 1,
+  "site_display_name": "تجريبي",
+  "site_url": "https://libya-lmt.zapto.org",
+  "sort_order": 7,
+  "title_ar": "ادارة المخازن",
+  "title_en": "customer_statement"
+ },
+ {
+  "allowed_roles": [
+   {
+    "parent": "rc4g70f6en",
+    "parentfield": "allowed_roles",
+    "parenttype": "LMT Mobile Menu Item",
+    "role": "Administrator"
+   },
+   {
+    "parent": "rc4g70f6en",
+    "parentfield": "allowed_roles",
+    "parenttype": "LMT Mobile Menu Item",
+    "role": "Sales User"
+   }
+  ],
+  "allowed_users": [
+   {
+    "parent": "rc4g70f6en",
+    "parentfield": "allowed_users",
+    "parenttype": "LMT Mobile Menu Item",
+    "user": "ebshesh2013@gmail.com"
+   },
+   {
+    "parent": "rc4g70f6en",
+    "parentfield": "allowed_users",
+    "parenttype": "LMT Mobile Menu Item",
+    "user": "lmt2013.2@gmail.com"
+   },
+   {
+    "parent": "rc4g70f6en",
+    "parentfield": "allowed_users",
+    "parenttype": "LMT Mobile Menu Item",
+    "user": "distrib.agent.lmt.1@gmail.com"
+   },
+   {
+    "parent": "rc4g70f6en",
+    "parentfield": "allowed_users",
+    "parenttype": "LMT Mobile Menu Item",
+    "user": "distrib.agent.10@gmail.com"
+   },
+   {
+    "parent": "rc4g70f6en",
+    "parentfield": "allowed_users",
+    "parenttype": "LMT Mobile Menu Item",
+    "user": "alkhums.group.lmtx@gmail.com"
+   },
+   {
+    "parent": "rc4g70f6en",
+    "parentfield": "allowed_users",
+    "parenttype": "LMT Mobile Menu Item",
+    "user": "mmostafaelamamy@gmail.com"
+   },
+   {
+    "parent": "rc4g70f6en",
+    "parentfield": "allowed_users",
+    "parenttype": "LMT Mobile Menu Item",
+    "user": "abdelbadea1992@gmail.com"
+   }
+  ],
+  "background_color": "#faa06b",
+  "docstatus": 0,
+  "doctype": "LMT Mobile Menu Item",
+  "emoji": "📖",
+  "fa_class": null,
+  "grid_background_color": "#ffcf82",
+  "icon_type": "Emoji",
+  "image_url": null,
+  "is_active": 1,
+  "modified": "2026-03-24 12:53:52.465883",
+  "name": "rc4g70f6en",
+  "open_in_new_tab": 0,
+  "route": "supervisor-customer-statement_1",
+  "show_on_bottom_nav": 0,
+  "show_on_home_grid": 1,
+  "site_display_name": "تجريبي",
+  "site_url": "https://libya-lmt.zapto.org",
+  "sort_order": 10,
+  "title_ar": "كشف حساب الزبون المبسط",
+  "title_en": null
+ },
+ {
+  "allowed_roles": [
+   {
+    "parent": "ffj7qnsamh",
+    "parentfield": "allowed_roles",
+    "parenttype": "LMT Mobile Menu Item",
+    "role": "All"
+   }
+  ],
+  "allowed_users": [],
+  "background_color": "#faa06b",
+  "docstatus": 0,
+  "doctype": "LMT Mobile Menu Item",
+  "emoji": "🌎",
+  "fa_class": null,
+  "grid_background_color": "#ffcf82",
+  "icon_type": "Emoji",
+  "image_url": null,
+  "is_active": 1,
+  "modified": "2026-03-24 12:53:52.209953",
+  "name": "ffj7qnsamh",
+  "open_in_new_tab": 0,
+  "route": "lmt-wiki",
+  "show_on_bottom_nav": 0,
+  "show_on_home_grid": 1,
+  "site_display_name": "تجريبي",
+  "site_url": "https://libya-lmt.zapto.org",
+  "sort_order": 10,
+  "title_ar": "ويكيبديا",
+  "title_en": null
+ },
+ {
+  "allowed_roles": [
+   {
+    "parent": "fg85tnnplp",
+    "parentfield": "allowed_roles",
+    "parenttype": "LMT Mobile Menu Item",
+    "role": "All"
+   }
+  ],
+  "allowed_users": [],
+  "background_color": "#faa06b",
+  "docstatus": 0,
+  "doctype": "LMT Mobile Menu Item",
+  "emoji": "🆘",
+  "fa_class": null,
+  "grid_background_color": "#ffcf82",
+  "icon_type": "Emoji",
+  "image_url": null,
+  "is_active": 1,
+  "modified": "2026-03-24 12:53:52.231806",
+  "name": "fg85tnnplp",
+  "open_in_new_tab": 0,
+  "route": "lmt-helpdesk",
+  "show_on_bottom_nav": 0,
+  "show_on_home_grid": 1,
+  "site_display_name": "تجريبي",
+  "site_url": "https://libya-lmt.zapto.org",
+  "sort_order": 10,
+  "title_ar": "الدعم الفني",
+  "title_en": null
+ },
+ {
+  "allowed_roles": [
+   {
+    "parent": "l1k2s4me4b",
+    "parentfield": "allowed_roles",
+    "parenttype": "LMT Mobile Menu Item",
+    "role": "sales-report-allow-user"
+   },
+   {
+    "parent": "l1k2s4me4b",
+    "parentfield": "allowed_roles",
+    "parenttype": "LMT Mobile Menu Item",
+    "role": "sales-report-allow-admin"
+   },
+   {
+    "parent": "l1k2s4me4b",
+    "parentfield": "allowed_roles",
+    "parenttype": "LMT Mobile Menu Item",
+    "role": "sales-report-allow-supervisor"
+   }
+  ],
+  "allowed_users": [
+   {
+    "parent": "l1k2s4me4b",
+    "parentfield": "allowed_users",
+    "parenttype": "LMT Mobile Menu Item",
+    "user": "abdu@online.de"
+   },
+   {
+    "parent": "l1k2s4me4b",
+    "parentfield": "allowed_users",
+    "parenttype": "LMT Mobile Menu Item",
+    "user": "distrib.agent.lmt.1@gmail.com"
+   }
+  ],
+  "background_color": "#faa06b",
+  "docstatus": 0,
+  "doctype": "LMT Mobile Menu Item",
+  "emoji": "🎉",
+  "fa_class": null,
+  "grid_background_color": "#ffcf82",
+  "icon_type": "Emoji",
+  "image_url": null,
+  "is_active": 1,
+  "modified": "2026-03-29 11:24:42.768835",
+  "name": "l1k2s4me4b",
+  "open_in_new_tab": 0,
+  "route": "sales-report_1",
+  "show_on_bottom_nav": 0,
+  "show_on_home_grid": 1,
+  "site_display_name": "تجريبي",
+  "site_url": "https://libya-lmt.zapto.org",
+  "sort_order": 11,
+  "title_ar": "تقرير المبيعات",
+  "title_en": null
+ },
+ {
+  "allowed_roles": [
+   {
+    "parent": "ji91b06b16",
+    "parentfield": "allowed_roles",
+    "parenttype": "LMT Mobile Menu Item",
+    "role": "items-report-allow-admin"
+   },
+   {
+    "parent": "ji91b06b16",
+    "parentfield": "allowed_roles",
+    "parenttype": "LMT Mobile Menu Item",
+    "role": "items-report-allow-supervisor"
+   },
+   {
+    "parent": "ji91b06b16",
+    "parentfield": "allowed_roles",
+    "parenttype": "LMT Mobile Menu Item",
+    "role": "items-report-allow-user"
+   }
+  ],
+  "allowed_users": [
+   {
+    "parent": "ji91b06b16",
+    "parentfield": "allowed_users",
+    "parenttype": "LMT Mobile Menu Item",
+    "user": "distrib.agent.lmt.1@gmail.com"
+   },
+   {
+    "parent": "ji91b06b16",
+    "parentfield": "allowed_users",
+    "parenttype": "LMT Mobile Menu Item",
+    "user": "lmt2013.2@gmail.com"
+   }
+  ],
+  "background_color": "#faa06b",
+  "docstatus": 0,
+  "doctype": "LMT Mobile Menu Item",
+  "emoji": "💊",
+  "fa_class": null,
+  "grid_background_color": "#ffcf82",
+  "icon_type": "Emoji",
+  "image_url": null,
+  "is_active": 1,
+  "modified": "2026-04-07 09:42:20.908186",
+  "name": "ji91b06b16",
+  "open_in_new_tab": 0,
+  "route": "items-sales-report",
+  "show_on_bottom_nav": 0,
+  "show_on_home_grid": 1,
+  "site_display_name": "تجريبي",
+  "site_url": "https://libya-lmt.zapto.org",
+  "sort_order": 9,
+  "title_ar": "تقرير مبيعات الأصناف",
+  "title_en": ""
+ },
+ {
+  "allowed_roles": [
+   {
+    "parent": "9louu12qfr",
+    "parentfield": "allowed_roles",
+    "parenttype": "LMT Mobile Menu Item",
+    "role": "Administrator"
+   }
+  ],
+  "allowed_users": [
+   {
+    "parent": "9louu12qfr",
+    "parentfield": "allowed_users",
+    "parenttype": "LMT Mobile Menu Item",
+    "user": "ebshesh2013@gmail.com"
+   }
+  ],
+  "background_color": "#faa06b",
+  "docstatus": 0,
+  "doctype": "LMT Mobile Menu Item",
+  "emoji": "⚖️",
+  "fa_class": null,
+  "grid_background_color": "#ffcf82",
+  "icon_type": "Emoji",
+  "image_url": null,
+  "is_active": 1,
+  "modified": "2026-03-24 12:53:51.862795",
+  "name": "9louu12qfr",
+  "open_in_new_tab": 0,
+  "route": "reconciliation-control_15",
+  "show_on_bottom_nav": 0,
+  "show_on_home_grid": 1,
+  "site_display_name": "تجريبي",
+  "site_url": "https://libya-lmt.zapto.org",
+  "sort_order": 4,
+  "title_ar": "تسوية الديون",
+  "title_en": null
+ },
+ {
+  "allowed_roles": [],
+  "allowed_users": [],
+  "background_color": "#2192fc",
+  "docstatus": 0,
+  "doctype": "LMT Mobile Menu Item",
+  "emoji": null,
+  "fa_class": null,
+  "grid_background_color": "#7ab7f0",
+  "icon_type": "Emoji",
+  "image_url": null,
+  "is_active": 0,
+  "modified": "2026-03-24 13:01:48.669249",
+  "name": "lnrvkasj7k",
+  "open_in_new_tab": 0,
+  "route": "webpage_colors_and_tilte",
+  "show_on_bottom_nav": 0,
+  "show_on_home_grid": 0,
+  "site_display_name": "الانتاجية",
+  "site_url": "https://libya-lmt.zapto.org",
+  "sort_order": 3,
+  "title_ar": "webpage_colors_and_tilte",
+  "title_en": "dev-lmt"
+ },
+ {
+  "allowed_roles": [
+   {
+    "parent": "o2l2ehn7ii",
+    "parentfield": "allowed_roles",
+    "parenttype": "LMT Mobile Menu Item",
+    "role": "Administrator"
+   },
+   {
+    "parent": "o2l2ehn7ii",
+    "parentfield": "allowed_roles",
+    "parenttype": "LMT Mobile Menu Item",
+    "role": "un-submit-order-allow-supervisor"
+   },
+   {
+    "parent": "o2l2ehn7ii",
+    "parentfield": "allowed_roles",
+    "parenttype": "LMT Mobile Menu Item",
+    "role": "un-submit-order-allow-admin"
+   }
+  ],
+  "allowed_users": [],
+  "background_color": "#faa06b",
+  "docstatus": 0,
+  "doctype": "LMT Mobile Menu Item",
+  "emoji": "🔓",
+  "fa_class": null,
+  "grid_background_color": "#ffcf82",
+  "icon_type": "Emoji",
+  "image_url": null,
+  "is_active": 1,
+  "modified": "2026-03-24 12:53:52.261831",
+  "name": "o2l2ehn7ii",
+  "open_in_new_tab": 0,
+  "route": "un-submit-sales-orders_21",
+  "show_on_bottom_nav": 0,
+  "show_on_home_grid": 1,
+  "site_display_name": "تجريبي",
+  "site_url": "https://libya-lmt.zapto.org",
+  "sort_order": 2,
+  "title_ar": "فتح الطلبيات",
+  "title_en": null
+ },
+ {
+  "allowed_roles": [
+   {
+    "parent": "hhtfdi93gr",
+    "parentfield": "allowed_roles",
+    "parenttype": "LMT Mobile Menu Item",
+    "role": "Administrator"
+   }
+  ],
+  "allowed_users": [
+   {
+    "parent": "hhtfdi93gr",
+    "parentfield": "allowed_users",
+    "parenttype": "LMT Mobile Menu Item",
+    "user": "distrib.agent.lmt.1@gmail.com"
+   },
+   {
+    "parent": "hhtfdi93gr",
+    "parentfield": "allowed_users",
+    "parenttype": "LMT Mobile Menu Item",
+    "user": "lmt2013.2@gmail.com"
+   },
+   {
+    "parent": "hhtfdi93gr",
+    "parentfield": "allowed_users",
+    "parenttype": "LMT Mobile Menu Item",
+    "user": "mmostafaelamamy@gmail.com"
+   },
+   {
+    "parent": "hhtfdi93gr",
+    "parentfield": "allowed_users",
+    "parenttype": "LMT Mobile Menu Item",
+    "user": "distrib.agent.10@gmail.com"
+   },
+   {
+    "parent": "hhtfdi93gr",
+    "parentfield": "allowed_users",
+    "parenttype": "LMT Mobile Menu Item",
+    "user": "abdelbadea1992@gmail.com"
+   },
+   {
+    "parent": "hhtfdi93gr",
+    "parentfield": "allowed_users",
+    "parenttype": "LMT Mobile Menu Item",
+    "user": "ekbalalresaily@gmail.com"
+   }
+  ],
+  "background_color": "#faa06b",
+  "docstatus": 0,
+  "doctype": "LMT Mobile Menu Item",
+  "emoji": "🔙💊🔙",
+  "fa_class": null,
+  "grid_background_color": "#ffcf82",
+  "icon_type": "Emoji",
+  "image_url": null,
+  "is_active": 1,
+  "modified": "2026-03-24 12:53:52.562667",
+  "name": "hhtfdi93gr",
+  "open_in_new_tab": 0,
+  "route": "customer_return_approval_7",
+  "show_on_bottom_nav": 0,
+  "show_on_home_grid": 1,
+  "site_display_name": "تجريبي",
+  "site_url": "https://libya-lmt.zapto.org",
+  "sort_order": 6,
+  "title_ar": " اعتماد المرتجع ",
+  "title_en": null
+ },
+ {
+  "allowed_roles": [
+   {
+    "parent": "5pb4huodgp",
+    "parentfield": "allowed_roles",
+    "parenttype": "LMT Mobile Menu Item",
+    "role": "Administrator"
+   }
+  ],
+  "allowed_users": [],
+  "background_color": "#faa06b",
+  "docstatus": 0,
+  "doctype": "LMT Mobile Menu Item",
+  "emoji": "🛒",
+  "fa_class": null,
+  "grid_background_color": "#ffcf82",
+  "icon_type": "Emoji",
+  "image_url": null,
+  "is_active": 1,
+  "modified": "2026-03-24 12:53:51.965335",
+  "name": "5pb4huodgp",
+  "open_in_new_tab": 0,
+  "route": "app/material-request",
+  "show_on_bottom_nav": 0,
+  "show_on_home_grid": 1,
+  "site_display_name": "تجريبي",
+  "site_url": "https://libya-lmt.zapto.org",
+  "sort_order": 10,
+  "title_ar": "Maritial Request",
+  "title_en": null
+ },
+ {
+  "allowed_roles": [
+   {
+    "parent": "lop59rnaec",
+    "parentfield": "allowed_roles",
+    "parenttype": "LMT Mobile Menu Item",
+    "role": "Administrator"
+   }
+  ],
+  "allowed_users": [],
+  "background_color": "#faa06b",
+  "docstatus": 0,
+  "doctype": "LMT Mobile Menu Item",
+  "emoji": "📗",
+  "fa_class": null,
+  "grid_background_color": "#ffcf82",
+  "icon_type": "Emoji",
+  "image_url": null,
+  "is_active": 1,
+  "modified": "2026-03-24 12:53:51.948479",
+  "name": "lop59rnaec",
+  "open_in_new_tab": 1,
+  "route": "app/journal-entry",
+  "show_on_bottom_nav": 0,
+  "show_on_home_grid": 1,
+  "site_display_name": "تجريبي",
+  "site_url": "https://libya-lmt.zapto.org",
+  "sort_order": 40,
+  "title_ar": "دفتر اليومية",
+  "title_en": null
+ },
+ {
+  "allowed_roles": [
+   {
+    "parent": "7linpd8402",
+    "parentfield": "allowed_roles",
+    "parenttype": "LMT Mobile Menu Item",
+    "role": "Administrator"
+   },
+   {
+    "parent": "7linpd8402",
+    "parentfield": "allowed_roles",
+    "parenttype": "LMT Mobile Menu Item",
+    "role": "Sales User"
+   }
+  ],
+  "allowed_users": [],
+  "background_color": "#faa06b",
+  "docstatus": 0,
+  "doctype": "LMT Mobile Menu Item",
+  "emoji": "🈸",
+  "fa_class": null,
+  "grid_background_color": "#ffcf82",
+  "icon_type": "Emoji",
+  "image_url": null,
+  "is_active": 1,
+  "modified": "2026-04-03 12:44:00.415667",
+  "name": "7linpd8402",
+  "open_in_new_tab": 0,
+  "route": "/lmt-legacy-appsheet-working",
+  "show_on_bottom_nav": 0,
+  "show_on_home_grid": 1,
+  "site_display_name": "تجريبي",
+  "site_url": "https://libya-lmt.zapto.org",
+  "sort_order": 10,
+  "title_ar": "الابشيت",
+  "title_en": null
+ },
+ {
+  "allowed_roles": [
+   {
+    "parent": "lrneqnmc03",
+    "parentfield": "allowed_roles",
+    "parenttype": "LMT Mobile Menu Item",
+    "role": "Administrator"
+   }
+  ],
+  "allowed_users": [
+   {
+    "parent": "lrneqnmc03",
+    "parentfield": "allowed_users",
+    "parenttype": "LMT Mobile Menu Item",
+    "user": "distrib.agent.lmt.1@gmail.com"
+   },
+   {
+    "parent": "lrneqnmc03",
+    "parentfield": "allowed_users",
+    "parenttype": "LMT Mobile Menu Item",
+    "user": "lmt2013.2@gmail.com"
+   },
+   {
+    "parent": "lrneqnmc03",
+    "parentfield": "allowed_users",
+    "parenttype": "LMT Mobile Menu Item",
+    "user": "distrib.agent.10@gmail.com"
+   },
+   {
+    "parent": "lrneqnmc03",
+    "parentfield": "allowed_users",
+    "parenttype": "LMT Mobile Menu Item",
+    "user": "abdelbadea1992@gmail.com"
+   },
+   {
+    "parent": "lrneqnmc03",
+    "parentfield": "allowed_users",
+    "parenttype": "LMT Mobile Menu Item",
+    "user": "abdu@online.de"
+   }
+  ],
+  "background_color": "#faa06b",
+  "docstatus": 0,
+  "doctype": "LMT Mobile Menu Item",
+  "emoji": "🔐",
+  "fa_class": null,
+  "grid_background_color": "#ffcf82",
+  "icon_type": "Emoji",
+  "image_url": null,
+  "is_active": 1,
+  "modified": "2026-03-24 22:02:45.233659",
+  "name": "lrneqnmc03",
+  "open_in_new_tab": 0,
+  "route": "enable-disable_2",
+  "show_on_bottom_nav": 0,
+  "show_on_home_grid": 1,
+  "site_display_name": "تجريبي",
+  "site_url": "https://libya-lmt.zapto.org",
+  "sort_order": 10,
+  "title_ar": "استثناء البيع",
+  "title_en": null
+ },
+ {
+  "allowed_roles": [
+   {
+    "parent": "dmb6f442t5",
+    "parentfield": "allowed_roles",
+    "parenttype": "LMT Mobile Menu Item",
+    "role": "Administrator"
+   }
+  ],
+  "allowed_users": [
+   {
+    "parent": "dmb6f442t5",
+    "parentfield": "allowed_users",
+    "parenttype": "LMT Mobile Menu Item",
+    "user": "distrib.agent.lmt.1@gmail.com"
+   }
+  ],
+  "background_color": "#faa06b",
+  "docstatus": 0,
+  "doctype": "LMT Mobile Menu Item",
+  "emoji": "🚸",
+  "fa_class": null,
+  "grid_background_color": "#ffcf82",
+  "icon_type": "Emoji",
+  "image_url": null,
+  "is_active": 1,
+  "modified": "2026-03-29 22:58:14.281040",
+  "name": "dmb6f442t5",
+  "open_in_new_tab": 0,
+  "route": "sales_annual_target",
+  "show_on_bottom_nav": 0,
+  "show_on_home_grid": 1,
+  "site_display_name": "تجريبي",
+  "site_url": "https://libya-lmt.zapto.org",
+  "sort_order": 9,
+  "title_ar": "مستهدف الأصناف",
+  "title_en": ""
+ },
+ {
+  "allowed_roles": [
+   {
+    "parent": "12mca9dnf8",
+    "parentfield": "allowed_roles",
+    "parenttype": "LMT Mobile Menu Item",
+    "role": "Administrator"
+   },
+   {
+    "parent": "12mca9dnf8",
+    "parentfield": "allowed_roles",
+    "parenttype": "LMT Mobile Menu Item",
+    "role": "Sales User"
+   }
+  ],
+  "allowed_users": [
+   {
+    "parent": "12mca9dnf8",
+    "parentfield": "allowed_users",
+    "parenttype": "LMT Mobile Menu Item",
+    "user": "distrib.agent.lmt.1@gmail.com"
+   },
+   {
+    "parent": "12mca9dnf8",
+    "parentfield": "allowed_users",
+    "parenttype": "LMT Mobile Menu Item",
+    "user": "abdu@online.de"
+   },
+   {
+    "parent": "12mca9dnf8",
+    "parentfield": "allowed_users",
+    "parenttype": "LMT Mobile Menu Item",
+    "user": "omar.abubaerah@gmail.com"
+   }
+  ],
+  "background_color": null,
+  "docstatus": 0,
+  "doctype": "LMT Mobile Menu Item",
+  "emoji": "🏁🎯🏁",
+  "fa_class": null,
+  "grid_background_color": null,
+  "icon_type": "Emoji",
+  "image_url": null,
+  "is_active": 1,
+  "modified": "2026-04-02 19:40:46.206090",
+  "name": "12mca9dnf8",
+  "open_in_new_tab": 0,
+  "route": "salesperson_target_view",
+  "show_on_bottom_nav": 0,
+  "show_on_home_grid": 1,
+  "site_display_name": null,
+  "site_url": null,
+  "sort_order": 10,
+  "title_ar": "المستهدف السنوي",
+  "title_en": null
+ },
+ {
+  "allowed_roles": [
+   {
+    "parent": "t842hqdlb3",
+    "parentfield": "allowed_roles",
+    "parenttype": "LMT Mobile Menu Item",
+    "role": "Administrator"
+   }
+  ],
+  "allowed_users": [
+   {
+    "parent": "t842hqdlb3",
+    "parentfield": "allowed_users",
+    "parenttype": "LMT Mobile Menu Item",
+    "user": "www.osama7085545@gmail.com"
+   },
+   {
+    "parent": "t842hqdlb3",
+    "parentfield": "allowed_users",
+    "parenttype": "LMT Mobile Menu Item",
+    "user": "distrib.agent.lmt.1@gmail.com"
+   },
+   {
+    "parent": "t842hqdlb3",
+    "parentfield": "allowed_users",
+    "parenttype": "LMT Mobile Menu Item",
+    "user": "abdu@online.de"
+   },
+   {
+    "parent": "t842hqdlb3",
+    "parentfield": "allowed_users",
+    "parenttype": "LMT Mobile Menu Item",
+    "user": "omar.abubaerah@gmail.com"
+   }
+  ],
+  "background_color": "#faa06b",
+  "docstatus": 0,
+  "doctype": "LMT Mobile Menu Item",
+  "emoji": "⚠️📦📦📦⚠️",
+  "fa_class": null,
+  "grid_background_color": "#ffcf82",
+  "icon_type": "Emoji",
+  "image_url": null,
+  "is_active": 1,
+  "modified": "2026-04-05 10:48:14.781174",
+  "name": "t842hqdlb3",
+  "open_in_new_tab": 0,
+  "route": "stock-availability-3",
+  "show_on_bottom_nav": 0,
+  "show_on_home_grid": 1,
+  "site_display_name": "تجريبي",
+  "site_url": "https://libya-lmt.zapto.org",
+  "sort_order": 7,
+  "title_ar": "عرض المخزون المتاح",
+  "title_en": "customer_statement"
+ },
+ {
+  "allowed_roles": [
+   {
+    "parent": "j6pf8bffsm",
+    "parentfield": "allowed_roles",
+    "parenttype": "LMT Mobile Menu Item",
+    "role": "Administrator"
+   }
+  ],
+  "allowed_users": [
+   {
+    "parent": "j6pf8bffsm",
+    "parentfield": "allowed_users",
+    "parenttype": "LMT Mobile Menu Item",
+    "user": "distrib.agent.lmt.1@gmail.com"
+   }
+  ],
+  "background_color": "#faa06b",
+  "docstatus": 0,
+  "doctype": "LMT Mobile Menu Item",
+  "emoji": "⚠️💊💊⚠️",
+  "fa_class": null,
+  "grid_background_color": "#ffcf82",
+  "icon_type": "Emoji",
+  "image_url": null,
+  "is_active": 1,
+  "modified": "2026-04-02 19:32:40.506887",
+  "name": "j6pf8bffsm",
+  "open_in_new_tab": 0,
+  "route": "item-mgmt-1",
+  "show_on_bottom_nav": 0,
+  "show_on_home_grid": 1,
+  "site_display_name": "تجريبي",
+  "site_url": "https://libya-lmt.zapto.org",
+  "sort_order": 9,
+  "title_ar": "أدارة الأصناف",
+  "title_en": ""
+ },
+ {
+  "allowed_roles": [
+   {
+    "parent": "848brptuv0",
+    "parentfield": "allowed_roles",
+    "parenttype": "LMT Mobile Menu Item",
+    "role": "Administrator"
+   }
+  ],
+  "allowed_users": [
+   {
+    "parent": "848brptuv0",
+    "parentfield": "allowed_users",
+    "parenttype": "LMT Mobile Menu Item",
+    "user": "ebshesh2013@gmail.com"
+   },
+   {
+    "parent": "848brptuv0",
+    "parentfield": "allowed_users",
+    "parenttype": "LMT Mobile Menu Item",
+    "user": "ebshesh2013@gmail.com"
+   },
+   {
+    "parent": "848brptuv0",
+    "parentfield": "allowed_users",
+    "parenttype": "LMT Mobile Menu Item",
+    "user": "distrib.agent.lmt.1@gmail.com"
+   },
+   {
+    "parent": "848brptuv0",
+    "parentfield": "allowed_users",
+    "parenttype": "LMT Mobile Menu Item",
+    "user": "distrib.agent.10@gmail.com"
+   },
+   {
+    "parent": "848brptuv0",
+    "parentfield": "allowed_users",
+    "parenttype": "LMT Mobile Menu Item",
+    "user": "mmostafaelamamy@gmail.com"
+   }
+  ],
+  "background_color": "#faa06b",
+  "docstatus": 0,
+  "doctype": "LMT Mobile Menu Item",
+  "emoji": "⚠️📕⚠️",
+  "fa_class": null,
+  "grid_background_color": "#ffcf82",
+  "icon_type": "Emoji",
+  "image_url": null,
+  "is_active": 1,
+  "modified": "2026-04-05 10:48:37.648032",
+  "name": "848brptuv0",
+  "open_in_new_tab": 0,
+  "route": "master_account_statement",
+  "show_on_bottom_nav": 0,
+  "show_on_home_grid": 1,
+  "site_display_name": "تجريبي",
+  "site_url": "https://libya-lmt.zapto.org",
+  "sort_order": 8,
+  "title_ar": "كشف حساب رئيسي",
+  "title_en": "customer-statement"
+ },
+ {
+  "allowed_roles": [
+   {
+    "parent": "90toacsrj6",
+    "parentfield": "allowed_roles",
+    "parenttype": "LMT Mobile Menu Item",
+    "role": "Administrator"
+   }
+  ],
+  "allowed_users": [
+   {
+    "parent": "90toacsrj6",
+    "parentfield": "allowed_users",
+    "parenttype": "LMT Mobile Menu Item",
+    "user": "lmt2013.2@gmail.com"
+   },
+   {
+    "parent": "90toacsrj6",
+    "parentfield": "allowed_users",
+    "parenttype": "LMT Mobile Menu Item",
+    "user": "distrib.agent.lmt.1@gmail.com"
+   },
+   {
+    "parent": "90toacsrj6",
+    "parentfield": "allowed_users",
+    "parenttype": "LMT Mobile Menu Item",
+    "user": "ebshesh2013@gmail.com"
+   },
+   {
+    "parent": "90toacsrj6",
+    "parentfield": "allowed_users",
+    "parenttype": "LMT Mobile Menu Item",
+    "user": "mmostafaelamamy@gmail.com"
+   },
+   {
+    "parent": "90toacsrj6",
+    "parentfield": "allowed_users",
+    "parenttype": "LMT Mobile Menu Item",
+    "user": "distrib.agent.10@gmail.com"
+   },
+   {
+    "parent": "90toacsrj6",
+    "parentfield": "allowed_users",
+    "parenttype": "LMT Mobile Menu Item",
+    "user": "abdelbadea1992@gmail.com"
+   }
+  ],
+  "background_color": "#faa06b",
+  "docstatus": 0,
+  "doctype": "LMT Mobile Menu Item",
+  "emoji": "🈸🈸🈸",
+  "fa_class": null,
+  "grid_background_color": "#ffcf82",
+  "icon_type": "Emoji",
+  "image_url": null,
+  "is_active": 1,
+  "modified": "2026-04-03 12:10:03.871289",
+  "name": "90toacsrj6",
+  "open_in_new_tab": 0,
+  "route": "master_appsheet_data",
+  "show_on_bottom_nav": 0,
+  "show_on_home_grid": 1,
+  "site_display_name": "تجريبي",
+  "site_url": "https://libya-lmt.zapto.org",
+  "sort_order": 10,
+  "title_ar": "ابشيت المشرفين",
+  "title_en": null
+ },
+ {
+  "allowed_roles": [
+   {
+    "parent": "nad6frvv4l",
+    "parentfield": "allowed_roles",
+    "parenttype": "LMT Mobile Menu Item",
+    "role": "Administrator"
+   }
+  ],
+  "allowed_users": [
+   {
+    "parent": "nad6frvv4l",
+    "parentfield": "allowed_users",
+    "parenttype": "LMT Mobile Menu Item",
+    "user": "www.osama7085545@gmail.com"
+   }
+  ],
+  "background_color": "#faa06b",
+  "docstatus": 0,
+  "doctype": "LMT Mobile Menu Item",
+  "emoji": "✅✅",
+  "fa_class": null,
+  "grid_background_color": "#ffcf82",
+  "icon_type": "Emoji",
+  "image_url": null,
+  "is_active": 1,
+  "modified": "2026-04-05 10:46:18.567450",
+  "name": "nad6frvv4l",
+  "open_in_new_tab": 0,
+  "route": "warehouse-fix-1",
+  "show_on_bottom_nav": 0,
+  "show_on_home_grid": 1,
+  "site_display_name": "تجريبي",
+  "site_url": "https://libya-lmt.zapto.org",
+  "sort_order": 10,
+  "title_ar": "تصليح المخزن",
+  "title_en": null
+ },
+ {
+  "allowed_roles": [
+   {
+    "parent": "e522rvhm4g",
+    "parentfield": "allowed_roles",
+    "parenttype": "LMT Mobile Menu Item",
+    "role": "Administrator"
+   }
+  ],
+  "allowed_users": [
+   {
+    "parent": "e522rvhm4g",
+    "parentfield": "allowed_users",
+    "parenttype": "LMT Mobile Menu Item",
+    "user": "distrib.agent.lmt.1@gmail.com"
+   },
+   {
+    "parent": "e522rvhm4g",
+    "parentfield": "allowed_users",
+    "parenttype": "LMT Mobile Menu Item",
+    "user": "lmt2013.2@gmail.com"
+   },
+   {
+    "parent": "e522rvhm4g",
+    "parentfield": "allowed_users",
+    "parenttype": "LMT Mobile Menu Item",
+    "user": "mmostafaelamamy@gmail.com"
+   },
+   {
+    "parent": "e522rvhm4g",
+    "parentfield": "allowed_users",
+    "parenttype": "LMT Mobile Menu Item",
+    "user": "distrib.agent.10@gmail.com"
+   },
+   {
+    "parent": "e522rvhm4g",
+    "parentfield": "allowed_users",
+    "parenttype": "LMT Mobile Menu Item",
+    "user": "abdelbadea1992@gmail.com"
+   },
+   {
+    "parent": "e522rvhm4g",
+    "parentfield": "allowed_users",
+    "parenttype": "LMT Mobile Menu Item",
+    "user": "ekbalalresaily@gmail.com"
+   }
+  ],
+  "background_color": "#faa06b",
+  "docstatus": 0,
+  "doctype": "LMT Mobile Menu Item",
+  "emoji": "🔙📚🔙",
+  "fa_class": null,
+  "grid_background_color": "#ffcf82",
+  "icon_type": "Emoji",
+  "image_url": null,
+  "is_active": 1,
+  "modified": "2026-04-09 18:23:18.609173",
+  "name": "e522rvhm4g",
+  "open_in_new_tab": 0,
+  "route": "split_so_approve ",
+  "show_on_bottom_nav": 0,
+  "show_on_home_grid": 1,
+  "site_display_name": "تجريبي",
+  "site_url": "https://libya-lmt.zapto.org",
+  "sort_order": 6,
+  "title_ar": " اعتماد الخصم الخاص",
+  "title_en": null
+ },
+ {
+  "allowed_roles": [
+   {
+    "parent": "eidj1hlpf5",
+    "parentfield": "allowed_roles",
+    "parenttype": "LMT Mobile Menu Item",
+    "role": "Administrator"
+   }
+  ],
+  "allowed_users": [
+   {
+    "parent": "eidj1hlpf5",
+    "parentfield": "allowed_users",
+    "parenttype": "LMT Mobile Menu Item",
+    "user": "ebshesh2013@gmail.com"
+   },
+   {
+    "parent": "eidj1hlpf5",
+    "parentfield": "allowed_users",
+    "parenttype": "LMT Mobile Menu Item",
+    "user": "omar.abubaerah@gmail.com"
+   },
+   {
+    "parent": "eidj1hlpf5",
+    "parentfield": "allowed_users",
+    "parenttype": "LMT Mobile Menu Item",
+    "user": "abdu@online.de"
+   }
+  ],
+  "background_color": "#faa06b",
+  "docstatus": 0,
+  "doctype": "LMT Mobile Menu Item",
+  "emoji": "👀",
+  "fa_class": null,
+  "grid_background_color": "#ffcf82",
+  "icon_type": "Emoji",
+  "image_url": null,
+  "is_active": 1,
+  "modified": "2026-04-10 23:16:14.301892",
+  "name": "eidj1hlpf5",
+  "open_in_new_tab": 0,
+  "route": "reports-hub-1",
+  "show_on_bottom_nav": 0,
+  "show_on_home_grid": 1,
+  "site_display_name": "تجريبي",
+  "site_url": "https://libya-lmt.zapto.org",
+  "sort_order": 10,
+  "title_ar": "التقارير",
+  "title_en": null
+ },
+ {
+  "allowed_roles": [
+   {
+    "parent": "nivelt8fmo",
+    "parentfield": "allowed_roles",
+    "parenttype": "LMT Mobile Menu Item",
+    "role": "Administrator"
+   }
+  ],
+  "allowed_users": [],
+  "background_color": null,
+  "docstatus": 0,
+  "doctype": "LMT Mobile Menu Item",
+  "emoji": "🔑",
+  "fa_class": null,
+  "grid_background_color": null,
+  "icon_type": "Emoji",
+  "image_url": null,
+  "is_active": 1,
+  "modified": "2026-04-11 09:47:47.149586",
+  "name": "nivelt8fmo",
+  "open_in_new_tab": 0,
+  "route": "/user-mgmt-1",
+  "show_on_bottom_nav": 0,
+  "show_on_home_grid": 1,
+  "site_display_name": null,
+  "site_url": null,
+  "sort_order": 10,
+  "title_ar": "إدارة المستخدمين",
+  "title_en": "User Management"
+ },
+ {
+  "allowed_roles": [
+   {
+    "parent": "8tkg6ivpqc",
+    "parentfield": "allowed_roles",
+    "parenttype": "LMT Mobile Menu Item",
+    "role": "Administrator"
+   }
+  ],
+  "allowed_users": [
+   {
+    "parent": "8tkg6ivpqc",
+    "parentfield": "allowed_users",
+    "parenttype": "LMT Mobile Menu Item",
+    "user": "distrib.agent.lmt.1@gmail.com"
+   }
+  ],
+  "background_color": "#faa06b",
+  "docstatus": 0,
+  "doctype": "LMT Mobile Menu Item",
+  "emoji": "🛠️",
+  "fa_class": null,
+  "grid_background_color": "#ffcf82",
+  "icon_type": "Emoji",
+  "image_url": null,
+  "is_active": 1,
+  "modified": "2026-04-18 12:30:31.003376",
+  "name": "8tkg6ivpqc",
+  "open_in_new_tab": 0,
+  "route": "customer-manager-3",
+  "show_on_bottom_nav": 0,
+  "show_on_home_grid": 1,
+  "site_display_name": "تجريبي",
+  "site_url": "https://libya-lmt.zapto.org",
+  "sort_order": 10,
+  "title_ar": "تصليح  الابشيت",
+  "title_en": null
+ }
+]
