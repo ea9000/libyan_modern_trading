@@ -89,8 +89,6 @@ fixtures = [
     "Property Setter",
     {"dt": "Print Format", "filters": [["standard", "=", "No"]]},
     "Notification",
-    "LMT Mobile Menu Item",
-    "LMT Report Menu Item",
 ]
 
 # Clean up namespace
