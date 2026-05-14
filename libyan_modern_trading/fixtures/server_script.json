@@ -1814,13 +1814,13 @@
   "doctype_event": "Before Insert",
   "enable_rate_limit": 0,
   "event_frequency": "All",
-  "modified": "2026-03-13 07:41:17.789295",
+  "modified": "2026-05-14 19:33:11.442006",
   "module": null,
   "name": "lmt_legacy_get_real_customer_6",
   "rate_limit_count": 5,
   "rate_limit_seconds": 86400,
   "reference_doctype": null,
-  "script": "# Backup created at: 2026-03-13 05:41:17\ncustomer_key = frappe.form_dict.get('customer_key')\ncustomer_name = frappe.form_dict.get('customer_name')\n\nreal_name = customer_key\nif not frappe.db.exists(\"Customer\", real_name):\n    if frappe.db.exists(\"Customer\", customer_name):\n        real_name = customer_name\n    else:\n        if frappe.db.has_column(\"Customer\", \"lmt_key\"):\n            by_key = frappe.db.get_value(\"Customer\", {\"lmt_key\": customer_key}, \"name\")\n            if by_key: real_name = by_key\n        \n        # If still not found, try searching by customer_name field\n        if real_name == customer_key:\n            by_name = frappe.db.get_value(\"Customer\", {\"customer_name\": customer_name}, \"name\")\n            if by_name: real_name = by_name\n\nfrappe.response['message'] = real_name\n",
+  "script": "customer_key = frappe.form_dict.get('customer_key')\ncustomer_name = frappe.form_dict.get('customer_name')\nreal_name = None\n\n# 1. lmt_key field — unique per legacy customer (most reliable)\ntry:\n    real_name = frappe.db.get_value(\"Customer\", {\"lmt_key\": customer_key}, \"name\")\nexcept Exception:\n    real_name = None\n\n# 2. customer_key as Customer ID\nif not real_name and frappe.db.exists(\"Customer\", customer_key):\n    real_name = customer_key\n\n# 3. last resort: name match (ambiguous if duplicates)\nif not real_name:\n    real_name = frappe.db.get_value(\"Customer\", {\"customer_name\": customer_name}, \"name\")\n\nfrappe.response['message'] = real_name or \"\"",
   "script_type": "API"
  },
  {
