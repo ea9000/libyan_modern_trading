@@ -2414,5 +2414,21 @@
   "property_type": "Code",
   "row_name": null,
   "value": ""
+ },
+ {
+  "default_value": null,
+  "doc_type": "LMT Debt Collection",
+  "docstatus": 0,
+  "doctype": "Property Setter",
+  "doctype_or_field": "DocField",
+  "field_name": "action_type",
+  "is_system_generated": 0,
+  "modified": "2026-07-23 13:24:43.743948",
+  "module": null,
+  "name": "LMT Debt Collection-action_type-options",
+  "property": "options",
+  "property_type": "Text",
+  "row_name": null,
+  "value": "ايداع\nسحب\nخصم تسوية\nزيادة تسوية\nإعدام دين"
  }
 ]
