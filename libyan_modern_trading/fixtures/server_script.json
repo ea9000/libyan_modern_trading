@@ -1263,13 +1263,13 @@
   "doctype_event": "Before Insert",
   "enable_rate_limit": 0,
   "event_frequency": "All",
-  "modified": "2026-02-17 13:12:12.933979",
+  "modified": "2026-07-28 11:45:48.580594",
   "module": null,
   "name": "lmt_visit_update_customer_location_api_1",
   "rate_limit_count": 5,
   "rate_limit_seconds": 86400,
   "reference_doctype": null,
-  "script": "\n# Backup created at: 2026-02-17 11:12:12\ncustomer = frappe.form_dict.get(\"customer\")\nlat = frappe.form_dict.get(\"lat\")\nlng = frappe.form_dict.get(\"lng\")\nacc = frappe.form_dict.get(\"accuracy_m\")\n\nif not customer or not frappe.db.exists(\"Customer\", customer):\n    frappe.throw(\"Invalid customer\")\n\nuser = frappe.session.user\nemail = frappe.db.get_value(\"User\", user, \"email\") or user\n\nam = frappe.db.get_value(\"Customer\", customer, \"account_manager\")\nif am not in (user, email):\n    frappe.throw(\"Not allowed for this customer\")\n\nfrappe.db.set_value(\"Customer\", customer, \"customer_lat\", lat)\nfrappe.db.set_value(\"Customer\", customer, \"customer_lng\", lng)\nfrappe.db.set_value(\"Customer\", customer, \"location_accuracy_m\", acc)\nfrappe.db.set_value(\"Customer\", customer, \"location_source\", \"Visit Update\")\nfrappe.db.set_value(\"Customer\", customer, \"location_updated_on\", frappe.utils.now_datetime())\nfrappe.db.set_value(\"Customer\", customer, \"location_updated_by\", user)\n\nfrappe.db.commit()\nfrappe.response[\"message\"] = {\"ok\": True}\n",
+  "script": "\n# Backup created at: 2026-02-17 11:12:12\ncustomer = frappe.form_dict.get(\"customer\")\nlat = frappe.form_dict.get(\"lat\")\nlng = frappe.form_dict.get(\"lng\")\nacc = frappe.form_dict.get(\"accuracy_m\")\n\nif not customer or not frappe.db.exists(\"Customer\", customer):\n    frappe.throw(\"Invalid customer\")\n\nuser = frappe.session.user\nemail = frappe.db.get_value(\"User\", user, \"email\") or user\n\nam = frappe.db.get_value(\"Customer\", customer, \"account_manager\")\nif am not in (user, email):\n    frappe.throw(\"Not allowed for this customer\")\n\ntry:\n    lat_f = float(lat)\n    lng_f = float(lng)\nexcept Exception:\n    frappe.throw(\"إحداثيات غير صالحة\")\n\nif not (19.0 <= lat_f <= 34.0 and 9.0 <= lng_f <= 26.0):\n    frappe.throw(\"الموقع خارج حدود ليبيا — استخدم الهاتف وأنت أمام المحل\")\n\nfrappe.db.set_value(\"Customer\", customer, \"customerlat_ft\", lat)\nfrappe.db.set_value(\"Customer\", customer, \"customerlng_fg\", lng)\nfrappe.db.set_value(\"Customer\", customer, \"location_accuracy_m\", acc)\nfrappe.db.set_value(\"Customer\", customer, \"location_source\", \"Visit Update\")\nfrappe.db.set_value(\"Customer\", customer, \"location_updated_on\", frappe.utils.now_datetime())\nfrappe.db.set_value(\"Customer\", customer, \"location_updated_by\", user)\n\nfrappe.db.commit()\nfrappe.response[\"message\"] = {\"ok\": True}\n",
   "script_type": "API"
  },
  {
