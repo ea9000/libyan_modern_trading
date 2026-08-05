@@ -598,13 +598,13 @@
   "doctype_event": "Before Insert",
   "enable_rate_limit": 0,
   "event_frequency": "All",
-  "modified": "2026-07-19 21:18:04.390388",
+  "modified": "2026-08-05 10:19:22.125860",
   "module": null,
   "name": "get_collection_staging_data_qa",
   "rate_limit_count": 5,
   "rate_limit_seconds": 86400,
   "reference_doctype": null,
-  "script": "# Server Script: get_collection_staging_data_qa\nemployee = frappe.form_dict.get('employee')\npayment_type = frappe.form_dict.get('payment_type')\n\n# Use the verified fieldnames from your bench console output\nfilters = {\n    \"docstatus\": 0,       # Draft records\n    \"l_reconciled\": 0     # Verified internal fieldname for 'reconciled'\n}\n\nif employee:\n    filters[\"employee\"] = employee\nif payment_type:\n    filters[\"payment_type\"] = payment_type\n\n# Fetch records from the main DocType\nentries = frappe.get_all(\"LMT Debt Collection\", \n    fields=[\n        \"name\", \"customer\", \"amount\", \"payment_type\", \n        \"receipt_no\", \"bank\", \"action_type\", \"agent_name\",\n        \"posting_date\", \"custom_transfer_reference\"\n    ],\n    filters=filters,\n    order_by=\"creation desc\"\n)\n\n# Calculate totals for the metric card on the webpage\ntotal_amt = sum([float(d.amount or 0) for d in entries])\n\nfrappe.response[\"message\"] = {\n    \"entries\": entries,\n    \"totals\": {\"total\": total_amt}\n}",
+  "script": "# Server Script: get_collection_staging_data_qa\nemployee = frappe.form_dict.get('employee')\npayment_type = frappe.form_dict.get('payment_type')\n\n# Use the verified fieldnames from your bench console output\nfilters = {\n    \"docstatus\": 0,       # Draft records\n    \"l_reconciled\": 0     # Verified internal fieldname for 'reconciled'\n}\n\nif employee:\n    filters[\"employee\"] = employee\nif payment_type:\n    filters[\"payment_type\"] = payment_type\n\n# Fetch records from the main DocType\nentries = frappe.get_all(\"LMT Debt Collection\", \n    fields=[\n        \"name\", \"customer\", \"amount\", \"payment_type\", \n        \"receipt_no\", \"bank\", \"action_type\", \"agent_name\",\n        \"posting_date\", \"custom_transfer_reference\"\n    ],\n    filters=filters,\n    order_by=\"creation asc\"\n)\n\n# Calculate totals for the metric card on the webpage\ntotal_amt = sum([float(d.amount or 0) for d in entries])\n\nfrappe.response[\"message\"] = {\n    \"entries\": entries,\n    \"totals\": {\"total\": total_amt}\n}",
   "script_type": "API"
  },
  {
@@ -1149,13 +1149,13 @@
   "doctype_event": "Before Insert",
   "enable_rate_limit": 0,
   "event_frequency": "All",
-  "modified": "2026-07-19 21:18:03.703717",
+  "modified": "2026-08-05 10:21:58.588522",
   "module": null,
   "name": "get_collection_staging_data_fix",
   "rate_limit_count": 5,
   "rate_limit_seconds": 86400,
   "reference_doctype": null,
-  "script": "# Server Script: get_collection_staging_data_qa\nemployee = frappe.form_dict.get('employee')\npayment_type = frappe.form_dict.get('payment_type')\n\n# Use the verified fieldnames from your bench console output\nfilters = {\n    \"docstatus\": 0,       # Draft records\n    \"l_reconciled\": 0     # Verified internal fieldname for 'reconciled'\n}\n\nif employee:\n    filters[\"employee\"] = employee\nif payment_type:\n    filters[\"payment_type\"] = payment_type\n\n# Fetch records from the main DocType\nentries = frappe.get_all(\"LMT Debt Collection\", \n    fields=[\n        \"name\", \"customer\", \"amount\", \"payment_type\", \n        \"receipt_no\", \"bank\", \"action_type\", \"agent_name\",\n        \"posting_date\", \"custom_transfer_reference\"\n    ],\n    filters=filters,\n    order_by=\"creation desc\"\n)\n\n# Calculate totals for the metric card on the webpage\ntotal_amt = sum([float(d.amount or 0) for d in entries])\n\nfrappe.response[\"message\"] = {\n    \"entries\": entries,\n    \"totals\": {\"total\": total_amt}\n}",
+  "script": "# Server Script: get_collection_staging_data_qa\nemployee = frappe.form_dict.get('employee')\npayment_type = frappe.form_dict.get('payment_type')\n\n# Use the verified fieldnames from your bench console output\nfilters = {\n    \"docstatus\": 0,       # Draft records\n    \"l_reconciled\": 0     # Verified internal fieldname for 'reconciled'\n}\n\nif employee:\n    filters[\"employee\"] = employee\nif payment_type:\n    filters[\"payment_type\"] = payment_type\n\n# Fetch records from the main DocType\nentries = frappe.get_all(\"LMT Debt Collection\", \n    fields=[\n        \"name\", \"customer\", \"amount\", \"payment_type\", \n        \"receipt_no\", \"bank\", \"action_type\", \"agent_name\",\n        \"posting_date\", \"custom_transfer_reference\"\n    ],\n    filters=filters,\n    order_by=\"creation asc\"\n)\n\n# Calculate totals for the metric card on the webpage\ntotal_amt = sum([float(d.amount or 0) for d in entries])\n\nfrappe.response[\"message\"] = {\n    \"entries\": entries,\n    \"totals\": {\"total\": total_amt}\n}",
   "script_type": "API"
  },
  {
