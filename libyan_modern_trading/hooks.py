@@ -84,7 +84,6 @@ fixtures = [
     {"dt": "Web Page", "filters": [["name", "in", _webpages]]} if _webpages else "Web Page",
     "Client Script",
     {"dt": "DocType", "filters": [["custom", "=", 1]]},
-    {"dt": "DocType", "filters": [["module", "in", ["Libyan Modern Trading", "LMT Helpdesk"]], ["custom", "=", 0]]},
     "Custom Field",
     "Property Setter",
     {"dt": "Print Format", "filters": [["standard", "=", "No"]]},
