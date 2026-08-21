@@ -19,6 +19,9 @@
   "modified": "2021-06-16 14:08:12.933367",
   "module": "HR",
   "name": "Training Scheduled",
+  "notification_message": null,
+  "notification_title": null,
+  "notification_type": "Alert",
   "print_format": null,
   "property_value": null,
   "recipients": [
@@ -62,6 +65,9 @@
   "modified": "2017-08-11 04:26:58.194793",
   "module": "HR",
   "name": "Training Feedback",
+  "notification_message": null,
+  "notification_title": null,
+  "notification_type": "Alert",
   "print_format": null,
   "property_value": null,
   "recipients": [
@@ -105,6 +111,9 @@
   "modified": "2026-02-21 15:59:07.775679",
   "module": "Accounts",
   "name": "Notification for new fiscal year",
+  "notification_message": null,
+  "notification_title": null,
+  "notification_type": "Alert",
   "print_format": null,
   "property_value": null,
   "recipients": [
@@ -158,6 +167,9 @@
   "modified": "2018-05-15 19:00:24.294418",
   "module": "Payroll",
   "name": "Retention Bonus",
+  "notification_message": null,
+  "notification_title": null,
+  "notification_type": "Alert",
   "print_format": null,
   "property_value": null,
   "recipients": [
@@ -201,6 +213,9 @@
   "modified": "2019-05-01 18:02:51.090037",
   "module": "Manufacturing",
   "name": "Material Request Receipt Notification",
+  "notification_message": null,
+  "notification_title": null,
+  "notification_type": "Alert",
   "print_format": null,
   "property_value": null,
   "recipients": [
@@ -244,6 +259,9 @@
   "modified": "2021-12-05 22:26:57.096159",
   "module": "HR",
   "name": "Exit Interview Scheduled",
+  "notification_message": null,
+  "notification_title": null,
+  "notification_type": "Alert",
   "print_format": null,
   "property_value": null,
   "recipients": [
