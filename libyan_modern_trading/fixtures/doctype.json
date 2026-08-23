@@ -29243,7 +29243,7 @@
     "non_negative": 0,
     "oldfieldname": null,
     "oldfieldtype": null,
-    "options": "merge\nrepair",
+    "options": "merge\nrepair\nrename",
     "parent": "LMT Merge Log",
     "parentfield": "fields",
     "parenttype": "DocType",
