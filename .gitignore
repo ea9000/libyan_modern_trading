@@ -30,3 +30,4 @@ libyan_modern_trading/fixtures_list.json
 
 # Includes-bak folders
 **/includes-bak/
+*.bak-*
