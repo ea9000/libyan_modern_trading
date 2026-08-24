@@ -41,7 +41,7 @@ def list_menu_items():
             ok = True
 
         if not role_rows and not user_rows:
-            ok = True  # public item
+            ok = ("System Manager" in roles) or (user == "Administrator")
 
         if ok:
             allowed.append(it)
@@ -78,9 +78,9 @@ def _is_allowed_for_route(route: str) -> bool:
     role_rows = set(frappe.get_all("LMT Menu Role", filters={"parent": it_name}, pluck="role"))
     user_rows = set(frappe.get_all("LMT Menu User", filters={"parent": it_name}, pluck="user"))
 
-    # public item (no roles/users specified)
+    # deny-by-default: unconfigured item is admin-only
     if not role_rows and not user_rows:
-        return True
+        return ("System Manager" in roles) or (user == "Administrator")
 
     if user in user_rows:
         return True
