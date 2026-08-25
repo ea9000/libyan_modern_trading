@@ -84,6 +84,12 @@ fixtures = [
     {"dt": "Web Page", "filters": [["name", "in", _webpages]]} if _webpages else "Web Page",
     "Client Script",
     {"dt": "DocType", "filters": [["custom", "=", 1]]},
+    {"dt": "Role", "filters": [["name", "in", [
+        "LMT", "LMT Address Editor", "LMT Medical Manager", "LMT Medical Rep", "LMT Note User",
+        "lmt_admin_sales_approval", "lmt_clearance_admin", "lmt_clearance_supervisor",
+        "lmt_helpdesk_admin", "lmt_helpdesk_user", "lmt_supervisor_sales_approval",
+        "lmt_user_clone_user"
+    ]]]},
     "Custom Field",
     "Property Setter",
     {"dt": "Print Format", "filters": [["standard", "=", "No"]]},
