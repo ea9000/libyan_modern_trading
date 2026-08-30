@@ -88,7 +88,7 @@ fixtures = [
         "LMT", "LMT Address Editor", "LMT Medical Manager", "LMT Medical Rep", "LMT Note User",
         "lmt_admin_sales_approval", "lmt_clearance_admin", "lmt_clearance_supervisor",
         "lmt_helpdesk_admin", "lmt_helpdesk_user", "lmt_supervisor_sales_approval",
-        "lmt_user_clone_user"
+        "lmt_user_clone_user", "lmt_no_desk"
     ]]]},
     "Custom Field",
     "Property Setter",

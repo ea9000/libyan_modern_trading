@@ -61,6 +61,15 @@ def guard_website_routes():
 
         path = _norm_route(getattr(req, "path", "") or "/")
 
+        # --- DESK LOCKOUT: users with role lmt_no_desk never see /app or /desk ---
+        if path.startswith("/app") or path.startswith("/desk"):
+            user0 = frappe.session.user or "Guest"
+            if user0 not in ("Guest", "Administrator"):
+                if frappe.db.exists("Has Role", {"parent": user0, "parenttype": "User", "role": "lmt_no_desk"}):
+                    frappe.local.response["type"] = "redirect"
+                    frappe.local.response["location"] = "/mobile-home"
+                    raise Redirect
+
         # Never block system/desk/api/assets routes
         if _is_public_path(path):
             return
