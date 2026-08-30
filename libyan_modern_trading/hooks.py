@@ -94,6 +94,7 @@ fixtures = [
     "Property Setter",
     {"dt": "Print Format", "filters": [["standard", "=", "No"]]},
     "Notification",
+    {"dt": "Custom DocPerm", "filters": [["role", "=", "Warehouse User"]]},
 ]
 
 # Clean up namespace

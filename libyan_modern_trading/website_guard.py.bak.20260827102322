@@ -74,9 +74,8 @@ def guard_website_routes():
 
         # Guest tries protected route => redirect to login
         if user == "Guest":
-            frappe.flags.redirect_location = "/login?redirect-to=" + path
             frappe.local.response["type"] = "redirect"
-            frappe.local.response["location"] = frappe.flags.redirect_location
+            frappe.local.response["location"] = "/login?redirect-to=" + path
             raise Redirect
 
         # Logged-in users: allow page load.
