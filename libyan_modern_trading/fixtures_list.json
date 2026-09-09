@@ -174,7 +174,8 @@
   "lmt_customer_payment_filter",
   "lmt_get_supervisor_commission_bk",
   "lmt_employee_hub_v1",
-  "lmt_salary_mgmt_v1"
+  "lmt_salary_mgmt_v1",
+  "lmt_split_order_so_images_v1"
  ],
  "scripts_doctype_event": [
   "01_Create Delivery note",

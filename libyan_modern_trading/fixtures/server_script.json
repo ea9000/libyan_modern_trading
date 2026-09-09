@@ -4026,5 +4026,24 @@
   "reference_doctype": null,
   "script": "\nso_names = frappe.form_dict.get(\"orders\") or \"\"\n\nif isinstance(so_names, str):\n    so_list = []\n    for x in so_names.split(\",\"):\n        x = x.strip()\n        if x:\n            so_list.append(x)\nelse:\n    so_list = so_names\n\nout = {}\n\nif so_list:\n    rows = frappe.db.sql(\"\"\"\n        SELECT dni.against_sales_order AS so, dn.name AS dn\n        FROM `tabDelivery Note` dn\n        JOIN `tabDelivery Note Item` dni ON dni.parent = dn.name\n        WHERE dn.docstatus = 1\n          AND IFNULL(dni.against_sales_order, '') != ''\n          AND dni.against_sales_order IN %(s)s\n        GROUP BY dni.against_sales_order, dn.name\n    \"\"\", {\"s\": so_list}, as_dict=True)\n\n    dn_names = []\n    dn_to_so = {}\n    for r in rows:\n        dn_names.append(r.dn)\n        dn_to_so[r.dn] = r.so\n\n    if dn_names:\n        files = frappe.db.sql(\"\"\"\n            SELECT attached_to_name, file_url, creation\n            FROM `tabFile`\n            WHERE attached_to_doctype = 'Delivery Note'\n              AND attached_to_name IN %(d)s\n              AND IFNULL(file_url, '') != ''\n            ORDER BY creation ASC\n        \"\"\", {\"d\": dn_names}, as_dict=True)\n\n        for f in files:\n            so = dn_to_so.get(f.attached_to_name)\n            if so:\n                out[so] = f.file_url\n\nfrappe.response[\"message\"] = out\n",
   "script_type": "API"
+ },
+ {
+  "allow_guest": 0,
+  "api_method": "lmt_split_order_so_images_v1",
+  "cron_format": null,
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Server Script",
+  "doctype_event": "Before Insert",
+  "enable_rate_limit": 0,
+  "event_frequency": "All",
+  "modified": "2026-09-09 17:37:49.000580",
+  "module": null,
+  "name": "lmt_split_order_so_images_v1",
+  "rate_limit_count": 5,
+  "rate_limit_seconds": 86400,
+  "reference_doctype": null,
+  "script": "\nso_names = frappe.form_dict.get(\"orders\") or \"\"\n\nif isinstance(so_names, str):\n    so_list = []\n    for x in so_names.split(\",\"):\n        x = x.strip()\n        if x:\n            so_list.append(x)\nelse:\n    so_list = so_names\n\nout = {}\n\nif so_list:\n    files = frappe.db.sql(\"\"\"\n        SELECT attached_to_name, file_url, creation\n        FROM `tabFile`\n        WHERE attached_to_doctype = 'Sales Order'\n          AND attached_to_name IN %(s)s\n          AND IFNULL(file_url, '') != ''\n        ORDER BY creation ASC\n    \"\"\", {\"s\": so_list}, as_dict=True)\n\n    for f in files:\n        u = (f.file_url or \"\").lower()\n        is_img = u.endswith(\".jpg\") or u.endswith(\".jpeg\") or u.endswith(\".png\") or u.endswith(\".gif\") or u.endswith(\".webp\")\n        if is_img and f.attached_to_name not in out:\n            out[f.attached_to_name] = f.file_url\n\nfrappe.response[\"message\"] = out\n",
+  "script_type": "API"
  }
 ]
