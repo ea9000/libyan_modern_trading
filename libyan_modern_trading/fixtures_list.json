@@ -216,7 +216,8 @@
   "90_get_print_status_v1",
   "lmt_loan_disburse_v1",
   "lmt_helpdesk_v2_ai_brief",
-  "lmt_helpdesk_v2_cr_log_add"
+  "lmt_helpdesk_v2_cr_log_add",
+  "lmt_helpdesk_v2_delete_ticket"
  ],
  "scripts_doctype_event": [
   "01_Create Delivery note",
