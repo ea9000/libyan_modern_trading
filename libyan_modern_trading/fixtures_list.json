@@ -215,7 +215,8 @@
   "91_mark_printed_flags_v1",
   "90_get_print_status_v1",
   "lmt_loan_disburse_v1",
-  "lmt_helpdesk_v2_ai_brief"
+  "lmt_helpdesk_v2_ai_brief",
+  "lmt_helpdesk_v2_cr_log_add"
  ],
  "scripts_doctype_event": [
   "01_Create Delivery note",
@@ -282,7 +283,8 @@
   "lmt_helpdesk_alert_enqueue",
   "lmt_visit_contact_type_lock",
   "sales_invoice_name_mirror",
-  "sr_assign_sales_team_on_return"
+  "sr_assign_sales_team_on_return",
+  "lmt_helpdesk_ticket_delete_guard"
  ],
  "scripts_indirect": [
   "edx_get_flagged_records_22",
