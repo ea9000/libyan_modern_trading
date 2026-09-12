@@ -88,13 +88,14 @@ fixtures = [
         "LMT", "LMT Address Editor", "LMT Medical Manager", "LMT Medical Rep", "LMT Note User",
         "lmt_admin_sales_approval", "lmt_clearance_admin", "lmt_clearance_supervisor",
         "lmt_helpdesk_admin", "lmt_helpdesk_user", "lmt_supervisor_sales_approval",
-        "lmt_user_clone_user", "lmt_no_desk", "2FAadministrator"
+        "lmt_user_clone_user", "lmt_no_desk", "2FAadministrator", "lmt_commission_admin"
     ]]]},
     "Custom Field",
     "Property Setter",
     {"dt": "Print Format", "filters": [["standard", "=", "No"]]},
     "Notification",
     {"dt": "Custom DocPerm", "filters": [["role", "=", "Warehouse User"]]},
+    "Print Settings",
 ]
 
 # Clean up namespace
