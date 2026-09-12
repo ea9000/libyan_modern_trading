@@ -219,7 +219,9 @@
   "lmt_helpdesk_v2_cr_log_add",
   "lmt_helpdesk_v2_delete_ticket",
   "lmt_receipt_status_mobiledebt_v1",
-  "lmt_agent_commission_statement_v1"
+  "lmt_agent_commission_statement_v1",
+  "lmt_get_agent_statement_mobiledebt_v1",
+  "lmt_get_agent_statement_debtform_v1"
  ],
  "scripts_doctype_event": [
   "01_Create Delivery note",
