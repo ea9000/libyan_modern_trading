@@ -217,7 +217,8 @@
   "lmt_loan_disburse_v1",
   "lmt_helpdesk_v2_ai_brief",
   "lmt_helpdesk_v2_cr_log_add",
-  "lmt_helpdesk_v2_delete_ticket"
+  "lmt_helpdesk_v2_delete_ticket",
+  "lmt_receipt_status_mobiledebt_v1"
  ],
  "scripts_doctype_event": [
   "01_Create Delivery note",
@@ -285,7 +286,8 @@
   "lmt_visit_contact_type_lock",
   "sales_invoice_name_mirror",
   "sr_assign_sales_team_on_return",
-  "lmt_helpdesk_ticket_delete_guard"
+  "lmt_helpdesk_ticket_delete_guard",
+  "38_get_latest_range_for_user_3"
  ],
  "scripts_indirect": [
   "edx_get_flagged_records_22",
