@@ -221,7 +221,11 @@
   "lmt_receipt_status_mobiledebt_v1",
   "lmt_agent_commission_statement_v1",
   "lmt_get_agent_statement_mobiledebt_v1",
-  "lmt_get_agent_statement_debtform_v1"
+  "lmt_get_agent_statement_debtform_v1",
+  "lmt_visit_get_my_visits_cv1",
+  "lmt_visit_update_location_cv1",
+  "lmt_supervisor_agents_scs1",
+  "lmt_gen_agent_stmt_scs1"
  ],
  "scripts_doctype_event": [
   "01_Create Delivery note",
@@ -296,7 +300,9 @@
   "edx_get_flagged_records_22",
   "get_collection_staging_data_fix",
   "master_account_statement_get_sales_users",
-  "master_account_statement_get_user_roles"
+  "master_account_statement_get_user_roles",
+  "lmt_visit_update_location_cv1",
+  "lmt_visit_get_my_visits_cv1"
  ],
  "scripts_permission": [],
  "scripts_scheduler": [
