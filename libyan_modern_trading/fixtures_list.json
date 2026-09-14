@@ -225,7 +225,8 @@
   "lmt_visit_get_my_visits_cv1",
   "lmt_visit_update_location_cv1",
   "lmt_supervisor_agents_scs1",
-  "lmt_gen_agent_stmt_scs1"
+  "lmt_gen_agent_stmt_scs1",
+  "lmt_vp_block_cv1"
  ],
  "scripts_doctype_event": [
   "01_Create Delivery note",
