@@ -228,7 +228,9 @@
   "lmt_gen_agent_stmt_scs1",
   "lmt_vp_block_cv1",
   "lmt_export_list_managers_1",
-  "lmt_export_get_customers_1"
+  "lmt_export_get_customers_1",
+  "lmt_export_pdf_html_1",
+  "lmt_export_so_stats_1"
  ],
  "scripts_doctype_event": [
   "01_Create Delivery note",
