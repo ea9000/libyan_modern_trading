@@ -1,5 +1,16 @@
 import frappe
 from frappe.exceptions import Redirect
+from werkzeug.exceptions import HTTPException
+from werkzeug.utils import redirect as _wz_redirect
+
+class GuardRedirect(HTTPException):
+    """302 redirect that survives being raised inside a before_request hook."""
+    code = 302
+    def __init__(self, location):
+        super().__init__(description="redirect")
+        self.location = location
+    def get_response(self, environ=None, scope=None):
+        return _wz_redirect(self.location, code=302)
 
 # Paths that must NEVER be blocked (system / assets / api / login etc.)
 ALLOW_PREFIXES = (
@@ -66,9 +77,7 @@ def guard_website_routes():
             user0 = frappe.session.user or "Guest"
             if user0 not in ("Guest", "Administrator"):
                 if frappe.db.exists("Has Role", {"parent": user0, "parenttype": "User", "role": "lmt_no_desk"}):
-                    frappe.local.response["type"] = "redirect"
-                    frappe.local.response["location"] = "/mobile-home"
-                    raise Redirect
+                    raise GuardRedirect("/mobile-home")
 
         # Never block system/desk/api/assets routes
         if _is_public_path(path):
@@ -83,16 +92,13 @@ def guard_website_routes():
 
         # Guest tries protected route => redirect to login
         if user == "Guest":
-            frappe.flags.redirect_location = "/login?redirect-to=" + path
-            frappe.local.response["type"] = "redirect"
-            frappe.local.response["location"] = frappe.flags.redirect_location
-            raise Redirect
+            raise GuardRedirect("/login?redirect-to=" + path)
 
         # Logged-in users: allow page load.
         # DocType/API permissions will enforce insert/update/read.
         return
 
-    except Redirect:
+    except (Redirect, GuardRedirect):
         raise
     except Exception:
         # Never crash the whole website due to guard logic
