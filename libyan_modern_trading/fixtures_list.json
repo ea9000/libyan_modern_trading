@@ -230,7 +230,8 @@
   "lmt_export_list_managers_1",
   "lmt_export_get_customers_1",
   "lmt_export_pdf_html_1",
-  "lmt_export_so_stats_1"
+  "lmt_export_so_stats_1",
+  "lmt_cash_box_balance_mobiledebt_v1"
  ],
  "scripts_doctype_event": [
   "01_Create Delivery note",
