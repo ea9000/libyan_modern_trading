@@ -233,7 +233,8 @@
   "lmt_export_so_stats_1",
   "lmt_cash_box_balance_mobiledebt_v1",
   "lmt_ai_health_1",
-  "lmt_ai_chat_1"
+  "lmt_ai_chat_1",
+  "lmt_guarantor_draw_v1"
  ],
  "scripts_doctype_event": [
   "01_Create Delivery note",
@@ -302,7 +303,10 @@
   "sales_invoice_name_mirror",
   "sr_assign_sales_team_on_return",
   "lmt_helpdesk_ticket_delete_guard",
-  "38_get_latest_range_for_user_3"
+  "38_get_latest_range_for_user_3",
+  "95_guarantor_commission_on_submit",
+  "96_guarantor_commission_on_delete",
+  "97_guarantor_commission_on_cancel"
  ],
  "scripts_indirect": [
   "edx_get_flagged_records_22",
@@ -429,6 +433,7 @@
   "إدارة-رواتب-الموظفين",
   "سلف-الموظفين",
   "كشف-عمولة-المندوب",
-  "lmt-ai"
+  "lmt-ai",
+  "عمولة-الضامن"
  ]
 }
