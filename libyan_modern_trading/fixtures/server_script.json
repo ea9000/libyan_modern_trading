@@ -38,7 +38,7 @@
   "script_type": "API"
  },
  {
-  "allow_guest": 1,
+  "allow_guest": 0,
   "api_method": "chatgpt_ping_location",
   "cron_format": null,
   "disabled": 0,
@@ -266,7 +266,7 @@
   "script_type": "DocType Event"
  },
  {
-  "allow_guest": 1,
+  "allow_guest": 0,
   "api_method": "chatgpt_ping_location",
   "cron_format": null,
   "disabled": 1,
@@ -2603,7 +2603,7 @@
   "script_type": "API"
  },
  {
-  "allow_guest": 1,
+  "allow_guest": 0,
   "api_method": "lmt_inventory_rows",
   "cron_format": null,
   "disabled": 0,
@@ -2945,7 +2945,7 @@
   "script_type": "DocType Event"
  },
  {
-  "allow_guest": 1,
+  "allow_guest": 0,
   "api_method": "lmt_create",
   "cron_format": null,
   "disabled": 1,
@@ -2964,7 +2964,7 @@
   "script_type": "API"
  },
  {
-  "allow_guest": 1,
+  "allow_guest": 0,
   "api_method": "lmt_helpdesk_new_create_ticket",
   "cron_format": null,
   "disabled": 1,
@@ -2983,7 +2983,7 @@
   "script_type": "API"
  },
  {
-  "allow_guest": 1,
+  "allow_guest": 0,
   "api_method": "lmt_helpdesk_new_list_tickets",
   "cron_format": null,
   "disabled": 1,
@@ -3002,7 +3002,7 @@
   "script_type": "API"
  },
  {
-  "allow_guest": 1,
+  "allow_guest": 0,
   "api_method": "lmt_helpdesk_new_get_ticket",
   "cron_format": null,
   "disabled": 1,
@@ -3021,7 +3021,7 @@
   "script_type": "API"
  },
  {
-  "allow_guest": 1,
+  "allow_guest": 0,
   "api_method": "lmt_helpdesk_new_update_ticket",
   "cron_format": null,
   "disabled": 1,
@@ -3135,7 +3135,7 @@
   "script_type": "Scheduler Event"
  },
  {
-  "allow_guest": 1,
+  "allow_guest": 0,
   "api_method": "get_active_employees_for_filter",
   "cron_format": null,
   "disabled": 0,
