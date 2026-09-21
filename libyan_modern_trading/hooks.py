@@ -93,7 +93,7 @@ fixtures = [
     "Custom Field",
     "Property Setter",
     {"dt": "Print Format", "filters": [["standard", "=", "No"]]},
-    "Notification",
+    {"dt": "Notification", "filters": [["is_standard", "=", 0]]},
     {"dt": "Custom DocPerm", "filters": [["role", "=", "Warehouse User"]]},
     "Print Settings",
 ]
