@@ -234,7 +234,9 @@
   "lmt_cash_box_balance_mobiledebt_v1",
   "lmt_ai_health_1",
   "lmt_ai_chat_1",
-  "lmt_guarantor_draw_v1"
+  "lmt_guarantor_draw_v1",
+  "sr_legacy_lookup_24",
+  "sr_create_legacy_return_24"
  ],
  "scripts_doctype_event": [
   "01_Create Delivery note",
