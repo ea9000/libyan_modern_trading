@@ -306,7 +306,8 @@
   "38_get_latest_range_for_user_3",
   "95_guarantor_commission_on_submit",
   "96_guarantor_commission_on_delete",
-  "97_guarantor_commission_on_cancel"
+  "97_guarantor_commission_on_cancel",
+  "so_delete_draft_counter_rollback_v1"
  ],
  "scripts_indirect": [
   "edx_get_flagged_records_22",
