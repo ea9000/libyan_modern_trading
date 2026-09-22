@@ -236,7 +236,11 @@
   "lmt_ai_chat_1",
   "lmt_guarantor_draw_v1",
   "sr_legacy_lookup_24",
-  "sr_create_legacy_return_24"
+  "sr_create_legacy_return_24",
+  "lmt_alert_admin_v1",
+  "lmt_alert_ack_v1",
+  "lmt_alert_gate_v1",
+  "lmt_rc_initials_v1"
  ],
  "scripts_doctype_event": [
   "01_Create Delivery note",
@@ -330,7 +334,8 @@
   "tree_notes_scheduler_v1",
   "74_delete_draft_order_after_48_hours_v1",
   "auto_allocate_customer_advances_to_invoices_sales",
-  "lmt_helpdesk_alert_sender"
+  "lmt_helpdesk_alert_sender",
+  "lmt_alert_cron_v1"
  ],
  "webpages": [
   "address-assistant-page",
