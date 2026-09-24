@@ -240,7 +240,8 @@
   "lmt_alert_admin_v1",
   "lmt_alert_ack_v1",
   "lmt_alert_gate_v1",
-  "lmt_rc_initials_v1"
+  "lmt_rc_initials_v1",
+  "lmt_create_return_dn_v2"
  ],
  "scripts_doctype_event": [
   "01_Create Delivery note",
