@@ -4246,13 +4246,13 @@
   "doctype_event": "Before Insert",
   "enable_rate_limit": 0,
   "event_frequency": "All",
-  "modified": "2026-04-01 15:07:24.643302",
+  "modified": "2026-09-25 11:51:38.645372",
   "module": null,
   "name": "lmt_im_save_batch",
   "rate_limit_count": 5,
   "rate_limit_seconds": 86400,
   "reference_doctype": null,
-  "script": "if frappe.session.user == \"Guest\":\n    frappe.response[\"message\"] = {\"ok\": False, \"error\": \"Not allowed\"}\n    raise SystemExit\nbatch_id  = (frappe.form_dict.get(\"batch_id\") or \"\").strip()\nitem_code = (frappe.form_dict.get(\"item_code\") or \"\").strip()\nexpiry    = (frappe.form_dict.get(\"expiry_date\") or \"\").strip() or None\nmfg       = (frappe.form_dict.get(\"manufacturing_date\") or \"\").strip() or None\nif not batch_id or not item_code:\n    frappe.response[\"message\"] = {\"ok\": False, \"error\": \"batch_id and item_code required\"}\n    raise SystemExit\ntry:\n    doc = frappe.get_doc({\n        \"doctype\": \"Batch\",\n        \"batch_id\": batch_id,\n        \"item\": item_code,\n        \"expiry_date\": expiry,\n        \"manufacturing_date\": mfg\n    })\n    doc.insert(ignore_permissions=True)\n    frappe.db.commit()\n    frappe.response[\"message\"] = {\"ok\": True, \"batch_id\": batch_id}\nexcept Exception as e:\n    frappe.db.rollback()\n    frappe.response[\"message\"] = {\"ok\": False, \"error\": str(e)}",
+  "script": "if frappe.session.user == \"Guest\":\n    frappe.response[\"message\"] = {\"ok\": False, \"error\": \"Not allowed\"}\n    raise SystemExit\nok0 = 0\nif frappe.session.user == \"Administrator\":\n    ok0 = 1\nelse:\n    rr0 = frappe.db.sql(\"select role from `tabHas Role` where parent=%s and parenttype='User'\", (frappe.session.user,), as_dict=True)\n    for r0 in rr0:\n        if r0.role in (\"System Manager\", \"price-list-manager\"):\n            ok0 = 1\nif not ok0:\n    frappe.response[\"message\"] = {\"ok\": False, \"error\": \"Not permitted\"}\n    raise SystemExit\nbatch_id  = (frappe.form_dict.get(\"batch_id\") or \"\").strip()\nitem_code = (frappe.form_dict.get(\"item_code\") or \"\").strip()\nexpiry    = (frappe.form_dict.get(\"expiry_date\") or \"\").strip() or None\nmfg       = (frappe.form_dict.get(\"manufacturing_date\") or \"\").strip() or None\nif not batch_id or not item_code:\n    frappe.response[\"message\"] = {\"ok\": False, \"error\": \"batch_id and item_code required\"}\n    raise SystemExit\ntry:\n    doc = frappe.get_doc({\n        \"doctype\": \"Batch\",\n        \"batch_id\": batch_id,\n        \"item\": item_code,\n        \"expiry_date\": expiry,\n        \"manufacturing_date\": mfg\n    })\n    doc.insert(ignore_permissions=True)\n    frappe.db.commit()\n    frappe.response[\"message\"] = {\"ok\": True, \"batch_id\": batch_id}\nexcept Exception as e:\n    frappe.db.rollback()\n    frappe.response[\"message\"] = {\"ok\": False, \"error\": str(e)}",
   "script_type": "API"
  },
  {
