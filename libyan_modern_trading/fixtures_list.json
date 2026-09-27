@@ -242,7 +242,10 @@
   "lmt_alert_gate_v1",
   "lmt_rc_initials_v1",
   "lmt_create_return_dn_v2",
-  "35_reverse_agent_penalty_on_si_cancel"
+  "35_reverse_agent_penalty_on_si_cancel",
+  "lmt_home2_menu_v1",
+  "lmt_reports2_menu_v1",
+  "lmt_hr2_menu_v1"
  ],
  "scripts_doctype_event": [
   "01_Create Delivery note",
