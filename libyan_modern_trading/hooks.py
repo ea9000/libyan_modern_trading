@@ -101,3 +101,9 @@ fixtures = [
 # Clean up namespace
 del _scripts, _webpages, _load_fixtures_list
 
+# LMT sales-document read scope (ticket LMT-HDT-2026-09-27-00012)
+has_permission = {
+    "Sales Order": "libyan_modern_trading.sales_scope.has_permission",
+    "Delivery Note": "libyan_modern_trading.sales_scope.has_permission",
+    "Sales Invoice": "libyan_modern_trading.sales_scope.has_permission",
+}
