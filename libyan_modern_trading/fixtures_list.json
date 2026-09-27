@@ -338,7 +338,11 @@
   "lmt_visit_update_location_cv1",
   "lmt_visit_get_my_visits_cv1"
  ],
- "scripts_permission": [],
+ "scripts_permission": [
+  "lmt_scope_delivery_note_v1",
+  "lmt_scope_sales_invoice_v1",
+  "lmt_scope_sales_order_v1"
+ ],
  "scripts_scheduler": [
   "23_delete_draft_order_after_48_hours",
   "92_lmt_rep_eval_todo_gen",
