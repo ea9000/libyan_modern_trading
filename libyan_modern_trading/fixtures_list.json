@@ -254,7 +254,8 @@
   "master_closed_orders_ma1",
   "master_account_statement_ma1",
   "master_get_customers_ma1",
-  "master_cancelled_orders_ma1"
+  "master_cancelled_orders_ma1",
+  "lmt_settlemet_adjustments_v2"
  ],
  "scripts_doctype_event": [
   "01_Create Delivery note",
