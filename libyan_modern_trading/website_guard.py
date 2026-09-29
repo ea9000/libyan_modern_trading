@@ -2,6 +2,7 @@ import frappe
 from frappe.exceptions import Redirect
 from werkzeug.exceptions import HTTPException
 from werkzeug.utils import redirect as _wz_redirect
+from urllib.parse import quote
 
 class GuardRedirect(HTTPException):
     """302 redirect that survives being raised inside a before_request hook."""
@@ -92,7 +93,13 @@ def guard_website_routes():
 
         # Guest tries protected route => redirect to login
         if user == "Guest":
-            raise GuardRedirect("/login?redirect-to=" + path)
+            qs = ""
+            try:
+                qs = req.query_string.decode() if req.query_string else ""
+            except Exception:
+                qs = ""
+            target = path + ("?" + qs if qs else "")
+            raise GuardRedirect("/lmt-login?redirect-to=" + quote(target, safe=""))
 
         # Logged-in users: allow page load.
         # DocType/API permissions will enforce insert/update/read.
