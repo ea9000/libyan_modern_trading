@@ -255,7 +255,8 @@
   "master_account_statement_ma1",
   "master_get_customers_ma1",
   "master_cancelled_orders_ma1",
-  "lmt_settlemet_adjustments_v2"
+  "lmt_settlemet_adjustments_v2",
+  "lmt_cash_temp_account_mobiledebt_v1"
  ],
  "scripts_doctype_event": [
   "01_Create Delivery note",
@@ -329,7 +330,8 @@
   "96_guarantor_commission_on_delete",
   "97_guarantor_commission_on_cancel",
   "so_delete_draft_counter_rollback_v1",
-  "35_reverse_agent_penalty_on_si_cancel"
+  "35_reverse_agent_penalty_on_si_cancel",
+  "lmt_debt_deposit_requires_customer"
  ],
  "scripts_indirect": [
   "edx_get_flagged_records_22",
