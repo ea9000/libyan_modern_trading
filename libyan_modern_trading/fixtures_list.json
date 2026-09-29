@@ -258,7 +258,8 @@
   "lmt_settlemet_adjustments_v2",
   "lmt_cash_temp_account_mobiledebt_v1",
   "lmt_rc_admin_v1",
-  "lmt_helpdesk_audit_v1"
+  "lmt_helpdesk_audit_v1",
+  "lmt_gen_agent_stmt_mh1"
  ],
  "scripts_doctype_event": [
   "01_Create Delivery note",
