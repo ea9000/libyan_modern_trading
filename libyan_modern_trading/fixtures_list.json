@@ -259,7 +259,10 @@
   "lmt_cash_temp_account_mobiledebt_v1",
   "lmt_rc_admin_v1",
   "lmt_helpdesk_audit_v1",
-  "lmt_gen_agent_stmt_mh1"
+  "lmt_gen_agent_stmt_mh1",
+  "sr_legacy_list_24",
+  "sr_item_batches_24",
+  "lmt_legacy_finder_v1"
  ],
  "scripts_doctype_event": [
   "01_Create Delivery note",
@@ -469,6 +472,7 @@
   "كشف-عمولة-المندوب",
   "lmt-ai",
   "عمولة-الضامن",
-  "دليل-سلف-الموظفين"
+  "دليل-سلف-الموظفين",
+  "البحث-عن-رقم-الفاتورة-القديمة"
  ]
 }
