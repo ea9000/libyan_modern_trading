@@ -256,7 +256,8 @@
   "master_get_customers_ma1",
   "master_cancelled_orders_ma1",
   "lmt_settlemet_adjustments_v2",
-  "lmt_cash_temp_account_mobiledebt_v1"
+  "lmt_cash_temp_account_mobiledebt_v1",
+  "lmt_rc_admin_v1"
  ],
  "scripts_doctype_event": [
   "01_Create Delivery note",
