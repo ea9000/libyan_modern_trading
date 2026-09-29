@@ -22,9 +22,13 @@ def has_permission(doc, ptype=None, user=None):
         return None
     if "Sales User" not in roles:
         return None
+    allowed = [user] + _subordinates(user)
     owner = getattr(doc, "owner", None) or ""
-    if not owner:
+    if owner and owner in allowed:
         return None
-    if owner == user or owner in _subordinates(user):
-        return None
+    customer = getattr(doc, "customer", None) or ""
+    if customer:
+        am = frappe.db.get_value("Customer", customer, "account_manager") or ""
+        if am and am in allowed:
+            return None
     return False
