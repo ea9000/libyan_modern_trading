@@ -338,7 +338,8 @@
   "so_delete_draft_counter_rollback_v1",
   "35_reverse_agent_penalty_on_si_cancel",
   "lmt_debt_deposit_requires_customer",
-  "lmt_audit_ticket_sync_v1"
+  "lmt_audit_ticket_sync_v1",
+  "so_dup_line_guard_v1"
  ],
  "scripts_indirect": [
   "edx_get_flagged_records_22",

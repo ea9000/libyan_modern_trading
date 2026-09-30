@@ -6686,5 +6686,24 @@
   "reference_doctype": null,
   "script": "\nitem_code = str(frappe.form_dict.get(\"item_code\") or \"\").strip()\nwarehouse = str(frappe.form_dict.get(\"warehouse\") or \"\").strip()\ntoday = frappe.utils.nowdate()\nout = []\nif item_code:\n    qty_map = {}\n    if warehouse:\n        for r in frappe.db.sql(\"\"\"\n            select coalesce(sbe.batch_no, sle.batch_no) as b,\n                   sum(case when sbe.name is not null then (case when sle.actual_qty < 0 then -abs(sbe.qty) else abs(sbe.qty) end) else sle.actual_qty end) as q\n            from `tabStock Ledger Entry` sle\n            left join `tabSerial and Batch Entry` sbe on sbe.parent = sle.serial_and_batch_bundle\n            where sle.item_code=%s and sle.warehouse=%s and sle.is_cancelled=0\n            group by b\"\"\", (item_code, warehouse), as_dict=True):\n            if r.b:\n                qty_map[r.b] = float(r.q or 0)\n    for b in frappe.get_all(\"Batch\", filters={\"item\": item_code, \"disabled\": 0}, fields=[\"name\", \"expiry_date\"], order_by=\"expiry_date asc\"):\n        ex = str(b.expiry_date) if b.expiry_date else \"\"\n        out.append({\"name\": b.name, \"expiry_date\": ex, \"batch_qty\": qty_map.get(b.name, 0), \"expired\": 1 if (ex and ex < today) else 0})\nfrappe.response[\"message\"] = out\n",
   "script_type": "API"
+ },
+ {
+  "allow_guest": 0,
+  "api_method": null,
+  "cron_format": null,
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Server Script",
+  "doctype_event": "Before Save",
+  "enable_rate_limit": 0,
+  "event_frequency": "All",
+  "modified": "2026-09-30 10:52:50.406407",
+  "module": null,
+  "name": "so_dup_line_guard_v1",
+  "rate_limit_count": 5,
+  "rate_limit_seconds": 86400,
+  "reference_doctype": "Sales Order",
+  "script": "# so_dup_line_guard_v1 — LMT-HDT-2026-09-30-00001\n# Reject Sales Order save when two rows share item_code + custom_manual_expiry_date + is_free_item (batch_no is not stored on SO Item).\n# Client (split_sales) merges first; this catches stale carts / double-tap / other callers.\nif not doc.get(\"amended_from\"):\n    seen = {}\n    dups = []\n    for it in (doc.get(\"items\") or []):\n        code = (it.get(\"item_code\") or \"\").strip()\n        if not code:\n            continue\n        key = code + \"|\" + str(it.get(\"custom_manual_expiry_date\") or \"\") + \"|\" + (\"1\" if it.get(\"is_free_item\") else \"0\")\n        if key in seen:\n            dups.append(\"السطر \" + str(seen[key]) + \" والسطر \" + str(it.idx) + \": \" + frappe.utils.escape_html(it.get(\"item_name\") or code) + (\" (مجاني)\" if it.get(\"is_free_item\") else \"\"))\n        else:\n            seen[key] = it.idx\n    if dups:\n        msg = \"<b>لا يمكن الحفظ — أصناف مكررة بنفس التشغيلة:</b><br><br>\" + \"<br>\".join(dups) + \"<br><br>ادمج الكمية في سطر واحد.\"\n        frappe.throw(msg, title=\"صنف مكرر\")\n",
+  "script_type": "DocType Event"
  }
 ]
