@@ -6,6 +6,19 @@
   "doctype": "Role",
   "home_page": null,
   "is_custom": 0,
+  "modified": "2026-09-02 00:24:22.355938",
+  "name": "debt-verify-accountant",
+  "restrict_to_domain": null,
+  "role_name": "debt-verify-accountant",
+  "two_factor_auth": 0
+ },
+ {
+  "desk_access": 0,
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Role",
+  "home_page": null,
+  "is_custom": 0,
   "modified": "2026-02-05 11:41:11.305527",
   "name": "LMT Medical Rep",
   "restrict_to_domain": null,
@@ -205,6 +218,45 @@
   "name": "price-list-manager",
   "restrict_to_domain": null,
   "role_name": "price-list-manager",
+  "two_factor_auth": 0
+ },
+ {
+  "desk_access": 0,
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Role",
+  "home_page": null,
+  "is_custom": 0,
+  "modified": "2026-09-29 14:45:57.865555",
+  "name": "gl-mapping-admin",
+  "restrict_to_domain": null,
+  "role_name": "gl-mapping-admin",
+  "two_factor_auth": 0
+ },
+ {
+  "desk_access": 0,
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Role",
+  "home_page": null,
+  "is_custom": 0,
+  "modified": "2026-09-29 15:28:02.553256",
+  "name": "receipt-book-admin",
+  "restrict_to_domain": null,
+  "role_name": "receipt-book-admin",
+  "two_factor_auth": 0
+ },
+ {
+  "desk_access": 0,
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Role",
+  "home_page": null,
+  "is_custom": 0,
+  "modified": "2026-09-29 18:15:38.752527",
+  "name": "lmt-finance-hr-menu",
+  "restrict_to_domain": null,
+  "role_name": "lmt-finance-hr-menu",
   "two_factor_auth": 0
  }
 ]
