@@ -6838,5 +6838,43 @@
   "reference_doctype": null,
   "script": "# FORK of lmt_supervisor_agents_simple for supervisor-customer-statement-filtered only\n# API Name: lmt_supervisor_agents_simple\n# Type: API\n\nme = frappe.session.user\nuser_doc = frappe.db.get_value(\"User\", me, [\"full_name\", \"email\"], as_dict=True)\nmy_name = user_doc.full_name if user_doc else me\n\n# ---- 1. Check Permissions (STRICT) ----\ndef has_role(user, role_name):\n    return True if frappe.db.exists(\"Has Role\", {\"parent\": user, \"role\": role_name}) else False\n\n# Your specific list of allowed roles\nis_admin = False\nif me == \"Administrator\": is_admin = True\nelif has_role(me, \"System Manager\"): is_admin = True\nelif has_role(me, \"allow_see_all_simple_report\"): is_admin = True\nelif has_role(me, \"allow_all_customers_account_statement\"): is_admin = True\n\n# Check Supervisor Status (Does this user have subordinates?)\nsubs = frappe.db.sql(\"SELECT name FROM `tabUser` WHERE enabled=1 AND lmt_supervisor_user=%s\", (me,), pluck=True) or []\nis_supervisor = True if subs else False\n\n# DECISION: Who sees the dropdown?\n# Only Admins OR Supervisors can select. Everyone else is BLOCKED.\ncan_select_agent = 1 if (is_admin or is_supervisor) else 0\n\n# ---- 2. Fetch Agents ----\nagents = []\n\nif not can_select_agent:\n    # --- LOCKED MODE (User) ---\n    # Return ONLY the current user.\n    agents.append({\n        \"user\": me,\n        \"full_name\": my_name\n    })\n\nelse:\n    # --- OPEN MODE (Admin / Supervisor) ---\n    # Fetch all enabled, non-group Sales Persons\n    sql = \"\"\"\n        SELECT sp.sales_person_name, emp.user_id, emp.first_name, emp.last_name\n        FROM `tabSales Person` sp\n        LEFT JOIN `tabEmployee` emp ON sp.employee = emp.name\n        WHERE sp.enabled = 1 AND sp.is_group = 0\n    \"\"\"\n    rows = frappe.db.sql(sql, as_dict=True)\n    \n    # Define Filter List for Supervisors\n    # (Admins see everyone, Supervisors see self + subs)\n    allowed_emails = []\n    if not is_admin: \n        allowed_emails = [me.strip().lower()] + [str(x).strip().lower() for x in subs]\n\n    for r in rows:\n        # Resolve Email\n        u_email = (r.get(\"user_id\") or \"\").strip()\n        if not u_email and \"@\" in r.get(\"sales_person_name\", \"\"):\n            u_email = r.get(\"sales_person_name\").strip()\n        \n        if not u_email: continue\n\n        # Apply Filter (if not Admin)\n        if not is_admin:\n            if u_email.lower() not in allowed_emails:\n                continue\n\n        # Format Name\n        full_name = r.get(\"sales_person_name\")\n        if r.get(\"first_name\"):\n            full_name = f\"{r.get('first_name')} {r.get('last_name') or ''}\".strip()\n\n        agents.append({\"user\": u_email, \"full_name\": full_name})\n    \n    agents.sort(key=lambda x: x[\"full_name\"])\n\nfrappe.response[\"message\"] = {\n    \"can_select_agent\": can_select_agent,\n    \"agents\": agents\n}",
   "script_type": "API"
+ },
+ {
+  "allow_guest": 0,
+  "api_method": "lmt_vd4_get_agents_v1",
+  "cron_format": null,
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Server Script",
+  "doctype_event": "Before Insert",
+  "enable_rate_limit": 0,
+  "event_frequency": "All",
+  "modified": "2026-10-01 14:26:49.573820",
+  "module": null,
+  "name": "lmt_vd4_get_agents_v1",
+  "rate_limit_count": 5,
+  "rate_limit_seconds": 86400,
+  "reference_doctype": null,
+  "script": "\nADMIN_USERS = [\"omar.abubaerah@gmail.com\", \"abdu@online.de\"]\nuser = frappe.session.user\nif user == \"Guest\":\n    frappe.throw(\"Login required\")\nis_admin = False\nif user == \"Administrator\" or user in ADMIN_USERS:\n    is_admin = True\nelse:\n    ok = frappe.db.sql(\"SELECT 1 FROM `tabHas Role` WHERE parent=%s AND parenttype='User' AND role='System Manager' LIMIT 1\", (user,))\n    if ok:\n        is_admin = True\nallowed = None\nif not is_admin:\n    seen = [user]\n    queue = [user]\n    while queue:\n        cur = queue.pop(0)\n        kids = frappe.get_all(\"User\", filters={\"enabled\": 1, \"lmt_supervisor_user\": cur}, pluck=\"name\") or []\n        for k in kids:\n            if k not in seen:\n                seen.append(k)\n                queue.append(k)\n    allowed = seen\n\nrows = frappe.db.sql(\"SELECT DISTINCT account_manager FROM `tabCustomer` WHERE IFNULL(account_manager,'')!=''\")\nagent_users = []\nfor r in rows:\n    if r and r[0] and r[0] not in (\"Guest\", \"Administrator\"):\n        if allowed is None or r[0] in allowed:\n            agent_users.append(r[0])\nif not agent_users:\n    frappe.response[\"message\"] = {\"agents\": []}\nelse:\n    out = frappe.get_all(\"User\", filters={\"enabled\": 1, \"name\": [\"in\", agent_users]}, fields=[\"name as user\", \"full_name\"], order_by=\"full_name asc\")\n    frappe.response[\"message\"] = {\"agents\": out}\n",
+  "script_type": "API"
+ },
+ {
+  "allow_guest": 0,
+  "api_method": "lmt_vd4_get_visits_v1",
+  "cron_format": null,
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Server Script",
+  "doctype_event": "Before Insert",
+  "enable_rate_limit": 0,
+  "event_frequency": "All",
+  "modified": "2026-10-01 14:26:49.607484",
+  "module": null,
+  "name": "lmt_vd4_get_visits_v1",
+  "rate_limit_count": 5,
+  "rate_limit_seconds": 86400,
+  "reference_doctype": null,
+  "script": "\nADMIN_USERS = [\"omar.abubaerah@gmail.com\", \"abdu@online.de\"]\nuser = frappe.session.user\nif user == \"Guest\":\n    frappe.throw(\"Login required\")\nis_admin = False\nif user == \"Administrator\" or user in ADMIN_USERS:\n    is_admin = True\nelse:\n    ok = frappe.db.sql(\"SELECT 1 FROM `tabHas Role` WHERE parent=%s AND parenttype='User' AND role='System Manager' LIMIT 1\", (user,))\n    if ok:\n        is_admin = True\nallowed = None\nif not is_admin:\n    seen = [user]\n    queue = [user]\n    while queue:\n        cur = queue.pop(0)\n        kids = frappe.get_all(\"User\", filters={\"enabled\": 1, \"lmt_supervisor_user\": cur}, pluck=\"name\") or []\n        for k in kids:\n            if k not in seen:\n                seen.append(k)\n                queue.append(k)\n    allowed = seen\n\nfilters = frappe.form_dict.get(\"filters\") or {}\nif isinstance(filters, str):\n    try:\n        filters = json[\"loads\"](filters)\n    except Exception:\n        filters = {}\ncond = []\nargs = {}\nblocked = False\nif filters.get(\"agent\"):\n    if allowed is not None and filters[\"agent\"] not in allowed:\n        blocked = True\n    cond.append(\"v.sales_user = %(agent)s\")\n    args[\"agent\"] = filters[\"agent\"]\nif filters.get(\"from_date\"):\n    cond.append(\"DATE(v.visit_datetime) >= %(from_date)s\")\n    args[\"from_date\"] = filters[\"from_date\"]\nif filters.get(\"to_date\"):\n    cond.append(\"DATE(v.visit_datetime) <= %(to_date)s\")\n    args[\"to_date\"] = filters[\"to_date\"]\nif filters.get(\"customer_q\"):\n    cond.append(\"(c.customer_name LIKE %(cq)s OR v.customer LIKE %(cq)s)\")\n    args[\"cq\"] = \"%\" + str(filters[\"customer_q\"]) + \"%\"\nif allowed is not None:\n    cond.append(\"v.sales_user IN %(allowed)s\")\n    args[\"allowed\"] = tuple(allowed)\nwhere_sql = \"\"\nif cond:\n    where_sql = \"WHERE \" + \" AND \".join(cond)\nsql = (\"SELECT v.name, v.customer, c.customer_name, v.sales_user, u.full_name AS sales_user_full_name, \"\n       \"v.visit_datetime, v.latitude, v.longitude, v.accuracy_m, v.photo, v.notes \"\n       \"FROM `tabLMT Customer Visit` v \"\n       \"LEFT JOIN `tabCustomer` c ON c.name = v.customer \"\n       \"LEFT JOIN `tabUser` u ON u.name = v.sales_user \" + where_sql +\n       \" ORDER BY v.visit_datetime DESC LIMIT 2000\")\nif blocked:\n    frappe.response[\"message\"] = {\"visits\": []}\nelse:\n    frappe.response[\"message\"] = {\"visits\": frappe.db.sql(sql, args, as_dict=True)}\n",
+  "script_type": "API"
  }
 ]

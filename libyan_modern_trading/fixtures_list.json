@@ -267,7 +267,9 @@
   "lmt_cs6_legacy_v1",
   "lmt_mas1_opening_v1",
   "lmt_mas1_legacy_v1",
-  "lmt_supervisor_agents_scsf"
+  "lmt_supervisor_agents_scsf",
+  "lmt_vd4_get_agents_v1",
+  "lmt_vd4_get_visits_v1"
  ],
  "scripts_doctype_event": [
   "01_Create Delivery note",
