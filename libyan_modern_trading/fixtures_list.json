@@ -273,7 +273,10 @@
   "lmt_pw_force_check_v1",
   "lmt_pw_force_clear_v1",
   "lmt_tb_filters_v1",
-  "lmt_tb_ledger_v1"
+  "lmt_tb_ledger_v1",
+  "lmt_er_report_v1",
+  "lmt_er_filters_v1",
+  "lmt_sl_filters_v1"
  ],
  "scripts_doctype_event": [
   "01_Create Delivery note",
@@ -487,6 +490,7 @@
   "lmt-ai",
   "عمولة-الضامن",
   "دليل-سلف-الموظفين",
-  "البحث-عن-رقم-الفاتورة-القديمة"
+  "البحث-عن-رقم-الفاتورة-القديمة",
+  "تقرير-المصروفات"
  ]
 }
