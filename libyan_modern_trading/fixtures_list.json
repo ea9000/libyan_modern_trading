@@ -269,7 +269,9 @@
   "lmt_mas1_legacy_v1",
   "lmt_supervisor_agents_scsf",
   "lmt_vd4_get_agents_v1",
-  "lmt_vd4_get_visits_v1"
+  "lmt_vd4_get_visits_v1",
+  "lmt_pw_force_check_v1",
+  "lmt_pw_force_clear_v1"
  ],
  "scripts_doctype_event": [
   "01_Create Delivery note",
