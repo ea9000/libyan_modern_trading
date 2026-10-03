@@ -279,7 +279,9 @@
   "lmt_sl_filters_v1",
   "lmt_unsub21_get_users_v1",
   "lmt_warehouse_orders_qa4",
-  "lmt_menu_order_v1"
+  "lmt_menu_order_v1",
+  "lmt_rtvapp_reject_v1",
+  "lmt_soapprove_reject_v1"
  ],
  "scripts_doctype_event": [
   "01_Create Delivery note",
