@@ -277,7 +277,8 @@
   "lmt_er_report_v1",
   "lmt_er_filters_v1",
   "lmt_sl_filters_v1",
-  "lmt_unsub21_get_users_v1"
+  "lmt_unsub21_get_users_v1",
+  "lmt_warehouse_orders_qa4"
  ],
  "scripts_doctype_event": [
   "01_Create Delivery note",
