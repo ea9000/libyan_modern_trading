@@ -79,12 +79,23 @@ def _load_fixtures_list():
 
 _scripts, _webpages = _load_fixtures_list()
 
+def _load_fixture_roles():
+    import os as _o, json as _j
+    try:
+        with open(_o.path.join(_o.path.dirname(__file__), "fixtures_list.json"), "r", encoding="utf-8") as _f:
+            return _j.load(_f).get("roles") or []
+    except Exception:
+        return []
+
+
+_roles = _load_fixture_roles()
+
 fixtures = [
     {"dt": "Server Script", "filters": [["name", "in", _scripts]]} if _scripts else "Server Script",
     {"dt": "Web Page", "filters": [["name", "in", _webpages]]} if _webpages else "Web Page",
     "Client Script",
     {"dt": "DocType", "filters": [["custom", "=", 1]]},
-    {"dt": "Role", "filters": [["name", "in", [
+    {"dt": "Role", "filters": [["name", "in", _roles or [
         "LMT", "LMT Address Editor", "LMT Medical Manager", "LMT Medical Rep", "LMT Note User",
         "lmt_admin_sales_approval", "lmt_clearance_admin", "lmt_clearance_supervisor",
         "lmt_helpdesk_admin", "lmt_helpdesk_user", "lmt_supervisor_sales_approval",
@@ -101,6 +112,7 @@ fixtures = [
 
 # Clean up namespace
 del _scripts, _webpages, _load_fixtures_list
+del _roles, _load_fixture_roles
 
 # LMT sales-document read scope (ticket LMT-HDT-2026-09-27-00012)
 has_permission = {
