@@ -28,7 +28,8 @@
   "lmt-si-return-create",
   "lmt_so_read_all",
   "lmt_guarantor_draw",
-  "lmt_address_check"
+  "lmt_address_check",
+  "lmt-driver"
  ],
  "scripts_api": [
   "04_mark_printed_flags",
@@ -317,7 +318,13 @@
   "lmt_spwt_my_sp_v1",
   "lmt_spwt_sales_persons_v1",
   "lmt_spwt_warehouse_v1",
-  "lmt_spwt_achievement_v1"
+  "lmt_spwt_achievement_v1",
+  "lmt_drv_week_v1",
+  "lmt_drv_pool_v1",
+  "lmt_drv_deliver_v1",
+  "lmt_drv_si_v1",
+  "lmt_drv_stop_v1",
+  "lmt_drv_plan_v1"
  ],
  "scripts_doctype_event": [
   "01_Create Delivery note",
@@ -533,6 +540,7 @@
   "دليل-سلف-الموظفين",
   "البحث-عن-رقم-الفاتورة-القديمة",
   "تقرير-المصروفات",
-  "[audit]-تقرير-الإنجاز-مقابل-المستهدف"
+  "[audit]-تقرير-الإنجاز-مقابل-المستهدف",
+  "[dev]-مخطط-التوصيل"
  ]
 }
