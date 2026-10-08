@@ -29,7 +29,8 @@
   "lmt_so_read_all",
   "lmt_guarantor_draw",
   "lmt_address_check",
-  "lmt-driver"
+  "lmt-driver",
+  "lmt-wh-fix"
  ],
  "scripts_api": [
   "04_mark_printed_flags",
@@ -325,7 +326,10 @@
   "lmt_drv_si_v1",
   "lmt_drv_stop_v1",
   "lmt_drv_plan_v1",
-  "lmt_drv_mgr_v1"
+  "lmt_drv_mgr_v1",
+  "lmt_warehousefix1_get_filters_v1",
+  "lmt_warehousefix1_get_orders_v1",
+  "lmt_warehousefix1_set_state_v1"
  ],
  "scripts_doctype_event": [
   "01_Create Delivery note",
@@ -542,6 +546,7 @@
   "البحث-عن-رقم-الفاتورة-القديمة",
   "تقرير-المصروفات",
   "[audit]-تقرير-الإنجاز-مقابل-المستهدف",
-  "[dev]-مخطط-التوصيل"
+  "[dev]-مخطط-التوصيل",
+  "[audit]-warehouse-fix-1"
  ]
 }
