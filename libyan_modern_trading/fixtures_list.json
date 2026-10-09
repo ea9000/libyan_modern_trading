@@ -30,7 +30,8 @@
   "lmt_guarantor_draw",
   "lmt_address_check",
   "lmt-driver",
-  "lmt-wh-fix"
+  "lmt-wh-fix",
+  "lmt_ste_cancel"
  ],
  "scripts_api": [
   "04_mark_printed_flags",

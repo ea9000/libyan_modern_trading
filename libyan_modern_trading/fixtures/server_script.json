@@ -7400,13 +7400,13 @@
   "doctype_event": "Before Insert",
   "enable_rate_limit": 0,
   "event_frequency": "All",
-  "modified": "2026-10-09 19:54:08.293880",
+  "modified": "2026-10-09 20:00:48.953630",
   "module": null,
   "name": "lmt_ste_cancel_sm2",
   "rate_limit_count": 5,
   "rate_limit_seconds": 86400,
   "reference_doctype": null,
-  "script": "name = frappe.form_dict.get(\"name\")\nif not name:\n    frappe.throw(\"رقم التحويل مطلوب\")\ndoc = frappe.get_doc(\"Stock Entry\", name)\nif doc.docstatus != 1:\n    frappe.throw(\"التحويل غير معتمد - لا يمكن إلغاؤه\")\nif doc.purpose != \"Material Transfer\":\n    frappe.throw(\"هذا المستند ليس تحويل مخزون\")\ndoc.cancel()\nfrappe.response[\"message\"] = {\"name\": doc.name, \"docstatus\": doc.docstatus}",
+  "script": "user = frappe.session.user\nallowed = 0\nif user == \"Administrator\":\n    allowed = 1\nelse:\n    r = frappe.db.sql(\"select count(*) from `tabHas Role` where parenttype=%s and parent=%s and role=%s\", (\"User\", user, \"lmt_ste_cancel\"))\n    if r and r[0][0]:\n        allowed = 1\nif frappe.form_dict.get(\"check\"):\n    frappe.response[\"message\"] = {\"allowed\": allowed}\nelse:\n    if not allowed:\n        frappe.throw(\"ليس لديك صلاحية إلغاء التحويلات\")\n    name = frappe.form_dict.get(\"name\")\n    if not name:\n        frappe.throw(\"رقم التحويل مطلوب\")\n    doc = frappe.get_doc(\"Stock Entry\", name)\n    if doc.docstatus != 1:\n        frappe.throw(\"التحويل غير معتمد - لا يمكن إلغاؤه\")\n    if doc.purpose != \"Material Transfer\":\n        frappe.throw(\"هذا المستند ليس تحويل مخزون\")\n    doc.cancel()\n    frappe.response[\"message\"] = {\"name\": doc.name, \"docstatus\": doc.docstatus}",
   "script_type": "API"
  }
 ]
