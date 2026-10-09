@@ -7389,5 +7389,24 @@
   "reference_doctype": null,
   "script": "\nuser = frappe.session.user\nallowed = 0\nif user == \"Administrator\":\n    allowed = 1\nelse:\n    cnt = frappe.db.sql(\"select count(name) from `tabHas Role` where parenttype = 'User' and parent = %s and role in ('Warehouse Manager', 'lmt-wh-fix')\", (user,))\n    if cnt and cnt[0][0]:\n        allowed = 1\n\nif not allowed:\n    frappe.response[\"http_status_code\"] = 403\n    frappe.response[\"message\"] = {\"ok\": 0, \"error\": \"غير مصرح لك باستخدام هذه الصفحة\"}\nelse:\n    a = frappe.form_dict\n    target = (a.get(\"target_state\") or \"\").strip()\n    conf_d = str(a.get(\"confirm_dispatch\") or \"0\")\n    conf_u = str(a.get(\"confirm_undo\") or \"0\")\n    smap = {\n        \"NEW\": {\"custom_warehouse_status\": \"NEW\", \"custom_log_1\": 1, \"custom_log_2\": 0, \"custom_log_3\": 0, \"custom_log_4\": 0},\n        \"PICKING\": {\"custom_warehouse_status\": \"PICKING\", \"custom_log_1\": 1, \"custom_log_2\": 1, \"custom_log_3\": 0, \"custom_log_4\": 0},\n        \"DISPATCHED\": {\"custom_warehouse_status\": \"DISPATCHED\", \"custom_log_1\": 1, \"custom_log_2\": 1, \"custom_log_3\": 1, \"custom_log_4\": 1}\n    }\n    names = []\n    for x in (a.get(\"orders\") or \"\").split(\",\"):\n        x = x.strip()\n        if x and x not in names:\n            names.append(x)\n    err = \"\"\n    if target not in smap:\n        err = \"حالة غير صالحة\"\n    elif not names:\n        err = \"لم يتم تحديد أي طلب\"\n    elif len(names) > 200:\n        err = \"الحد الأقصى 200 طلب\"\n    elif target == \"DISPATCHED\" and conf_d != \"1\":\n        err = \"يجب تأكيد سلمت للسائق قبل التحويل إلى تم الإرسال\"\n    if err:\n        frappe.response[\"message\"] = {\"ok\": 0, \"error\": err}\n    else:\n        fixed = []\n        skipped = []\n        errors = []\n        for n in names:\n            try:\n                row = frappe.db.get_value(\"Sales Order\", n, [\"docstatus\", \"custom_warehouse_status\"], as_dict=True)\n                if not row:\n                    errors.append({\"name\": n, \"error\": \"غير موجود\"})\n                elif row.docstatus != 1:\n                    errors.append({\"name\": n, \"error\": \"الطلب غير معتمد\"})\n                else:\n                    old = row.custom_warehouse_status or \"\"\n                    if old == target:\n                        skipped.append(n)\n                    elif old == \"DISPATCHED\" and conf_u != \"1\":\n                        errors.append({\"name\": n, \"error\": \"إرجاع من تم الإرسال يحتاج تأكيد\"})\n                    else:\n                        frappe.db.set_value(\"Sales Order\", n, smap[target])\n                        frappe.get_doc({\"doctype\": \"Comment\", \"comment_type\": \"Info\", \"reference_doctype\": \"Sales Order\", \"reference_name\": n, \"content\": \"إصلاح حالة المستودع من \" + (old or \"-\") + \" إلى \" + target + \" | بواسطة \" + user + \" | warehouse-fix-1-aud\"}).insert(ignore_permissions=True)\n                        fixed.append(n)\n            except Exception as e:\n                errors.append({\"name\": n, \"error\": str(e)})\n        frappe.response[\"message\"] = {\"ok\": 1, \"fixed\": fixed, \"skipped\": skipped, \"errors\": errors}\n",
   "script_type": "API"
+ },
+ {
+  "allow_guest": 0,
+  "api_method": "lmt_ste_cancel_sm2",
+  "cron_format": null,
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Server Script",
+  "doctype_event": "Before Insert",
+  "enable_rate_limit": 0,
+  "event_frequency": "All",
+  "modified": "2026-10-09 19:54:08.293880",
+  "module": null,
+  "name": "lmt_ste_cancel_sm2",
+  "rate_limit_count": 5,
+  "rate_limit_seconds": 86400,
+  "reference_doctype": null,
+  "script": "name = frappe.form_dict.get(\"name\")\nif not name:\n    frappe.throw(\"رقم التحويل مطلوب\")\ndoc = frappe.get_doc(\"Stock Entry\", name)\nif doc.docstatus != 1:\n    frappe.throw(\"التحويل غير معتمد - لا يمكن إلغاؤه\")\nif doc.purpose != \"Material Transfer\":\n    frappe.throw(\"هذا المستند ليس تحويل مخزون\")\ndoc.cancel()\nfrappe.response[\"message\"] = {\"name\": doc.name, \"docstatus\": doc.docstatus}",
+  "script_type": "API"
  }
 ]

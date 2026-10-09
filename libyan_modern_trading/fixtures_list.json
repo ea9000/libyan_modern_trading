@@ -329,7 +329,8 @@
   "lmt_drv_mgr_v1",
   "lmt_warehousefix1_get_filters_v1",
   "lmt_warehousefix1_get_orders_v1",
-  "lmt_warehousefix1_set_state_v1"
+  "lmt_warehousefix1_set_state_v1",
+  "lmt_ste_cancel_sm2"
  ],
  "scripts_doctype_event": [
   "01_Create Delivery note",
