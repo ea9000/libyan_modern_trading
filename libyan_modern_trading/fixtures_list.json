@@ -31,7 +31,8 @@
   "lmt_address_check",
   "lmt-driver",
   "lmt-wh-fix",
-  "lmt_ste_cancel"
+  "lmt_ste_cancel",
+  "lmt-access-admin"
  ],
  "scripts_api": [
   "04_mark_printed_flags",
@@ -331,7 +332,9 @@
   "lmt_warehousefix1_get_filters_v1",
   "lmt_warehousefix1_get_orders_v1",
   "lmt_warehousefix1_set_state_v1",
-  "lmt_ste_cancel_sm2"
+  "lmt_ste_cancel_sm2",
+  "lmt_mobilehome_access_v1",
+  "lmt_sat_sales_persons_v2"
  ],
  "scripts_doctype_event": [
   "01_Create Delivery note",
