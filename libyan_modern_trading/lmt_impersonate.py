@@ -259,8 +259,10 @@ def login_as(user, reason=None):
     return {"ok": 1, "user": user, "can_write": can_write, "expires": str(expires), "cover": cover}
 
 
-@frappe.whitelist()
+@frappe.whitelist(allow_guest=True)
 def status():
+    if frappe.session.user == "Guest":
+        return {"active": 0}
     sess = _sess() or {}
     imp = sess.get("impersonated_by")
     if not imp:
@@ -347,3 +349,104 @@ def after_insert_doc(doc, method=None):
         _log_doc(sess.get("impersonation_log"), doc)
     except Exception:
         pass
+
+
+# ---------------------------------------------------------------- cover windows (GM/OPS/Admin)
+def _cover_admin():
+    if frappe.session.user == "Administrator":
+        return
+    if ROLE_ALL in set(frappe.get_roles()):
+        return
+    frappe.throw(_("Not permitted"), frappe.PermissionError)
+
+
+@frappe.whitelist()
+def supervisors():
+    _cover_admin()
+    rows = frappe.get_all("Has Role", filters={"role": ["in", [ROLE_TEAM, ROLE_ALL]], "parenttype": "User"}, fields=["parent"], distinct=True)
+    out = []
+    for r in rows:
+        if r.parent in ("Administrator", "Guest"):
+            continue
+        if not frappe.db.get_value("User", r.parent, "enabled"):
+            continue
+        out.append({"user": r.parent, "full_name": frappe.db.get_value("User", r.parent, "full_name"),
+                    "all": int(ROLE_ALL in frappe.get_roles(r.parent)),
+                    "write": int(ROLE_WRITE in frappe.get_roles(r.parent))})
+    return out
+
+
+@frappe.whitelist()
+def agents_of(supervisor):
+    _cover_admin()
+    roles = set(frappe.get_roles(supervisor))
+    filters = {"enabled": 1, "name": ["not in", ["Administrator", "Guest", supervisor]]}
+    if ROLE_ALL not in roles:
+        filters["lmt_supervisor_user"] = supervisor
+    rows = frappe.get_all("User", filters=filters, fields=["name", "full_name"], order_by="full_name")
+    out = []
+    for r in rows:
+        if _target_blocked(r.name):
+            continue
+        out.append({"user": r.name, "full_name": r.full_name})
+    return out
+
+
+@frappe.whitelist()
+def cover_list(active_only=1):
+    _cover_admin()
+    filters = {}
+    if cint(active_only):
+        filters["status"] = "Active"
+    rows = frappe.get_all(COVER_DT, filters=filters,
+                          fields=["name", "supervisor", "agent", "from_date", "to_date", "status", "reason", "created_by_user", "creation"],
+                          order_by="from_date desc, creation desc", limit=200)
+    for r in rows:
+        r["supervisor_name"] = frappe.db.get_value("User", r.supervisor, "full_name")
+        r["agent_name"] = frappe.db.get_value("User", r.agent, "full_name")
+    return rows
+
+
+@frappe.whitelist()
+def cover_create(supervisor, agent, from_date, to_date, reason=None):
+    _cover_admin()
+    if not frappe.db.exists("User", supervisor) or not frappe.db.exists("User", agent):
+        frappe.throw(_("User not found"))
+    roles = set(frappe.get_roles(supervisor))
+    if not (roles & {ROLE_TEAM, ROLE_ALL}):
+        frappe.throw("المشرف لا يحمل دور الإشراف (lmt-impersonate-team/all)")
+    if ROLE_WRITE not in roles:
+        frappe.throw("المشرف لا يحمل دور الكتابة (lmt-impersonate-write) — فترة التغطية بلا فائدة")
+    why = _target_blocked(agent)
+    if why:
+        frappe.throw("لا يمكن تغطية هذا المستخدم ({0})".format(why))
+    if ROLE_ALL not in roles and frappe.db.get_value("User", agent, "lmt_supervisor_user") != supervisor:
+        frappe.throw("المندوب ليس ضمن فريق هذا المشرف")
+    if get_datetime(to_date) < get_datetime(from_date):
+        frappe.throw("تاريخ النهاية قبل البداية")
+    if _active_cover(supervisor, agent) and get_datetime(from_date) <= get_datetime(nowdate()):
+        frappe.throw("توجد فترة تغطية فعّالة بالفعل لهذا المشرف والمندوب")
+    d = frappe.get_doc({"doctype": COVER_DT, "supervisor": supervisor, "agent": agent, "from_date": from_date,
+                        "to_date": to_date, "reason": (reason or "").strip(), "status": "Active",
+                        "created_by_user": frappe.session.user})
+    d.insert(ignore_permissions=True)
+    return d.name
+
+
+@frappe.whitelist()
+def cover_end(name):
+    _cover_admin()
+    if not frappe.db.exists(COVER_DT, name):
+        frappe.throw(_("Not found"))
+    frappe.db.set_value(COVER_DT, name, {"status": "Ended"})
+    return {"ok": 1}
+
+
+@frappe.whitelist()
+def log_list(limit=50):
+    _cover_admin()
+    rows = frappe.get_all(LOG_DT, fields=["name", "supervisor", "agent", "reason", "can_write", "started", "ended", "status", "ip"],
+                          order_by="creation desc", limit=cint(limit) or 50)
+    for r in rows:
+        r["docs"] = frappe.get_all("LMT Impersonation Log Item", filters={"parent": r.name}, fields=["ref_doctype", "ref_name", "amount"])
+    return rows

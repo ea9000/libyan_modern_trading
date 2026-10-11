@@ -62,6 +62,10 @@ app_include_css = [
     "/assets/libyan_modern_trading/css/pwa.css",
 ]
 
+web_include_js = [
+    "/assets/libyan_modern_trading/js/lmt_impersonate_banner.js",
+]
+
 app_include_js = [
     "/assets/lmt_custom/js/disable_sw.js"
 ]
