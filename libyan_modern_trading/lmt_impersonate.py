@@ -110,7 +110,12 @@ def _allowed(doc, action):
 
 def _action(doc, method):
     if method == "validate":
-        return "insert" if doc.is_new() else "save"
+        if doc.is_new():
+            return "insert"
+        act = getattr(doc, "_action", None) or ""
+        if act in ("submit", "cancel", "update_after_submit"):
+            return act
+        return "save"
     return {
         "before_insert": "insert",
         "before_submit": "submit",
