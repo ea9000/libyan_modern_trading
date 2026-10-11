@@ -32,7 +32,10 @@
   "lmt-driver",
   "lmt-wh-fix",
   "lmt_ste_cancel",
-  "lmt-access-admin"
+  "lmt-access-admin",
+  "lmt-impersonate-write",
+  "lmt-impersonate-all",
+  "lmt-impersonate-team"
  ],
  "scripts_api": [
   "04_mark_printed_flags",
@@ -552,6 +555,7 @@
   "تقرير-المصروفات",
   "[audit]-تقرير-الإنجاز-مقابل-المستهدف",
   "[dev]-مخطط-التوصيل",
-  "[audit]-warehouse-fix-1"
+  "[audit]-warehouse-fix-1",
+  "الدخول-كمندوب"
  ]
 }
