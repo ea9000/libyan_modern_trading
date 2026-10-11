@@ -17,7 +17,7 @@ LOG_DT = "LMT Impersonation Log"
 SYSTEM_ALLOW = {
     "Activity Log", "Error Log", "Access Log", "Route History", "Version", "Comment",
     "Notification Log", "Email Queue", "Communication", "Prepared Report", "Deleted Document",
-    "Scheduled Job Log", "File", "ToDo", "Energy Point Log", "View Log", LOG_DT,
+    "Scheduled Job Log", "File", "ToDo", "Energy Point Log", "View Log", "Workflow Action", LOG_DT,
 }
 
 # business writes allowed for lmt-impersonate-write inside an active cover window
