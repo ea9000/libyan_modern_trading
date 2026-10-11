@@ -343,7 +343,8 @@
   "lmt_sat_copy_v2",
   "lmt_sat_save_v2",
   "lmt_sat_items_v2",
-  "lmt_sat_targets_v2"
+  "lmt_sat_targets_v2",
+  "lmt_item_track_v1"
  ],
  "scripts_doctype_event": [
   "01_Create Delivery note",
@@ -562,6 +563,7 @@
   "[audit]-تقرير-الإنجاز-مقابل-المستهدف",
   "[dev]-مخطط-التوصيل",
   "[audit]-warehouse-fix-1",
-  "الدخول-كمندوب"
+  "الدخول-كمندوب",
+  "تتبع-الأصناف"
  ]
 }
