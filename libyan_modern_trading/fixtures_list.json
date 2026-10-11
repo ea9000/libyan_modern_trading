@@ -35,7 +35,8 @@
   "lmt-access-admin",
   "lmt-impersonate-write",
   "lmt-impersonate-all",
-  "lmt-impersonate-team"
+  "lmt-impersonate-team",
+  "lmt-sat-save"
  ],
  "scripts_api": [
   "04_mark_printed_flags",
@@ -337,7 +338,11 @@
   "lmt_warehousefix1_set_state_v1",
   "lmt_ste_cancel_sm2",
   "lmt_mobilehome_access_v1",
-  "lmt_sat_sales_persons_v2"
+  "lmt_sat_sales_persons_v2",
+  "lmt_sat_copy_v2",
+  "lmt_sat_save_v2",
+  "lmt_sat_items_v2",
+  "lmt_sat_targets_v2"
  ],
  "scripts_doctype_event": [
   "01_Create Delivery note",
