@@ -192,7 +192,7 @@ def candidates():
         roles.add(ROLE_ALL)
     if not (roles & {ROLE_TEAM, ROLE_ALL}):
         return {"enabled": 1, "users": [], "scope": "none"}
-    filters = {"enabled": 1, "user_type": ["!=", "System User"]}
+    filters = {"enabled": 1, "name": ["not in", ["Administrator", "Guest"]]}
     scope = "all"
     if ROLE_ALL not in roles:
         filters["lmt_supervisor_user"] = caller
