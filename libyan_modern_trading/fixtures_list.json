@@ -36,7 +36,8 @@
   "lmt-impersonate-write",
   "lmt-impersonate-all",
   "lmt-impersonate-team",
-  "lmt-sat-save"
+  "lmt-sat-save",
+  "lmt-item-tracking"
  ],
  "scripts_api": [
   "04_mark_printed_flags",
