@@ -33,11 +33,25 @@ add_to_apps_screen = [
 before_request = [
     "libyan_modern_trading.website_guard.guard_website_routes",
     "libyan_modern_trading.auth_guard.guard_lmt_standard_routes",
+    "libyan_modern_trading.lmt_impersonate.guard_request",
 ]
 
 on_session_creation = [
     "libyan_modern_trading.auth_guard.set_home_for_lmt_standard",
 ]
+
+# LMT impersonation guard — no-op unless site_config lmt_impersonate_enabled=1 and session is impersonated
+doc_events = {
+    "*": {
+        "before_insert": "libyan_modern_trading.lmt_impersonate.guard_doc",
+        "validate": "libyan_modern_trading.lmt_impersonate.guard_doc",
+        "before_submit": "libyan_modern_trading.lmt_impersonate.guard_doc",
+        "before_cancel": "libyan_modern_trading.lmt_impersonate.guard_doc",
+        "before_update_after_submit": "libyan_modern_trading.lmt_impersonate.guard_doc",
+        "on_trash": "libyan_modern_trading.lmt_impersonate.guard_doc",
+        "after_insert": "libyan_modern_trading.lmt_impersonate.after_insert_doc",
+    }
+}
 
 app_include_js = [
     "/assets/libyan_modern_trading/js/force_mobile_home.js",
