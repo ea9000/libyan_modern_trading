@@ -105,6 +105,8 @@ def _allowed(doc, action):
         return False
     if doc.doctype == "Sales Invoice" and not cint(doc.get("is_return")):
         return False
+    if doc.doctype == "LMT Debt Collection" and (doc.get("action_type") or "") != "ايداع":
+        return False
     return True
 
 
