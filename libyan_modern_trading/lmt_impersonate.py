@@ -49,6 +49,11 @@ def _sess():
         return None
 
 
+def _ours(sess):
+    """True only for sessions opened by login_as (native Administrator impersonate is left alone)."""
+    return bool(sess and sess.get("impersonated_by") and cint(sess.get("lmt_impersonation")))
+
+
 def _dt_exists(dt):
     return bool(frappe.db.exists("DocType", dt))
 
@@ -254,6 +259,7 @@ def login_as(user, reason=None):
     frappe.local.login_manager.login_as(user)
     data = frappe.session.data
     data.impersonated_by = caller
+    data.lmt_impersonation = 1
     data.impersonation_expires = str(expires)
     data.impersonation_can_write = can_write
     data.impersonation_cover = cover
@@ -266,9 +272,9 @@ def status():
     if frappe.session.user == "Guest":
         return {"active": 0}
     sess = _sess() or {}
-    imp = sess.get("impersonated_by")
-    if not imp:
+    if not _ours(sess):
         return {"active": 0}
+    imp = sess.get("impersonated_by")
     return {
         "active": 1,
         "impersonated_by": imp,
@@ -282,7 +288,7 @@ def status():
 @frappe.whitelist()
 def end():
     sess = _sess()
-    if sess and sess.get("impersonated_by"):
+    if _ours(sess):
         _close_log(sess.get("impersonation_log"))
     frappe.local.login_manager.logout()
     return {"ok": 1}
@@ -295,7 +301,7 @@ def guard_request():
         if not _enabled():
             return
         sess = _sess()
-        if not sess or not sess.get("impersonated_by"):
+        if not _ours(sess):
             return
         exp = sess.get("impersonation_expires")
         if exp and get_datetime(exp) < now_datetime():
@@ -316,7 +322,7 @@ def guard_doc(doc, method=None):
         if not _enabled():
             return
         sess = _sess()
-        imp = sess.get("impersonated_by") if sess else None
+        imp = sess.get("impersonated_by") if _ours(sess) else None
     except Exception:
         return
     if not imp:
@@ -345,7 +351,7 @@ def guard_doc(doc, method=None):
 def after_insert_doc(doc, method=None):
     try:
         sess = _sess()
-        imp = sess.get("impersonated_by") if sess else None
+        imp = sess.get("impersonated_by") if _ours(sess) else None
         if not imp or doc.doctype in SYSTEM_ALLOW or getattr(doc.meta, "istable", 0):
             return
         _log_doc(sess.get("impersonation_log"), doc)
@@ -354,21 +360,32 @@ def after_insert_doc(doc, method=None):
 
 
 # ---------------------------------------------------------------- cover windows (GM/OPS/Admin)
-def _cover_admin():
-    if frappe.session.user == "Administrator":
-        return
-    if ROLE_ALL in set(frappe.get_roles()):
-        return
+def _cover_scope():
+    """Returns None for global scope (Administrator / lmt-impersonate-all), else the caller (team supervisor: own covers only)."""
+    u = frappe.session.user
+    if u == "Administrator":
+        return None
+    roles = set(frappe.get_roles(u))
+    if ROLE_ALL in roles:
+        return None
+    if ROLE_TEAM in roles:
+        return u
     frappe.throw(_("Not permitted"), frappe.PermissionError)
+
+
+def _cover_admin():
+    _cover_scope()
 
 
 @frappe.whitelist()
 def supervisors():
-    _cover_admin()
+    scope = _cover_scope()
     rows = frappe.get_all("Has Role", filters={"role": ["in", [ROLE_TEAM, ROLE_ALL]], "parenttype": "User"}, fields=["parent"], distinct=True)
     out = []
     for r in rows:
         if r.parent in ("Administrator", "Guest"):
+            continue
+        if scope and r.parent != scope:
             continue
         if not frappe.db.get_value("User", r.parent, "enabled"):
             continue
@@ -380,7 +397,9 @@ def supervisors():
 
 @frappe.whitelist()
 def agents_of(supervisor):
-    _cover_admin()
+    scope = _cover_scope()
+    if scope and supervisor != scope:
+        frappe.throw(_("Not permitted"), frappe.PermissionError)
     roles = set(frappe.get_roles(supervisor))
     filters = {"enabled": 1, "name": ["not in", ["Administrator", "Guest", supervisor]]}
     if ROLE_ALL not in roles:
@@ -396,8 +415,10 @@ def agents_of(supervisor):
 
 @frappe.whitelist()
 def cover_list(active_only=1):
-    _cover_admin()
+    scope = _cover_scope()
     filters = {}
+    if scope:
+        filters["supervisor"] = scope
     if cint(active_only):
         filters["status"] = "Active"
     rows = frappe.get_all(COVER_DT, filters=filters,
@@ -411,7 +432,9 @@ def cover_list(active_only=1):
 
 @frappe.whitelist()
 def cover_create(supervisor, agent, from_date, to_date, reason=None):
-    _cover_admin()
+    scope = _cover_scope()
+    if scope and supervisor != scope:
+        frappe.throw("يمكنك إنشاء فترات تغطية لنفسك فقط", frappe.PermissionError)
     if not frappe.db.exists("User", supervisor) or not frappe.db.exists("User", agent):
         frappe.throw(_("User not found"))
     roles = set(frappe.get_roles(supervisor))
@@ -437,17 +460,22 @@ def cover_create(supervisor, agent, from_date, to_date, reason=None):
 
 @frappe.whitelist()
 def cover_end(name):
-    _cover_admin()
+    scope = _cover_scope()
     if not frappe.db.exists(COVER_DT, name):
         frappe.throw(_("Not found"))
+    if scope and frappe.db.get_value(COVER_DT, name, "supervisor") != scope:
+        frappe.throw(_("Not permitted"), frappe.PermissionError)
     frappe.db.set_value(COVER_DT, name, {"status": "Ended"})
     return {"ok": 1}
 
 
 @frappe.whitelist()
 def log_list(limit=50):
-    _cover_admin()
-    rows = frappe.get_all(LOG_DT, fields=["name", "supervisor", "agent", "reason", "can_write", "started", "ended", "status", "ip"],
+    scope = _cover_scope()
+    lf = {}
+    if scope:
+        lf["supervisor"] = scope
+    rows = frappe.get_all(LOG_DT, filters=lf, fields=["name", "supervisor", "agent", "reason", "can_write", "started", "ended", "status", "ip"],
                           order_by="creation desc", limit=cint(limit) or 50)
     for r in rows:
         r["docs"] = frappe.get_all("LMT Impersonation Log Item", filters={"parent": r.name}, fields=["ref_doctype", "ref_name", "amount"])
