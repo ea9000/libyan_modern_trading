@@ -72,6 +72,8 @@ def _target_blocked(user):
         return "privileged"
     if _is_supervisor(user):
         return "supervisor"
+    if not frappe.db.get_value("User", user, "lmt_supervisor_user"):
+        return "not an agent"
     return None
 
 
@@ -205,7 +207,7 @@ def candidates():
         roles.add(ROLE_ALL)
     if not (roles & {ROLE_TEAM, ROLE_ALL}):
         return {"enabled": 1, "users": [], "scope": "none"}
-    filters = {"enabled": 1, "name": ["not in", ["Administrator", "Guest"]]}
+    filters = {"enabled": 1, "name": ["not in", ["Administrator", "Guest"]], "lmt_supervisor_user": ["is", "set"]}
     scope = "all"
     if ROLE_ALL not in roles:
         filters["lmt_supervisor_user"] = caller
@@ -402,7 +404,7 @@ def agents_of(supervisor):
     if scope and supervisor != scope:
         frappe.throw(_("Not permitted"), frappe.PermissionError)
     roles = set(frappe.get_roles(supervisor))
-    filters = {"enabled": 1, "name": ["not in", ["Administrator", "Guest", supervisor]]}
+    filters = {"enabled": 1, "name": ["not in", ["Administrator", "Guest", supervisor]], "lmt_supervisor_user": ["is", "set"]}
     if ROLE_ALL not in roles:
         filters["lmt_supervisor_user"] = supervisor
     rows = frappe.get_all("User", filters=filters, fields=["name", "full_name"], order_by="full_name")
