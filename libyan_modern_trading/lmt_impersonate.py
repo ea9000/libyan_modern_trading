@@ -322,12 +322,18 @@ def guard_doc(doc, method=None):
     action = _action(doc, method)
     if action is None:
         return
+    # nested write triggered by an already-approved top-level action in this request
+    if getattr(frappe.local, "lmt_imp_ctx", None):
+        if action == "insert" and doc.meta.has_field("custom_impersonated_by"):
+            doc.custom_impersonated_by = imp
+        return
     if not cint(sess.get("impersonation_can_write")):
         frappe.throw(DENY_READONLY, frappe.PermissionError)
     if not _active_cover(imp, frappe.session.user):
         frappe.throw(DENY_COVER, frappe.PermissionError)
     if not _allowed(doc, action):
         frappe.throw(DENY_ACTION.format(doc.doctype, action), frappe.PermissionError)
+    frappe.local.lmt_imp_ctx = doc.doctype + ":" + (doc.name or "new") + ":" + action
     if action == "insert" and doc.meta.has_field("custom_impersonated_by"):
         doc.custom_impersonated_by = imp
 
