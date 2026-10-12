@@ -5234,13 +5234,13 @@
   "doctype_event": "Before Insert",
   "enable_rate_limit": 0,
   "event_frequency": "All",
-  "modified": "2026-09-02 00:30:01.910575",
+  "modified": "2026-10-12 18:31:29.416114",
   "module": null,
   "name": "debt_verify_page_access_3",
   "rate_limit_count": 5,
   "rate_limit_seconds": 86400,
   "reference_doctype": null,
-  "script": "vrg = frappe.db.get_all(\"Has Role\", filters={\"parent\": frappe.session.user, \"parenttype\": \"User\"}, fields=[\"role\"])\nvok = (frappe.session.user == \"Administrator\")\nfor vr in vrg:\n    if vr.role == \"debt-verify-accountant\":\n        vok = True\n\nfrappe.response[\"message\"] = {\"status\": \"success\", \"allowed\": vok}",
+  "script": "\nvrg = frappe.db.get_all(\"Has Role\", filters={\"parent\": frappe.session.user, \"parenttype\": \"User\"}, fields=[\"role\"])\nvok = (frappe.session.user == \"Administrator\")\nvdel = (frappe.session.user == \"Administrator\")\nfor vr in vrg:\n    if vr.role == \"debt-verify-accountant\":\n        vok = True\n    if vr.role == \"receipt-book-admin\":\n        vdel = True\nfrappe.response[\"message\"] = {\"status\": \"success\", \"allowed\": vok, \"can_delete\": vdel}\n",
   "script_type": "API"
  },
  {
@@ -7768,6 +7768,25 @@
   "rate_limit_seconds": 86400,
   "reference_doctype": null,
   "script": "\n# lmt_debt_candelete_v1 — page-own for mobile-debt-form_1: may the session user delete LMT Debt Collection records?\ncd_user = frappe.session.user\ncd_ok = (cd_user == \"Administrator\")\nif not cd_ok and cd_user != \"Guest\":\n    if frappe.db.count(\"Has Role\", {\"parent\": cd_user, \"parenttype\": \"User\", \"role\": \"receipt-book-admin\"}) > 0:\n        cd_ok = True\nfrappe.response[\"message\"] = {\"can_delete\": cd_ok}\n",
+  "script_type": "API"
+ },
+ {
+  "allow_guest": 0,
+  "api_method": "lmt_dept2gl_delete_v1",
+  "cron_format": null,
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Server Script",
+  "doctype_event": "Before Insert",
+  "enable_rate_limit": 0,
+  "event_frequency": "All",
+  "modified": "2026-10-12 18:31:29.513095",
+  "module": null,
+  "name": "lmt_dept2gl_delete_v1",
+  "rate_limit_count": 5,
+  "rate_limit_seconds": 86400,
+  "reference_doctype": null,
+  "script": "\n# lmt_dept2gl_delete_v1 — page-own for dept-2-gl-QA-new-look_pdf-fix_3: Administrator / receipt-book-admin deletes an unverified draft.\n# Server rule lives in Before Delete guard lmt_debt_nodelete_v1 (roles + booklet comment); this API adds the accounting safety checks.\ndu = frappe.session.user\ndok = (du == \"Administrator\")\nif not dok and du != \"Guest\":\n    if frappe.db.count(\"Has Role\", {\"parent\": du, \"parenttype\": \"User\", \"role\": \"receipt-book-admin\"}) > 0:\n        dok = True\ndn = (frappe.form_dict.get(\"docname\") or \"\").strip()\nout = None\nif not dok:\n    out = {\"status\": \"error\", \"message\": \"غير مصرح — الحذف لمسؤول الدفاتر فقط\"}\nelif not dn or not frappe.db.exists(\"LMT Debt Collection\", dn):\n    out = {\"status\": \"error\", \"message\": \"السجل غير موجود\"}\nelse:\n    d = frappe.db.get_value(\"LMT Debt Collection\", dn, [\"docstatus\", \"l_reconciled\", \"payment_entry\", \"journal_entry\", \"receipt_uid\", \"action_type\", \"amount\", \"agent_name\", \"customer\"], as_dict=True)\n    if int(d.docstatus or 0) != 0 or int(d.l_reconciled or 0) or d.payment_entry or d.journal_entry:\n        out = {\"status\": \"error\", \"message\": \"السجل معتمد محاسبياً — لا يمكن حذفه (اعكس القيد أولاً)\"}\n    else:\n        frappe.delete_doc(\"LMT Debt Collection\", dn)\n        out = {\"status\": \"success\", \"docname\": dn, \"receipt_uid\": d.receipt_uid, \"message\": \"تم حذف \" + str(d.receipt_uid or dn) + \" — الرقم أصبح متاحاً للمندوب من جديد\"}\nfrappe.response[\"message\"] = out\n",
   "script_type": "API"
  }
 ]
