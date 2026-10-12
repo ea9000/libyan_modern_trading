@@ -37,7 +37,8 @@
   "lmt-impersonate-all",
   "lmt-impersonate-team",
   "lmt-sat-save",
-  "lmt-item-tracking"
+  "lmt-item-tracking",
+  "lmt-receipt-damage-approver"
  ],
  "scripts_api": [
   "04_mark_printed_flags",
@@ -344,7 +345,11 @@
   "lmt_sat_save_v2",
   "lmt_sat_items_v2",
   "lmt_sat_targets_v2",
-  "lmt_item_track_v1"
+  "lmt_item_track_v1",
+  "lmt_mas1_data_v1",
+  "lmt_rda_access_v1",
+  "lmt_rda_review_v1",
+  "lmt_rda_list_v1"
  ],
  "scripts_doctype_event": [
   "01_Create Delivery note",
@@ -423,7 +428,8 @@
   "lmt_audit_ticket_sync_v1",
   "so_dup_line_guard_v1",
   "lmt_debt_form_guard_v2",
-  "lmt_debt_delete_guard_v1"
+  "lmt_debt_delete_guard_v1",
+  "lmt_debt_damaged_guard_v1"
  ],
  "scripts_indirect": [
   "edx_get_flagged_records_22",
@@ -564,6 +570,7 @@
   "[dev]-مخطط-التوصيل",
   "[audit]-warehouse-fix-1",
   "الدخول-كمندوب",
-  "تتبع-الأصناف"
+  "تتبع-الأصناف",
+  "اعتماد-الإيصالات-التالفة"
  ]
 }
