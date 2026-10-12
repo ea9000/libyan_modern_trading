@@ -432,7 +432,9 @@
   "so_dup_line_guard_v1",
   "lmt_debt_form_guard_v2",
   "lmt_debt_delete_guard_v1",
-  "lmt_debt_damaged_guard_v1"
+  "lmt_debt_damaged_guard_v1",
+  "lmt_rb_close_v1",
+  "lmt_rb_next_v1"
  ],
  "scripts_indirect": [
   "edx_get_flagged_records_22",
