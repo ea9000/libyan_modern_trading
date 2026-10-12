@@ -352,7 +352,8 @@
   "lmt_rda_list_v1",
   "lmt_rc_status_v1",
   "lmt_rc_toggle_v1",
-  "lmt_rc_submit_v2"
+  "lmt_rc_submit_v2",
+  "lmt_debt_candelete_v1"
  ],
  "scripts_doctype_event": [
   "01_Create Delivery note",
@@ -434,7 +435,8 @@
   "lmt_debt_delete_guard_v1",
   "lmt_debt_damaged_guard_v1",
   "lmt_rb_close_v1",
-  "lmt_rb_next_v1"
+  "lmt_rb_next_v1",
+  "lmt_debt_nodelete_v1"
  ],
  "scripts_indirect": [
   "edx_get_flagged_records_22",
