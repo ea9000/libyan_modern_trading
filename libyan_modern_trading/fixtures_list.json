@@ -354,7 +354,8 @@
   "lmt_rc_toggle_v1",
   "lmt_rc_submit_v2",
   "lmt_debt_candelete_v1",
-  "lmt_dept2gl_delete_v1"
+  "lmt_dept2gl_delete_v1",
+  "lmt_settlemet_adjustments_v3"
  ],
  "scripts_doctype_event": [
   "01_Create Delivery note",
