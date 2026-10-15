@@ -355,7 +355,9 @@
   "lmt_rc_submit_v2",
   "lmt_debt_candelete_v1",
   "lmt_dept2gl_delete_v1",
-  "lmt_settlemet_adjustments_v3"
+  "lmt_settlemet_adjustments_v3",
+  "lmt_udg_engine_v1",
+  "lmt_udg_api_v1"
  ],
  "scripts_doctype_event": [
   "01_Create Delivery note",
@@ -580,6 +582,8 @@
   "[audit]-warehouse-fix-1",
   "الدخول-كمندوب",
   "تتبع-الأصناف",
-  "اعتماد-الإيصالات-التالفة"
+  "اعتماد-الإيصالات-التالفة",
+  "[audit]-user-dept-grading",
+  "مساعدة-—-[audit]-user-dept-grading"
  ]
 }
