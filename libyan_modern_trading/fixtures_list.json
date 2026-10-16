@@ -357,7 +357,8 @@
   "lmt_dept2gl_delete_v1",
   "lmt_settlemet_adjustments_v3",
   "lmt_udg_engine_v1",
-  "lmt_udg_api_v1"
+  "lmt_udg_api_v1",
+  "lmt_legacy_account_statement_lw1"
  ],
  "scripts_doctype_event": [
   "01_Create Delivery note",
