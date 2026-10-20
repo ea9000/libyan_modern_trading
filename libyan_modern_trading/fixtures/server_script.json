@@ -7864,5 +7864,43 @@
   "reference_doctype": null,
   "script": "# LMT-RTV-UNIFY v1: FORK of lmt_legacy_account_statement for lmt-legacy-appsheet-working only\n# returns -> ret, receipts -> col, settlement -> disc, opening debt -> sale (row_type opening)\nuser = frappe.session.user\nckey = (frappe.form_dict.get(\"customer_key\") or \"\").strip()\nif not ckey:\n    frappe.response[\"message\"] = {\"status\": \"error\", \"message\": \"missing customer_key\", \"data\": []}\nelse:\n    orders = frappe.db.sql(\n        \"SELECT order_date AS date, invoice AS ref, trans_type, total_cost AS amount\"\n        \" FROM `tabLMT Order`\"\n        \" WHERE customer_key=%s AND agent_email=%s AND order_status='Complete'\",\n        (ckey, user), as_dict=True)\n    payments = frappe.db.sql(\n        \"SELECT date, receipt_number AS ref, received,\"\n        \" COALESCE(custom_settlement_discount,0) AS discount\"\n        \" FROM `tabLMT Payment`\"\n        \" WHERE customer_key=%s AND agent_email=%s\",\n        (ckey, user), as_dict=True)\n\n    all_rows = []\n    for o in orders:\n        amt = float(o.amount or 0)\n        if o.trans_type == \"ترجيع\":\n            all_rows.append({\"date\": str(o.date or \"\"), \"inv\": o.ref or \"\", \"rcpt\": \"\", \"trans_type\": \"ترجيع\",\n                             \"sale\": 0.0, \"ret\": abs(amt), \"col\": 0.0, \"disc\": 0.0, \"row_type\": \"return\"})\n        else:\n            all_rows.append({\"date\": str(o.date or \"\"), \"inv\": o.ref or \"\", \"rcpt\": \"\", \"trans_type\": o.trans_type or \"بيع\",\n                             \"sale\": amt, \"ret\": 0.0, \"col\": 0.0, \"disc\": 0.0, \"row_type\": \"order\"})\n\n    for p in payments:\n        recv = float(p.received or 0)\n        disc = float(p.discount or 0)\n        ref = str(p.ref or \"\")\n        if ref == \"0\" or recv < 0:\n            all_rows.append({\"date\": str(p.date or \"\"), \"inv\": \"\", \"rcpt\": \"\", \"trans_type\": \"الديون السابقة\",\n                             \"sale\": abs(recv), \"ret\": 0.0, \"col\": 0.0, \"disc\": 0.0, \"row_type\": \"opening\"})\n        elif recv > 0 or disc > 0:\n            lbl = \"تحصيل\"\n            if recv <= 0:\n                lbl = \"خصم تسوية\"\n            all_rows.append({\"date\": str(p.date or \"\"), \"inv\": \"\", \"rcpt\": ref, \"trans_type\": lbl,\n                             \"sale\": 0.0, \"ret\": 0.0, \"col\": recv, \"disc\": disc, \"row_type\": \"payment\"})\n\n    for row in all_rows:\n        sk = \"A\"\n        if row[\"row_type\"] == \"payment\":\n            sk = \"B\"\n        row[\"sk\"] = row[\"date\"] + sk\n    all_rows = sorted(all_rows, key=lambda x: x[\"sk\"])\n\n    running = 0.0\n    t_open = 0.0\n    t_sale = 0.0\n    t_ret = 0.0\n    t_col = 0.0\n    t_disc = 0.0\n    for row in all_rows:\n        running += row[\"sale\"] - row[\"ret\"] - row[\"col\"] - row[\"disc\"]\n        row[\"running_balance\"] = round(running, 3)\n        if row[\"row_type\"] == \"opening\":\n            t_open += row[\"sale\"]\n        else:\n            t_sale += row[\"sale\"]\n        t_ret += row[\"ret\"]\n        t_col += row[\"col\"]\n        t_disc += row[\"disc\"]\n\n    totals = {\"opening\": round(t_open, 3), \"sale\": round(t_sale, 3), \"ret\": round(t_ret, 3),\n              \"net_sale\": round(t_sale - t_ret, 3), \"col\": round(t_col, 3), \"disc\": round(t_disc, 3),\n              \"final\": round(running, 3)}\n    frappe.response[\"message\"] = {\"status\": \"success\", \"data\": all_rows, \"totals\": totals}\n",
   "script_type": "API"
+ },
+ {
+  "allow_guest": 0,
+  "api_method": "sr_get_recent_returns_v2",
+  "cron_format": null,
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Server Script",
+  "doctype_event": "Before Insert",
+  "enable_rate_limit": 0,
+  "event_frequency": "All",
+  "modified": "2026-10-20 11:52:27.762406",
+  "module": null,
+  "name": "sr_get_recent_returns_v2",
+  "rate_limit_count": 5,
+  "rate_limit_seconds": 86400,
+  "reference_doctype": null,
+  "script": "user = frappe.session.user\noffset = frappe.utils.cint(frappe.form_dict.get(\"offset\", 0))\nlimit = frappe.utils.cint(frappe.form_dict.get(\"limit\", 5))\nif limit < 1 or limit > 100:\n    limit = 5\ndata = frappe.db.sql(\"\"\"SELECT name, posting_date, grand_total, docstatus, customer_name,\n    custom_approval_rejected, custom_rejection_note\n    FROM `tabSales Invoice`\n    WHERE is_return = 1 AND owner = %s\n    ORDER BY creation DESC\n    LIMIT %s OFFSET %s\"\"\", (user, limit, offset), as_dict=True)\nfrappe.response[\"message\"] = {\"status\": \"success\", \"data\": data}\n",
+  "script_type": "API"
+ },
+ {
+  "allow_guest": 0,
+  "api_method": "sr_update_draft_return_v2",
+  "cron_format": null,
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Server Script",
+  "doctype_event": "Before Insert",
+  "enable_rate_limit": 0,
+  "event_frequency": "All",
+  "modified": "2026-10-20 11:52:27.918452",
+  "module": null,
+  "name": "sr_update_draft_return_v2",
+  "rate_limit_count": 5,
+  "rate_limit_seconds": 86400,
+  "reference_doctype": null,
+  "script": "name = frappe.form_dict.get(\"name\")\npayload = frappe.form_dict.get(\"payload\")\nif isinstance(payload, str):\n    payload = json.loads(payload)\ndoc = frappe.get_doc(\"Sales Invoice\", name)\nif doc.docstatus != 0:\n    frappe.throw(\"لا يمكن تعديل المرتجع لأنه ليس مسودة (Not a draft)\")\ndoc.remarks = payload.get(\"remarks\", \"\")\ndoc.set(\"items\", [])\nfor item in payload.get(\"items\", []):\n    doc.append(\"items\", item)\nresubmitted = 0\nif frappe.utils.cint(doc.get(\"custom_approval_rejected\")) == 1:\n    doc.custom_approval_rejected = 0\n    old_note = doc.get(\"custom_rejection_note\") or \"\"\n    add = frappe.utils.now()[:16] + \" - \" + frappe.session.user + \": أعيد الإرسال بعد التعديل\"\n    if old_note:\n        doc.custom_rejection_note = old_note + \" | \" + add\n    else:\n        doc.custom_rejection_note = add\n    resubmitted = 1\ndoc.save(ignore_permissions=True)\nfrappe.response[\"message\"] = {\"status\": \"success\", \"name\": doc.name, \"resubmitted\": resubmitted}\n",
+  "script_type": "API"
  }
 ]
