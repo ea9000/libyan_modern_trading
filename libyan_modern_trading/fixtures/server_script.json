@@ -7951,13 +7951,13 @@
   "doctype_event": "Before Insert",
   "enable_rate_limit": 0,
   "event_frequency": "All",
-  "modified": "2026-10-22 20:47:35.654318",
+  "modified": "2026-10-22 21:24:25.472022",
   "module": null,
   "name": "lmt_ssh_page_access_v1",
   "rate_limit_count": 5,
   "rate_limit_seconds": 86400,
   "reference_doctype": null,
-  "script": "# LMT-SSH-PAGE-ACCESS v1 - page lmt-ssh own gate\nu = frappe.session.user\nok = 0\nif u == \"Administrator\":\n    ok = 1\nelif u and u != \"Guest\":\n    r = frappe.db.sql(\"select count(*) from `tabHas Role` where parenttype='User' and parent=%s and role=%s\", (u, \"LMT SSH Access\"))\n    if r and r[0][0]:\n        ok = 1\nres = {\"ok\": ok, \"user\": \"\"}\nif ok:\n    res[\"user\"] = u\nfrappe.response[\"message\"] = res\n",
+  "script": "# LMT-SSH-PAGE-ACCESS v2 - page lmt-ssh own gate\nu = frappe.session.user\nok = 0\nif u and u not in (\"Guest\", \"Administrator\"):\n    r = frappe.db.sql(\"select count(*) from `tabHas Role` where parenttype='User' and parent=%s and role=%s\", (u, \"LMT SSH Access\"))\n    if r and r[0][0]:\n        ok = 1\nres = {\"ok\": ok, \"user\": \"\"}\nif ok:\n    res[\"user\"] = u\nfrappe.response[\"message\"] = res\n",
   "script_type": "API"
  }
 ]
