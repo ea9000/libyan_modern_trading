@@ -360,7 +360,8 @@
   "lmt_udg_api_v1",
   "lmt_legacy_account_statement_lw1",
   "sr_get_recent_returns_v2",
-  "sr_update_draft_return_v2"
+  "sr_update_draft_return_v2",
+  "sr_invoice_chain_v1"
  ],
  "scripts_doctype_event": [
   "01_Create Delivery note",
