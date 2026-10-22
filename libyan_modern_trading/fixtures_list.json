@@ -38,7 +38,8 @@
   "lmt-impersonate-team",
   "lmt-sat-save",
   "lmt-item-tracking",
-  "lmt-receipt-damage-approver"
+  "lmt-receipt-damage-approver",
+  "LMT SSH Access"
  ],
  "scripts_api": [
   "04_mark_printed_flags",
@@ -362,7 +363,8 @@
   "sr_get_recent_returns_v2",
   "sr_update_draft_return_v2",
   "sr_invoice_chain_v1",
-  "lmt_create_return_dn_v3"
+  "lmt_create_return_dn_v3",
+  "lmt_ssh_page_access_v1"
  ],
  "scripts_doctype_event": [
   "01_Create Delivery note",
@@ -590,6 +592,7 @@
   "اعتماد-الإيصالات-التالفة",
   "[audit]-user-dept-grading",
   "مساعدة-—-[audit]-user-dept-grading",
-  "مساعدة-—-تدقيق-تحصيل-الديون"
+  "مساعدة-—-تدقيق-تحصيل-الديون",
+  "طرفية-ssh"
  ]
 }
