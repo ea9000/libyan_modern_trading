@@ -7942,6 +7942,25 @@
   "script_type": "API"
  },
  {
+  "allow_guest": 0,
+  "api_method": "lmt_ssh_gate",
+  "cron_format": null,
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Server Script",
+  "doctype_event": "Before Insert",
+  "enable_rate_limit": 0,
+  "event_frequency": "All",
+  "modified": "2026-10-22 21:24:25.399978",
+  "module": null,
+  "name": "lmt_ssh_gate_v1",
+  "rate_limit_count": 5,
+  "rate_limit_seconds": 86400,
+  "reference_doctype": null,
+  "script": "# LMT-SSH-GATE v2 - nginx auth_request target for /ssh/\n# 200 = allowed, 403 = denied. Guest is refused by Frappe (allow_guest=0).\nu = frappe.session.user\nok = 0\nif u and u not in (\"Guest\", \"Administrator\"):\n    r = frappe.db.sql(\"select count(*) from `tabHas Role` where parenttype='User' and parent=%s and role=%s\", (u, \"LMT SSH Access\"))\n    if r and r[0][0]:\n        ok = 1\nif not ok:\n    frappe.throw(\"Not allowed\", frappe.PermissionError)\nfrappe.response[\"message\"] = \"ok\"\n",
+  "script_type": "API"
+ },
+ {
   "allow_guest": 1,
   "api_method": "lmt_ssh_page_access",
   "cron_format": null,
