@@ -39,7 +39,8 @@
   "lmt-sat-save",
   "lmt-item-tracking",
   "lmt-receipt-damage-approver",
-  "LMT SSH Access"
+  "LMT SSH Access",
+  "lmt-so-attach-fix"
  ],
  "scripts_api": [
   "04_mark_printed_flags",
@@ -369,7 +370,10 @@
   "lmt_ccc_get_contact_v1",
   "lmt_ccc_location_v1",
   "lmt_ccc_save_all_v2",
-  "lmt_ccc_area_v2"
+  "lmt_ccc_area_v2",
+  "lmt_soaf_archive_v1",
+  "lmt_soaf_upload_v1",
+  "lmt_soaf_list_v1"
  ],
  "scripts_doctype_event": [
   "01_Create Delivery note",
@@ -602,6 +606,7 @@
   "مساعدة-—-طرفية-ssh",
   "تفعيل-رمز-الدخول",
   "مساعدة-—-مركز-إدارة-الزبائن",
-  "[audit]-مركز-إدارة-الزبائن"
+  "[audit]-مركز-إدارة-الزبائن",
+  "تصحيح-صورة-الطلب"
  ]
 }
