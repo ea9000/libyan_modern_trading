@@ -365,7 +365,11 @@
   "sr_invoice_chain_v1",
   "lmt_create_return_dn_v3",
   "lmt_ssh_page_access_v1",
-  "lmt_ssh_gate_v1"
+  "lmt_ssh_gate_v1",
+  "lmt_ccc_get_contact_v1",
+  "lmt_ccc_location_v1",
+  "lmt_ccc_save_all_v2",
+  "lmt_ccc_area_v2"
  ],
  "scripts_doctype_event": [
   "01_Create Delivery note",
@@ -597,6 +601,7 @@
   "طرفية-ssh",
   "مساعدة-—-طرفية-ssh",
   "تفعيل-رمز-الدخول",
-  "مساعدة-—-مركز-إدارة-الزبائن"
+  "مساعدة-—-مركز-إدارة-الزبائن",
+  "[audit]-مركز-إدارة-الزبائن"
  ]
 }
