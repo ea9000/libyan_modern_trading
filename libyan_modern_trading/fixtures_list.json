@@ -485,7 +485,8 @@
   "74_delete_draft_order_after_48_hours_v1",
   "auto_allocate_customer_advances_to_invoices_sales",
   "lmt_helpdesk_alert_sender",
-  "lmt_alert_cron_v1"
+  "lmt_alert_cron_v1",
+  "lmt_treenotes_mail_ingest_v1"
  ],
  "webpages": [
   "address-assistant-page",
