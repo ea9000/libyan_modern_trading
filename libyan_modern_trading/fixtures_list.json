@@ -486,7 +486,8 @@
   "auto_allocate_customer_advances_to_invoices_sales",
   "lmt_helpdesk_alert_sender",
   "lmt_alert_cron_v1",
-  "lmt_treenotes_mail_ingest_v1"
+  "lmt_treenotes_mail_ingest_v1",
+  "lmt_udg_auto_recalc_v1"
  ],
  "webpages": [
   "address-assistant-page",
