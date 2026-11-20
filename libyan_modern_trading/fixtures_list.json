@@ -376,7 +376,11 @@
   "lmt_soaf_list_v1",
   "lmt_treenotes_api_v1",
   "lmt_treenotes_export_v1",
-  "lmt_treenotes_tasks_v1"
+  "lmt_treenotes_tasks_v1",
+  "lmt_mdf1_receipt_status_v1",
+  "lmt_mdf1_agent_stmt_v1",
+  "lmt_mdf1_candelete_v1",
+  "lmt_mdf1_cash_temp_v1"
  ],
  "scripts_doctype_event": [
   "01_Create Delivery note",
@@ -615,6 +619,7 @@
   "تصحيح-صورة-الطلب",
   "مساعدة-—-تصحيح-صورة-الطلب",
   "[audit]-lmt-tree-notes",
-  "مساعدة-—-إدارة-المستندات"
+  "مساعدة-—-إدارة-المستندات",
+  "[audit]-mobile-debt-form-1"
  ]
 }
