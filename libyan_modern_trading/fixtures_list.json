@@ -381,7 +381,8 @@
   "lmt_mdf1_agent_stmt_v1",
   "lmt_mdf1_candelete_v1",
   "lmt_mdf1_cash_temp_v1",
-  "lmt_mdf1_ref_dup_v1"
+  "lmt_mdf1_ref_dup_v1",
+  "lmt_dept2gl_ref_dup_v1"
  ],
  "scripts_doctype_event": [
   "01_Create Delivery note",
