@@ -384,7 +384,8 @@
   "lmt_mdf1_cash_temp_v1",
   "lmt_mdf1_ref_dup_v1",
   "lmt_dept2gl_ref_dup_v1",
-  "lmt_bankmatch_v1"
+  "lmt_bankmatch_v1",
+  "lmt_mdf1_bank_no_v1"
  ],
  "scripts_doctype_event": [
   "01_Create Delivery note",
