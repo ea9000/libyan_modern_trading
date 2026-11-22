@@ -468,7 +468,8 @@
   "lmt_debt_damaged_guard_v1",
   "lmt_rb_close_v1",
   "lmt_rb_next_v1",
-  "lmt_debt_nodelete_v1"
+  "lmt_debt_nodelete_v1",
+  "lmt_debt_hikma_guard_v1"
  ],
  "scripts_indirect": [
   "edx_get_flagged_records_22",

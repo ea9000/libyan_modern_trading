@@ -8217,13 +8217,13 @@
   "doctype_event": "Before Insert",
   "enable_rate_limit": 0,
   "event_frequency": "All",
-  "modified": "2026-11-20 13:51:27.701641",
+  "modified": "2026-11-22 11:37:46.606941",
   "module": null,
   "name": "lmt_mdf1_cash_temp_v1",
   "rate_limit_count": 5,
   "rate_limit_seconds": 86400,
   "reference_doctype": null,
-  "script": "# lmt_mdf1_cash_temp_v1 — page-own copy of lmt_cash_temp_account_mobiledebt_v1 for mobile-debt-form_1-aud (CR-LMT-HDT-2026-11-20-00001-1)\nu = frappe.session.user\nif not u or u == \"Guest\":\n    raise frappe.PermissionError\nv = frappe.db.get_value(\"User\", u, [\"percentage_1\", \"percentage_2\", \"cash_temp_receive_account\"], as_dict=True) or {}\nfrappe.response[\"message\"] = {\n    \"percentage_1\": v.get(\"percentage_1\") or 0,\n    \"percentage_2\": v.get(\"percentage_2\") or 0,\n    \"cash_temp_receive_account\": v.get(\"cash_temp_receive_account\") or \"\"\n}\n",
+  "script": "# lmt_mdf1_cash_temp_v1 — page-own copy of lmt_cash_temp_account_mobiledebt_v1 for mobile-debt-form_1-aud (CR-LMT-HDT-2026-11-20-00001-1)\nu = frappe.session.user\nif not u or u == \"Guest\":\n    raise frappe.PermissionError\nv = frappe.db.get_value(\"User\", u, [\"percentage_1\", \"percentage_2\", \"cash_temp_receive_account\", \"warehouse\"], as_dict=True) or {}\nfrappe.response[\"message\"] = {\n    \"percentage_1\": v.get(\"percentage_1\") or 0,\n    \"percentage_2\": v.get(\"percentage_2\") or 0,\n    \"cash_temp_receive_account\": v.get(\"cash_temp_receive_account\") or \"\",\n    \"warehouse\": v.get(\"warehouse\") or \"\"  # LMT-HIKMA v1\n}\n",
   "script_type": "API"
  },
  {
@@ -8358,5 +8358,24 @@
   "reference_doctype": null,
   "script": "# lmt_mdf1_bank_no_v1 - page-own for mobile-debt-form_1-aud (CR-LMT-HDT-2026-11-21-00010-3)\n# Read-only. Out: map {GL account: {no, bank}} for enabled company Bank Accounts that have a number.\nout = {\"map\": {}, \"error\": \"\"}\ntry:\n    u = frappe.session.user\n    if not u or u == \"Guest\":\n        frappe.throw(\"Not permitted\")\n    rows = frappe.get_all(\"Bank Account\", filters={\"is_company_account\": 1, \"disabled\": 0},\n                          fields=[\"account\", \"bank_account_no\", \"bank\"], limit_page_length=100)\n    for r in rows:\n        acc = str(r.get(\"account\") or \"\").strip()\n        no = str(r.get(\"bank_account_no\") or \"\").strip()\n        if acc and no:\n            out[\"map\"][acc] = {\"no\": no, \"bank\": str(r.get(\"bank\") or \"\")}\nexcept Exception as e:\n    out[\"error\"] = str(e)\nfrappe.response[\"message\"] = out\n",
   "script_type": "API"
+ },
+ {
+  "allow_guest": 0,
+  "api_method": null,
+  "cron_format": null,
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Server Script",
+  "doctype_event": "Before Save",
+  "enable_rate_limit": 0,
+  "event_frequency": "All",
+  "modified": "2026-11-22 11:37:47.111048",
+  "module": null,
+  "name": "lmt_debt_hikma_guard_v1",
+  "rate_limit_count": 5,
+  "rate_limit_seconds": 86400,
+  "reference_doctype": "LMT Debt Collection",
+  "script": "# lmt_debt_hikma_guard_v1 — LMT-HIKMA v1: bank account «مصرف الحكمة - S» only for agents with User.warehouse = «بنغازي - S».\n# Checks only a new record or a changed bank. Records that already hold this bank are not blocked.\nHIKMA = \"مصرف الحكمة - S\"\nif (doc.bank or \"\") == HIKMA:\n    changed = 1\n    if not doc.is_new():\n        if (frappe.db.get_value(\"LMT Debt Collection\", doc.name, \"bank\") or \"\") == HIKMA:\n            changed = 0\n    if changed:\n        ag = doc.agent_name or frappe.session.user\n        wh = frappe.db.get_value(\"User\", ag, \"warehouse\") or \"\"\n        if wh != \"بنغازي - S\":\n            frappe.throw(\"مصرف الحكمة متاح لمندوبي بنغازي فقط\")\n",
+  "script_type": "DocType Event"
  }
 ]
