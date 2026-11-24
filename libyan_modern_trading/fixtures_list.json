@@ -385,7 +385,14 @@
   "lmt_mdf1_ref_dup_v1",
   "lmt_dept2gl_ref_dup_v1",
   "lmt_bankmatch_v1",
-  "lmt_mdf1_bank_no_v1"
+  "lmt_mdf1_bank_no_v1",
+  "lmt_mobilehome_agent_stmt_v1",
+  "lmt_mobilehome_menu_v1",
+  "lmt_mobilehome_alert_gate_v1",
+  "lmt_mobilehome_menu_order_v1",
+  "lmt_mobilehome_alert_ack_v1",
+  "lmt_mobilehome_access_v2",
+  "lmt_mobilehome_rolemap_v1"
  ],
  "scripts_doctype_event": [
   "01_Create Delivery note",
@@ -629,6 +636,7 @@
   "مساعدة-—-إدارة-المستندات",
   "[audit]-mobile-debt-form-1",
   "bank-match",
-  "مساعدة-—-مطابقة-كشف-المصرف"
+  "مساعدة-—-مطابقة-كشف-المصرف",
+  "[audit]-mobile-home"
  ]
 }
