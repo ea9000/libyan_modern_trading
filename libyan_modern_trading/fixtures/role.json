@@ -205,7 +205,7 @@
   "lmt_pages": [
    {
     "auto": 1,
-    "last_scan": "2026-11-24 15:59:37.078400",
+    "last_scan": "2026-11-24 16:45:43.198376",
     "page_route": "tree-notes",
     "parent": "LMT Note User",
     "parentfield": "lmt_pages",
@@ -216,7 +216,7 @@
    },
    {
     "auto": 1,
-    "last_scan": "2026-11-24 15:59:37.078400",
+    "last_scan": "2026-11-24 16:45:43.198376",
     "page_route": "tree-notes",
     "parent": "LMT Note User",
     "parentfield": "lmt_pages",
@@ -226,7 +226,7 @@
     "source": "LMT Note (DocPerm)"
    }
   ],
-  "modified": "2026-11-24 15:59:37.098898",
+  "modified": "2026-11-24 16:45:43.208093",
   "name": "LMT Note User",
   "restrict_to_domain": null,
   "role_name": "LMT Note User",
@@ -444,9 +444,31 @@
     "ptype": "",
     "reason": "tile",
     "source": "tile"
+   },
+   {
+    "auto": 1,
+    "last_scan": "2026-11-24 16:09:42.240252",
+    "page_route": "customer_command_center-aud",
+    "parent": "lmt-audit-tester",
+    "parentfield": "lmt_pages",
+    "parenttype": "Role",
+    "ptype": "",
+    "reason": "tile",
+    "source": "tile"
+   },
+   {
+    "auto": 1,
+    "last_scan": "2026-11-24 16:10:19.889282",
+    "page_route": "lmt-driver-delivery",
+    "parent": "lmt-audit-tester",
+    "parentfield": "lmt_pages",
+    "parenttype": "Role",
+    "ptype": "",
+    "reason": "tile",
+    "source": "tile"
    }
   ],
-  "modified": "2026-11-24 15:58:14.906556",
+  "modified": "2026-11-24 16:10:19.974757",
   "name": "lmt-audit-tester",
   "restrict_to_domain": null,
   "role_name": "lmt-audit-tester",
@@ -459,8 +481,31 @@
   "doctype": "Role",
   "home_page": null,
   "is_custom": 0,
-  "lmt_pages": [],
-  "modified": "2026-10-06 15:07:50.576116",
+  "lmt_pages": [
+   {
+    "auto": 1,
+    "last_scan": "2026-11-24 16:10:19.889282",
+    "page_route": "lmt-driver-delivery",
+    "parent": "lmt-driver",
+    "parentfield": "lmt_pages",
+    "parenttype": "Role",
+    "ptype": "",
+    "reason": "feature",
+    "source": "lmt_drv_mgr_v1"
+   },
+   {
+    "auto": 1,
+    "last_scan": "2026-11-24 16:10:19.889282",
+    "page_route": "lmt-driver-delivery",
+    "parent": "lmt-driver",
+    "parentfield": "lmt_pages",
+    "parenttype": "Role",
+    "ptype": "read,write",
+    "reason": "docperm",
+    "source": "LMT Delivery Stop (DocPerm)"
+   }
+  ],
+  "modified": "2026-11-24 16:10:19.934755",
   "name": "lmt-driver",
   "restrict_to_domain": null,
   "role_name": "lmt-driver",
