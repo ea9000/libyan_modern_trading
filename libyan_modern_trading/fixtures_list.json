@@ -469,7 +469,8 @@
   "lmt_rb_close_v1",
   "lmt_rb_next_v1",
   "lmt_debt_nodelete_v1",
-  "lmt_debt_hikma_guard_v1"
+  "lmt_debt_hikma_guard_v1",
+  "01_Create Delivery note_v2"
  ],
  "scripts_indirect": [
   "edx_get_flagged_records_22",
