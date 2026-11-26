@@ -396,7 +396,13 @@
   "lmt_mobilehome_rolemap_v1",
   "lmt_custclass_api_v1",
   "lmt_custclass_export_v1",
-  "lmt_ccc_class_info_v1"
+  "lmt_ccc_class_info_v1",
+  "lmt_mdf1_cash_temp_v2",
+  "lmt_mdf1_receipt_status_v2",
+  "lmt_mdf1_agent_stmt_v2",
+  "lmt_mdf1_candelete_v2",
+  "lmt_mdf1_ref_dup_v2",
+  "lmt_mdf1_bank_no_v2"
  ],
  "scripts_doctype_event": [
   "01_Create Delivery note",
@@ -645,6 +651,8 @@
   "مساعدة-—-الشاشة-الرئيسية",
   "مساعدة-—-تحصيل-الديون",
   "تصنيف-الزبائن",
-  "مساعدة-—-تصنيف-الزبائن"
+  "مساعدة-—-تصنيف-الزبائن",
+  "[audit]-mobile-debt-form-1-v2",
+  "مساعدة-—-الغاء-واصلات-التحصيل-lmt"
  ]
 }
