@@ -323,8 +323,42 @@
   "doctype": "Role",
   "home_page": null,
   "is_custom": 0,
-  "lmt_pages": [],
-  "modified": "2026-09-29 15:28:02.553256",
+  "lmt_pages": [
+   {
+    "auto": 1,
+    "last_scan": "2026-11-26 23:50:41.345227",
+    "page_route": "receipt-no-fix",
+    "parent": "receipt-book-admin",
+    "parentfield": "lmt_pages",
+    "parenttype": "Role",
+    "ptype": "",
+    "reason": "tile",
+    "source": "tile"
+   },
+   {
+    "auto": 1,
+    "last_scan": "2026-11-26 23:50:41.345227",
+    "page_route": "receipt-no-fix",
+    "parent": "receipt-book-admin",
+    "parentfield": "lmt_pages",
+    "parenttype": "Role",
+    "ptype": "",
+    "reason": "feature",
+    "source": "lmt_rnf_list_v1"
+   },
+   {
+    "auto": 1,
+    "last_scan": "2026-11-26 23:50:41.345227",
+    "page_route": "receipt-no-fix",
+    "parent": "receipt-book-admin",
+    "parentfield": "lmt_pages",
+    "parenttype": "Role",
+    "ptype": "",
+    "reason": "feature",
+    "source": "lmt_rnf_save_v1"
+   }
+  ],
+  "modified": "2026-11-26 23:50:41.408791",
   "name": "receipt-book-admin",
   "restrict_to_domain": null,
   "role_name": "receipt-book-admin",
