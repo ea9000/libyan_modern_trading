@@ -41,7 +41,8 @@
   "lmt-receipt-damage-approver",
   "LMT SSH Access",
   "lmt-so-attach-fix",
-  "lmt-bank-match"
+  "lmt-bank-match",
+  "lmt-customer-class"
  ],
  "scripts_api": [
   "04_mark_printed_flags",
