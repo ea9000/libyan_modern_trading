@@ -393,7 +393,9 @@
   "lmt_mobilehome_menu_order_v1",
   "lmt_mobilehome_alert_ack_v1",
   "lmt_mobilehome_access_v2",
-  "lmt_mobilehome_rolemap_v1"
+  "lmt_mobilehome_rolemap_v1",
+  "lmt_custclass_api_v1",
+  "lmt_custclass_export_v1"
  ],
  "scripts_doctype_event": [
   "01_Create Delivery note",
@@ -640,6 +642,7 @@
   "مساعدة-—-مطابقة-كشف-المصرف",
   "[audit]-mobile-home",
   "مساعدة-—-الشاشة-الرئيسية",
-  "مساعدة-—-تحصيل-الديون"
+  "مساعدة-—-تحصيل-الديون",
+  "تصنيف-الزبائن"
  ]
 }
