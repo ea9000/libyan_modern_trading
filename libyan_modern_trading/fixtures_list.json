@@ -395,7 +395,8 @@
   "lmt_mobilehome_access_v2",
   "lmt_mobilehome_rolemap_v1",
   "lmt_custclass_api_v1",
-  "lmt_custclass_export_v1"
+  "lmt_custclass_export_v1",
+  "lmt_ccc_class_info_v1"
  ],
  "scripts_doctype_event": [
   "01_Create Delivery note",
