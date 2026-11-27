@@ -492,7 +492,8 @@
   "lmt_rb_next_v1",
   "lmt_debt_nodelete_v1",
   "lmt_debt_hikma_guard_v1",
-  "01_Create Delivery note_v2"
+  "01_Create Delivery note_v2",
+  "lmt_debt_commission_bonus_v1"
  ],
  "scripts_indirect": [
   "edx_get_flagged_records_22",
@@ -660,6 +661,7 @@
   "[audit]-mobile-debt-form-1-v2",
   "مساعدة-—-الغاء-واصلات-التحصيل-lmt",
   "تصحيح-أرقام-الواصلات",
-  "النسبة-الإضافية-للمندوبين"
+  "النسبة-الإضافية-للمندوبين",
+  "مساعدة-—-النسبة-الإضافية-للمندوبين"
  ]
 }
