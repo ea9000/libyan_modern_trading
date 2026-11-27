@@ -104,8 +104,42 @@
   "doctype": "Role",
   "home_page": null,
   "is_custom": 0,
-  "lmt_pages": [],
-  "modified": "2026-02-05 11:41:34.066033",
+  "lmt_pages": [
+   {
+    "auto": 1,
+    "last_scan": "2026-11-27 23:22:48.977316",
+    "page_route": "lmt-helpdesk",
+    "parent": "lmt_helpdesk_admin",
+    "parentfield": "lmt_pages",
+    "parenttype": "Role",
+    "ptype": "",
+    "reason": "feature",
+    "source": "lmt_helpdesk_v2_ai_brief"
+   },
+   {
+    "auto": 1,
+    "last_scan": "2026-11-27 23:22:48.977316",
+    "page_route": "lmt-helpdesk",
+    "parent": "lmt_helpdesk_admin",
+    "parentfield": "lmt_pages",
+    "parenttype": "Role",
+    "ptype": "",
+    "reason": "feature",
+    "source": "lmt_helpdesk_v2_cr_log_add"
+   },
+   {
+    "auto": 1,
+    "last_scan": "2026-11-27 23:22:48.977316",
+    "page_route": "lmt-helpdesk",
+    "parent": "lmt_helpdesk_admin",
+    "parentfield": "lmt_pages",
+    "parenttype": "Role",
+    "ptype": "",
+    "reason": "feature",
+    "source": "lmt_alert_admin_v1"
+   }
+  ],
+  "modified": "2026-11-27 23:22:49.115051",
   "name": "lmt_helpdesk_admin",
   "restrict_to_domain": null,
   "role_name": "lmt_helpdesk_admin",
@@ -309,8 +343,20 @@
   "doctype": "Role",
   "home_page": null,
   "is_custom": 0,
-  "lmt_pages": [],
-  "modified": "2026-09-29 14:45:57.865555",
+  "lmt_pages": [
+   {
+    "auto": 1,
+    "last_scan": "2026-11-27 23:23:44.154532",
+    "page_route": "gl-mapping2-locked_7",
+    "parent": "gl-mapping-admin",
+    "parentfield": "lmt_pages",
+    "parenttype": "Role",
+    "ptype": "",
+    "reason": "feature",
+    "source": "save_gl_mapping_api_7"
+   }
+  ],
+  "modified": "2026-11-27 23:23:44.689272",
   "name": "gl-mapping-admin",
   "restrict_to_domain": null,
   "role_name": "gl-mapping-admin",
@@ -537,9 +583,20 @@
     "ptype": "read,write",
     "reason": "docperm",
     "source": "LMT Delivery Stop (DocPerm)"
+   },
+   {
+    "auto": 1,
+    "last_scan": "2026-11-27 23:23:44.154532",
+    "page_route": "gl-mapping2-locked_7",
+    "parent": "lmt-driver",
+    "parentfield": "lmt_pages",
+    "parenttype": "Role",
+    "ptype": "read",
+    "reason": "docperm",
+    "source": "Account (Custom DocPerm)"
    }
   ],
-  "modified": "2026-11-24 16:10:19.934755",
+  "modified": "2026-11-27 23:23:44.171605",
   "name": "lmt-driver",
   "restrict_to_domain": null,
   "role_name": "lmt-driver",
