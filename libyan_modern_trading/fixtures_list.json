@@ -406,7 +406,8 @@
   "lmt_mdf1_bank_no_v2",
   "lmt_dept2gl_img_check_v1",
   "lmt_rnf_list_v1",
-  "lmt_rnf_save_v1"
+  "lmt_rnf_save_v1",
+  "lmt_cbonus_api_v1"
  ],
  "scripts_doctype_event": [
   "01_Create Delivery note",
@@ -658,6 +659,7 @@
   "مساعدة-—-تصنيف-الزبائن",
   "[audit]-mobile-debt-form-1-v2",
   "مساعدة-—-الغاء-واصلات-التحصيل-lmt",
-  "تصحيح-أرقام-الواصلات"
+  "تصحيح-أرقام-الواصلات",
+  "النسبة-الإضافية-للمندوبين"
  ]
 }
