@@ -43,7 +43,8 @@
   "lmt-so-attach-fix",
   "lmt-bank-match",
   "lmt-customer-class",
-  "lmt-commission-bonus-admin"
+  "lmt-commission-bonus-admin",
+  "lmt-supervisor-pct-admin"
  ],
  "scripts_api": [
   "04_mark_printed_flags",
@@ -407,7 +408,8 @@
   "lmt_dept2gl_img_check_v1",
   "lmt_rnf_list_v1",
   "lmt_rnf_save_v1",
-  "lmt_cbonus_api_v1"
+  "lmt_cbonus_api_v1",
+  "lmt_supperc_setup_v1"
  ],
  "scripts_doctype_event": [
   "01_Create Delivery note",
