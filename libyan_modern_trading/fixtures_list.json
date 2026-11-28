@@ -409,7 +409,8 @@
   "lmt_rnf_list_v1",
   "lmt_rnf_save_v1",
   "lmt_cbonus_api_v1",
-  "lmt_supperc_setup_v1"
+  "lmt_supperc_setup_v1",
+  "lmt_salesreport1_get_data_v1"
  ],
  "scripts_doctype_event": [
   "01_Create Delivery note",
